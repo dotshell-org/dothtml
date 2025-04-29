@@ -2,7 +2,7 @@ import Image from "next/image";
 
 const LogoContainer = () => {
     return (
-        <div className="flex flex-col items-center justify-center">
+        <div className="absolute w-full top-1/2 -translate-y-1/2 flex flex-col items-center justify-center">
             <Image 
                 className="dark:invert"
                 src="/dotshell-logo.svg"
@@ -13,8 +13,8 @@ const LogoContainer = () => {
             <h1 className="text-7xl font-black text-gray-900 dark:text-white">
                 Dotshell
             </h1>
-            <h2 className="mt-2 text-xl font-extralight">
-                Believe in the open.
+            <h2 className="mt-2 text-xl font-light">
+                Believe in the open
             </h2>
         </div>
     )

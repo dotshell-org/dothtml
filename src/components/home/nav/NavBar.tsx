@@ -8,7 +8,7 @@ const NavBar = () => {
     ]
 
     return (
-        <div className="w-full my-16 flex">
+        <div className="w-full mt-16 mb-8 flex">
             <div className="relative left-1/2 -translate-x-1/2 w-fit">
                 {
                     elements.map(element =>
