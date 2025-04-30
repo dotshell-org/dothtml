@@ -1,6 +1,11 @@
 import NavBar from "@/components/home/nav/NavBar";
 import LogoContainer from "@/components/home/logo/LogoContainer";
 import LineChartDivider from "@/components/home/line-chart-divider/LineChartDivider";
+import SemiBold from "@/components/style/SemiBold";
+import SoftwareCardsGroup from "@/components/home/software-cards/SoftwareCardsGroup";
+import {Direction} from "@/types/home/Direction";
+import BarChart from "@/components/home/BarChart/BarChart";
+import EmojiContainer from "@/components/home/emoji/EmojiContainer";
 
 const Home = () => {
     return (
@@ -10,7 +15,113 @@ const Home = () => {
                 <LogoContainer />
             </div>
             <div className="h-[calc(100%-10rem)]"></div>
-            <LineChartDivider color="#3B82F6" />
+            <LineChartDivider color="#3B82F6" direction={Direction.Left} />
+
+            <p className="mt-50 text-center text-xl font-light">
+                For us, <SemiBold>Open Source</SemiBold> is the <SemiBold>Future</SemiBold>
+                <br /><br />
+                Our ambition is to make open source
+                <br />
+                the best option for all your software
+            </p>
+
+            <p className="mt-40 text-center text-xl font-light">
+                By giving you
+            </p>
+            <h1 className="text-center text-7xl font-black">
+                What You <span className="text-blue-500">Need</span>
+            </h1>
+
+            <SoftwareCardsGroup />
+
+            <p className="my-40 text-center text-xl font-light">
+                From cash register to complex
+                <br />
+                analysis for your business statistics,
+                <br />
+                Dotshell software helps you
+                <br />
+                <SemiBold>every day</SemiBold>
+            </p>
+
+            <LineChartDivider color="#EF4444" direction={Direction.Right} />
+
+            <p className="mt-40 text-center text-xl font-light">
+                Benefit from
+            </p>
+            <h1 className="text-center text-7xl font-black">
+                <span className="text-red-500">Powerful</span> Tools
+            </h1>
+
+            <BarChart />
+
+            <p className="my-40 text-center text-xl font-light">
+                For Dotshell, <SemiBold>free</SemiBold> doesn&#39;t mean <s>weak</s>
+            </p>
+
+            <LineChartDivider color="#22C55E" direction={Direction.Left} />
+
+            <p className="mt-40 text-center text-xl font-light">
+                And <SemiBold>Open Source</SemiBold> doesn&#39;t mean <s>ugly</s>
+            </p>
+            <p className="mt-4 text-center text-xl font-light">
+                No more software with a 20-years-old design !
+            </p>
+
+            <p className="mt-40 text-center text-xl font-light">
+                Meet our
+            </p>
+            <h1 className="text-center text-7xl font-black">
+                <span className="text-green-500">Modern</span> Design
+            </h1>
+
+            <EmojiContainer />
+
+            <p className="mt-20 mb-40 text-center text-xl font-light">
+                Rediscover the icons <SemiBold>you know</SemiBold> in a no-frills interface
+                <br /><br />
+                Full of
+                <br />
+                <SemiBold>S   P   A   C   E</SemiBold>
+                <br /><br />
+                Take a long breath with Dotshell
+            </p>
+
+            <LineChartDivider color="#F0B100" direction={Direction.Right} />
+
+            <p className="mt-40 text-center text-xl font-light">
+                And be sure
+            </p>
+            <h1 className="text-center text-7xl font-black">
+                Your Data Is <span className="text-yellow-500">Safe</span>
+            </h1>
+
+            <p className="mt-20 mb-40 text-center text-xl font-light">
+                All you data is stored locally
+                <br />
+                on <SemiBold>your device</SemiBold> and nothing
+                <br />
+                comes out of <SemiBold>your computer</SemiBold>.
+                <br /><br />
+                No more data leaks, no more data theft.
+                <br />
+                Your data is yours and yours only.
+            </p>
+
+            <footer className="w-full text-center text-xl font-light py-20 bg-gray-100 text-gray-600 dark:bg-gray-800 dark:text-gray-400">
+                <p className="mb-4">
+                    Made with 🥐 by <SemiBold>Dotshell</SemiBold>, France • Open Source &amp; Privacy First
+                </p>
+                <p className="mb-2">
+                    Follow us on
+                    <a href="https://github.com/dotshell" className="text-blue-500 hover:underline mx-1" target="_blank" rel="noopener noreferrer">GitHub</a>
+                </p>
+                <p className="text-sm text-neutral-400 mt-4">
+                    © {new Date().getFullYear()} Dotshell. All rights reserved.
+                </p>
+            </footer>
+
+
         </div>
     )
 }

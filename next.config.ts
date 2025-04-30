@@ -1,7 +1,11 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  serverExternalPackages: [],
+  experimental: {},
+  env: {},
+  serverRuntimeConfig: {},
+  publicRuntimeConfig: {},
 };
 
 export default nextConfig;

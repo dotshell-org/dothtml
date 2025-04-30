@@ -2,15 +2,17 @@
 
 import LineChartDividerPeriod from "@/components/home/line-chart-divider/LineChartDividerPeriod";
 import React from "react";
+import {Direction} from "@/types/home/Direction";
 
 interface LineChartDividerProps {
     color: string;
+    direction: Direction;
 }
 
-const LineChartDivider: React.FC<LineChartDividerProps> = ({ color }) => {
+const LineChartDivider: React.FC<LineChartDividerProps> = ({ color, direction }) => {
     return (
-        <div className="scroller bg-transparent">
-            <div className="track">
+        <div className="scroller">
+            <div className={direction === Direction.Right ? "track-right" : "track-left"}>
                 {
                    new Array(10).fill(0).map((_, index) => {
                        return <LineChartDividerPeriod
