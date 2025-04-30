@@ -4,7 +4,7 @@ import LineChartDivider from "@/components/home/line-chart-divider/LineChartDivi
 import SemiBold from "@/components/style/SemiBold";
 import SoftwareCardsGroup from "@/components/home/software-cards/SoftwareCardsGroup";
 import {Direction} from "@/types/home/Direction";
-import BarChart from "@/components/home/BarChart/BarChart";
+import BarChart from "@/components/home/bar-chart/BarChart";
 import EmojiContainer from "@/components/home/emoji/EmojiContainer";
 
 const Home = () => {
@@ -114,7 +114,7 @@ const Home = () => {
                 </p>
                 <p className="mb-2">
                     Follow us on
-                    <a href="https://github.com/dotshell" className="text-blue-500 hover:underline mx-1" target="_blank" rel="noopener noreferrer">GitHub</a>
+                    <a href="https://github.com/dotshell-org" className="text-blue-500 hover:underline mx-1" target="_blank" rel="noopener noreferrer">GitHub</a>
                 </p>
                 <p className="text-sm text-neutral-400 mt-4">
                     © {new Date().getFullYear()} Dotshell. All rights reserved.

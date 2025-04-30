@@ -9,7 +9,7 @@ const NavBar = () => {
 
     return (
         <div className="w-full mt-16 mb-8 flex">
-            <div className="relative left-1/2 -translate-x-1/2 w-fit">
+            <div className="relative left-1/2 -translate-x-[calc(50%-10px)]">
                 {
                     elements.map(element =>
                         <NavLink href={element.href} key={element.href}>
