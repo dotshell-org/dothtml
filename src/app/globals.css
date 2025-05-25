@@ -179,3 +179,56 @@ body {
     transform: translateX(0);
   }
 }
+
+/* Fade-in animation for error messages */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+.animate-fade-in {
+  animation: fadeIn 0.4s ease;
+}
+
+/* Slide and fade-in animation for success box */
+@keyframes slideFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.animate-slide-fade-in {
+  animation: slideFadeIn 0.5s cubic-bezier(0.4,0,0.2,1);
+}
+
+/* Slide and fade-in from bottom animation for success box */
+@keyframes slideFadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.animate-slide-fade-in-up {
+  animation: slideFadeInUp 0.5s cubic-bezier(0.4,0,0.2,1);
+}
+
+@keyframes slideFadeOutDown {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+}
+.animate-slide-fade-out-down {
+  animation: slideFadeOutDown 0.5s cubic-bezier(0.4,0,0.2,1);
+}
