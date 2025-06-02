@@ -6,7 +6,17 @@
     "dev": "next dev --turbopack -p 4000",
     "build": "next build",
     "start": "next start -p 4000",
-    "lint": "next lint"
+    "lint": "next lint",
+    "build:main": "tsc --project electron/tsconfig.main.json",
+    "build:renderer": "vite build --mode production",
+    "build:ci": "npm run build:renderer && npm run build:main",
+    "dist": "npm run build:ci && npm run build:electron",
+    "build:electron": "node build-electron.cjs",
+    "build": "npm run build:renderer && npm run build:electron",
+    "build:linux": "npm run build:renderer && electron-builder --linux",
+    "build:win": "npm run build:renderer && electron-builder --win",
+    "build:mac": "npm run build:renderer && electron-builder --mac",
+    "dev": "vite"
   },
   "dependencies": {
     "framer-motion": "^12.9.2",
