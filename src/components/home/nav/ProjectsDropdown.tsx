@@ -22,27 +22,26 @@ const ProjectsDropdown: React.FC<ProjectsDropdownProps> = ({ isVisible }) => {
             <div className="p-6 relative z-10">
                 <h3 className="text-lg font-semibold text-center mb-5 text-gray-800 dark:text-gray-200">
                     Nos Projets
-                </h3>                <div className="space-y-2">
+                </h3>                <div className="space-y-1">
                     {projects.map((project) => (
                         <a
                             key={project.title}
                             href={`/${project.title.toLowerCase().replace(' ', '-')}`}
-                            className="flex items-center p-4 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800 transition-all duration-200 group hover:shadow-sm"
+                            className="flex items-center p-3 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800 transition-all duration-200 group hover:shadow-sm"
                         >
-                            <div className="flex-shrink-0 w-12 h-12 flex items-center justify-center bg-gray-50 dark:bg-gray-800 rounded-lg group-hover:bg-gray-100 dark:group-hover:bg-gray-700 transition-colors duration-200 group-hover:scale-105">
-                                <Image 
+                            <div className="flex-shrink-0 w-10 h-10 flex items-center justify-center bg-gray-50 dark:bg-gray-800 rounded-lg group-hover:bg-gray-100 dark:group-hover:bg-gray-700 transition-colors duration-200 group-hover:scale-105">                                <Image 
                                     src={`/softwares/${project.imageSrc}`} 
                                     alt={project.title}
-                                    width={28}
-                                    height={28}
+                                    width={24}
+                                    height={24}
                                     className="dark:invert"
                                 />
                             </div>
-                            <div className="ml-4 flex-1">
+                            <div className="ml-3 flex-1">
                                 <h4 className="text-sm font-semibold text-gray-900 dark:text-gray-100 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-200">
                                     {project.title}
                                 </h4>
-                                <p className="text-xs text-gray-500 dark:text-gray-400 mt-1 line-clamp-2 leading-relaxed">
+                                <p className="text-xs text-gray-500 dark:text-gray-400 line-clamp-2 leading-relaxed">
                                     {project.description}
                                 </p>
                             </div>
@@ -52,12 +51,11 @@ const ProjectsDropdown: React.FC<ProjectsDropdownProps> = ({ isVisible }) => {
                                 </svg>
                             </div>
                         </a>
-                    ))}
-                </div>
-                <div className="mt-5 pt-4 border-t border-gray-200 dark:border-gray-700">
+                    ))}                </div>
+                <div className="mt-4 pt-3 border-t border-gray-200 dark:border-gray-700">
                     <a
                         href="/projects"
-                        className="block text-center text-sm text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 font-medium transition-colors duration-200 py-2 rounded-lg hover:bg-blue-50 dark:hover:bg-blue-900/20"
+                        className="block text-center text-sm text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 font-medium transition-colors duration-200 py-1 rounded-lg hover:bg-blue-50 dark:hover:bg-blue-900/20"
                     >
                         Voir tous les projets →
                     </a>
