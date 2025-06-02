@@ -1,4 +1,7 @@
-import NavBar from "@/components/home/nav/NavBar";
+"use client";
+
+import NavBar from "../components/home/nav/NavBar";
+import DownloadButton from "../components/home/download/DownloadButton";
 import Image from "next/image";
 
 const Ico = () => {
@@ -46,13 +49,10 @@ const Ico = () => {
                 </div>                {/* CTA Section */}
                 <div className="text-center">
                     <div className="bg-purple-50 dark:bg-purple-900/20 rounded-lg p-8">
-                        <h2 className="text-3xl font-bold mb-4">Ready to streamline your accounting?</h2>
-                        <p className="text-lg text-gray-600 dark:text-gray-400 mb-6">
+                        <h2 className="text-3xl font-bold mb-4">Ready to streamline your accounting?</h2>                        <p className="text-lg text-gray-600 dark:text-gray-400 mb-6">
                             Download Ico and take control of your business finances today
                         </p>
-                        <button className="bg-purple-500 hover:bg-purple-600 text-white px-8 py-3 rounded-lg font-semibold transition-colors duration-200">
-                            Download Now
-                        </button>
+                        <DownloadButton appName="Ico" colorScheme="purple" />
                     </div>
                 </div>
             </div>

@@ -1,3 +1,5 @@
+"use client";
+
 import NavLink from "./NavLink";
 import ProjectsNavLink from "./ProjectsNavLink";
 

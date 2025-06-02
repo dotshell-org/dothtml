@@ -1,4 +1,7 @@
-import NavBar from "@/components/home/nav/NavBar";
+"use client";
+
+import NavBar from "../components/home/nav/NavBar";
+import DownloadButton from "../components/home/download/DownloadButton";
 import Image from "next/image";
 
 const Specto = () => {
@@ -51,13 +54,10 @@ const Specto = () => {
                 {/* CTA Section */}
                 <div className="text-center">
                     <div className="bg-green-50 dark:bg-green-900/20 rounded-lg p-8">
-                        <h2 className="text-3xl font-bold mb-4">Monitor with confidence</h2>
-                        <p className="text-lg text-gray-600 dark:text-gray-400 mb-6">
+                        <h2 className="text-3xl font-bold mb-4">Monitor with confidence</h2>                        <p className="text-lg text-gray-600 dark:text-gray-400 mb-6">
                             Download Specto and take control of your system performance
                         </p>
-                        <button className="bg-green-500 hover:bg-green-600 text-white px-8 py-3 rounded-lg font-semibold transition-colors duration-200">
-                            Download Now
-                        </button>
+                        <DownloadButton appName="Specto" colorScheme="green" />
                     </div>
                 </div>
             </div>
