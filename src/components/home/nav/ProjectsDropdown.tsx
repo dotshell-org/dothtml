@@ -42,14 +42,6 @@ const ProjectsDropdown: React.FC<ProjectsDropdownProps> = ({ isVisible }) => {
                             </div>
                         </a>
                     ))}                </div>
-                <div className="mt-4 pt-3 border-t border-gray-200 dark:border-gray-700">
-                    <a
-                        href="/projects"
-                        className="block text-center text-sm text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 font-medium transition-colors duration-200 py-1 rounded-lg hover:bg-blue-50 dark:hover:bg-blue-900/20"
-                    >
-                        Voir tous les projets →
-                    </a>
-                </div>
             </div>
         </div>
     );
