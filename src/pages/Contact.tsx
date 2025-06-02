@@ -136,7 +136,7 @@ const Contact = () => {
                 </p>
             </footer>
         </div>
-    )
+    );
 }
 
 export default Contact;
