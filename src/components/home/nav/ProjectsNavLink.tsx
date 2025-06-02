@@ -35,19 +35,17 @@ const ProjectsNavLink: React.FC<ProjectsNavLinkProps> = ({ href, children }) => 
             right: rect.right + 20,
             top: rect.top,
             bottom: rect.bottom + 420 // Hauteur approximative du dropdown + marge
-        };
-
-        // Si la souris va vers le dropdown, on garde le menu ouvert temporairement
+        };        // Si la souris va vers le dropdown, on garde le menu ouvert temporairement
         if (
             clientX >= extendedRect.left &&
             clientX <= extendedRect.right &&
             clientY >= extendedRect.top &&
             clientY <= extendedRect.bottom
         ) {
-            // Délai plus long pour permettre d'atteindre le dropdown
+            // Délai réduit pour permettre d'atteindre le dropdown
             hoverTimeoutRef.current = setTimeout(() => {
                 setIsDropdownVisible(false);
-            }, 300);
+            }, 150);
         } else {
             // Fermeture immédiate si on sort complètement de la zone
             setIsDropdownVisible(false);

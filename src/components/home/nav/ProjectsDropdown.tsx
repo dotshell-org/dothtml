@@ -17,14 +17,13 @@ const ProjectsDropdown: React.FC<ProjectsDropdownProps> = ({ isVisible }) => {
             {/* Petite flèche pointant vers le haut */}
             <div className="absolute -top-2 left-1/2 -translate-x-1/2 w-4 h-4 bg-white dark:bg-gray-900 border-l border-t border-gray-200 dark:border-gray-700 rotate-45 z-51"></div>
               <div className="p-6 relative z-10">
-                <div className="flex gap-4 justify-center">
-                    {projects.map((project) => (
+                <div className="flex gap-4 justify-center">                    {projects.map((project) => (
                         <a
                             key={project.title}
                             href={`/${project.title.toLowerCase().replace(' ', '-')}`}
-                            className="flex flex-col items-center p-4 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800 transition-all duration-200 group hover:shadow-sm w-56"
+                            className="flex flex-col items-center p-4 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800 transition-all duration-300 group hover:shadow-lg w-56 hover:scale-110 hover:z-10"
                         >
-                            <div className="flex-shrink-0 w-12 h-12 flex items-center justify-center bg-gray-50 dark:bg-gray-800 rounded-lg group-hover:bg-gray-100 dark:group-hover:bg-gray-700 transition-colors duration-200 group-hover:scale-105 mb-3">
+                            <div className="flex-shrink-0 w-12 h-12 flex items-center justify-center bg-gray-50 dark:bg-gray-800 rounded-lg group-hover:bg-gray-100 dark:group-hover:bg-gray-700 transition-colors duration-300 mb-3">
                                 <Image 
                                     src={`/softwares/${project.imageSrc}`} 
                                     alt={project.title}
