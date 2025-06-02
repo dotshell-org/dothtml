@@ -16,11 +16,7 @@ const ProjectsDropdown: React.FC<ProjectsDropdownProps> = ({ isVisible }) => {
         }`}>
             {/* Petite flèche pointant vers le haut */}
             <div className="absolute -top-2 left-1/2 -translate-x-1/2 w-4 h-4 bg-white dark:bg-gray-900 border-l border-t border-gray-200 dark:border-gray-700 rotate-45 z-51"></div>
-            
-            <div className="p-6 relative z-10">
-                <h3 className="text-lg font-semibold text-center mb-4 text-gray-800 dark:text-gray-200">
-                    Nos Projets
-                </h3>
+              <div className="p-6 relative z-10">
                 <div className="flex gap-4 justify-center">
                     {projects.map((project) => (
                         <a
