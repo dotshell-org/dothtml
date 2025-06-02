@@ -3,14 +3,14 @@ name: "CodeQL Advanced"
 on:
   workflow_dispatch:
   push:
-    # Ne lancer la construction/publication Electron que sur un push de tag (recommandé)
-    # Vous pouvez aussi le garder sur main, mais on explique plus bas comment éviter les releases hebdo
+    branches: [ "main" ]
+    # Run on tags for production releases
     tags: 
-      - 'v*.*.*'       # par exemple, « v1.2.3 »
+      - 'v*.*.*'       # e.g., "v1.2.3"
   pull_request:
     branches: [ "main" ]
   schedule:
-    - cron: '0 6 * * *'  # toujours exécuter CodeQL pour l'analyse de sécurité
+    - cron: '0 6 * * *'  # Daily analysis for security
 
 jobs:
   analyze:
@@ -57,8 +57,8 @@ jobs:
           npm ci --legacy-peer-deps
           npm ls --depth=0
 
-      - name: Build project (compilation TS, bundling, etc.)
-        run: npm run build:ci
+      - name: Build project (Next.js build)
+        run: npm run build
       
       - name: Perform CodeQL Analysis
         uses: github/codeql-action/analyze@v3
@@ -72,16 +72,16 @@ jobs:
       - name: Generate detailed summary
         if: always()
         run: |
-          echo "## 🔍 Résultats de l'analyse CodeQL - ${{ matrix.language }}" >> $GITHUB_STEP_SUMMARY
-          echo "### Configuration utilisée:" >> $GITHUB_STEP_SUMMARY
-          echo "- **Langage**: ${{ matrix.language }}" >> $GITHUB_STEP_SUMMARY
-          echo "- **Requêtes**: ${{ matrix.queries }}" >> $GITHUB_STEP_SUMMARY
-          echo "- **RAM allouée**: ${{ matrix.language == 'swift' && '4096' || '6144' }}MB" >> $GITHUB_STEP_SUMMARY
+          echo "## 🔍 CodeQL Analysis Results - ${{ matrix.language }}" >> $GITHUB_STEP_SUMMARY
+          echo "### Used Configuration:" >> $GITHUB_STEP_SUMMARY
+          echo "- **Language**: ${{ matrix.language }}" >> $GITHUB_STEP_SUMMARY
+          echo "- **Queries**: ${{ matrix.queries }}" >> $GITHUB_STEP_SUMMARY
+          echo "- **Allocated RAM**: ${{ matrix.language == 'swift' && '4096' || '6144' }}MB" >> $GITHUB_STEP_SUMMARY
           echo "- **Threads**: ${{ matrix.language == 'swift' && '2' || '2' }}" >> $GITHUB_STEP_SUMMARY
-          echo "### Statut:" >> $GITHUB_STEP_SUMMARY
-          echo "✅ L'analyse de sécurité est terminée." >> $GITHUB_STEP_SUMMARY
-          echo "📊 Consultez les résultats dans l'onglet **Security > Code Scanning**." >> $GITHUB_STEP_SUMMARY
-          echo "📁 Les fichiers SARIF sont disponibles en tant qu'artefacts." >> $GITHUB_STEP_SUMMARY
+          echo "### Status:" >> $GITHUB_STEP_SUMMARY
+          echo "✅ Security analysis completed." >> $GITHUB_STEP_SUMMARY
+          echo "📊 See the results in the **Security > Code Scanning** tab." >> $GITHUB_STEP_SUMMARY
+          echo "📁 SARIF files are available as artifacts." >> $GITHUB_STEP_SUMMARY
       
   security-review:
     needs: analyze
@@ -98,14 +98,14 @@ jobs:
               issue_number: context.issue.number,
               owner: context.repo.owner,
               repo: context.repo.repo,
-              body: `## 🛡️ Analyse de Sécurité CodeQL Terminée
+              body: `## 🛡️ CodeQL Security Analysis Completed
                 
-              L'analyse de sécurité automatisée a été effectuée sur cette Pull Request.
+              Automated security analysis has been performed on this Pull Request.
                 
-              **Prochaines étapes:**
-              1. Vérifiez les résultats dans l'onglet [Security](../security/code-scanning)
-              2. Corrigez les vulnérabilités critiques et élevées avant le merge
-              3. Les artefacts SARIF sont disponibles pour analyse détaillée
+              **Next steps:**
+              1. Check the results in the [Security](../security/code-scanning) tab
+              2. Fix critical and high vulnerabilities before merging
+              3. SARIF artifacts are available for detailed analysis
                 
-              _Cette analyse utilise les dernières règles de sécurité CodeQL._`
+              _This analysis uses the latest CodeQL security rules._`
             })

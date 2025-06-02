@@ -62,10 +62,9 @@ const Contact = () => {
                 // Ajout du délai d'une seconde pour l'état "Sent"
                 setTimeout(() => {
                     setStatus(null);
-                }, 1000);
-            } else {
+                }, 1000);            } else {
                 const data = await res.json();
-                setErrorMsg(data.errors ? data.errors.map((e: any) => e.msg).join(", ") : "Error while sending message.");
+                setErrorMsg(data.errors ? data.errors.map((e: { msg: string }) => e.msg).join(", ") : "Error while sending message.");
                 setStatus("error");
             }
         } catch {
