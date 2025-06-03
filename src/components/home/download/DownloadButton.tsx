@@ -88,7 +88,7 @@ const DownloadButton: React.FC<DownloadButtonProps> = ({ appName, colorScheme, a
     };const colors = colorClasses[colorScheme];
     const currentOption = downloadOptions[selectedPlatform];
 
-    const handlePlatformSelect = (index: number) => {
+    const handlePlatformSelect = (index: number): void => {
         setSelectedPlatform(index);
         setIsExpanded(false);
     };return (        <div className="relative inline-block">
@@ -97,7 +97,7 @@ const DownloadButton: React.FC<DownloadButtonProps> = ({ appName, colorScheme, a
                     href={currentOption.downloadUrl}
                     className={`${colors.bg} ${colors.hoverBg} text-white px-3 py-3 font-medium cursor-pointer transition-all duration-200 flex items-center justify-center rounded-l-lg w-[140px] h-[45px]`}
                 >
-                    <span className="text-sm">Télécharger</span>
+                    <span className="text-sm">Download</span>
                 </a>                {/* Bouton avec flèche déroulante */}
                 <div className="relative">                    <button
                         className={`${colors.bg} ${colors.hoverBg} text-white px-3 py-3 cursor-pointer transition-all duration-200 flex items-center justify-center gap-2 rounded-r-lg w-[140px] h-[45px]`}
@@ -120,10 +120,9 @@ const DownloadButton: React.FC<DownloadButtonProps> = ({ appName, colorScheme, a
                         className={`absolute top-full right-0 mt-1 min-w-48 ${colors.containerBg} rounded-lg shadow-xl border ${colors.containerBorder} transition-all duration-200 z-50 ${
                             isExpanded ? 'opacity-100 translate-y-0 pointer-events-auto' : 'opacity-0 -translate-y-2 pointer-events-none'
                         }`}
-                    >
-                        {downloadOptions.map((option, index) => (
+                    >                        {downloadOptions.map((option, index) => (
                             <button
-                                key={option.platform}
+                                key={`${option.platform}-${option.format}`}
                                 onClick={() => handlePlatformSelect(index)}
                                 className={`w-full flex items-center gap-3 px-4 py-3 text-left transition-colors duration-200 ${colors.optionHover} ${colors.optionText} ${
                                     index === 0 ? 'rounded-t-lg' : ''
