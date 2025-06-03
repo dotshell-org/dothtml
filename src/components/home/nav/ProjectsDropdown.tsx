@@ -32,7 +32,11 @@ const ProjectsDropdown: React.FC<ProjectsDropdownProps> = ({ isVisible }) => {
                                 />
                             </div>
                             <div className="flex-1">
-                                <h4 className="text-sm font-semibold text-gray-900 dark:text-gray-100 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-200 mb-1">
+                                <h4 className={`text-sm font-semibold text-gray-900 dark:text-gray-100 ${
+                                    project.title === "Cafeteria Manager" ? "group-hover:text-blue-600 dark:group-hover:text-blue-400" : 
+                                    project.title === "Ico" ? "group-hover:text-purple-600 dark:group-hover:text-purple-400" : 
+                                    project.title === "Specto" ? "group-hover:text-red-600 dark:group-hover:text-red-400" : ""
+                                } transition-colors duration-200 mb-1`}>
                                     {project.title}
                                 </h4>
                                 <p className="text-xs text-gray-500 dark:text-gray-400 line-clamp-2 leading-relaxed">

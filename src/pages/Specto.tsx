@@ -11,11 +11,11 @@ const Specto = () => {
         <div className="min-h-screen bg-background text-foreground">
             <NavBar />
 
-            <div className="container mt-24 mb-16 mx-auto px-6 py-16 w-[55rem]">
+            <div className="container mt-24 mb-16 mx-auto pl-6 pr-14 py-16 w-[70rem]">
                 <div className="flex flex-col md:flex-row items-center md:items-start gap-8 mb-16">
                     {/* Illustration à droite sur desktop */}
                     <div className="flex-1 relative">
-                        <div className="liquid-container w-80 h-80 bg-red-500 flex absolute right-0 items-center justify-center">
+                        <div className="liquid-container w-80 h-80 bg-red-500 flex ml-auto mr-20 items-center justify-center">
                             <Image
                                 src="/softwares/specto.svg"
                                 alt="Specto"
@@ -25,7 +25,6 @@ const Specto = () => {
                             />
                         </div>
                     </div>
-                    {/* Texte et CTA à gauche sur desktop */}
                     <div className="flex-1">
                         <div className="flex flex-col md:text-left">
                             <h1 className="text-5xl font-black mb-4 mt-20">

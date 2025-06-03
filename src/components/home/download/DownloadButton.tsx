@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 interface DownloadOption {
     platform: string;
@@ -24,7 +24,8 @@ const appConfig = {
             windows: "Ico-V.1-Setup.exe",
             mac_intel: "Cafeteria.Manager-V.1-Setup-Intel.dmg",
             mac_silicon: "Cafeteria.Manager-V.1-Setup-Apple-Silicon.dmg",
-            linux: "Ico-V.1-Setup.deb"
+            linux_deb: "Ico-V.1-Setup.deb",
+            linux_appimage: "Ico-V.1-Setup.AppImage"
         }
     },    "Specto": {
         repo: "dotshell-org/specto",
@@ -41,7 +42,8 @@ const appConfig = {
             windows: "Cafeteria.Manager-V.1-Setup.exe",
             mac_intel: "Cafeteria.Manager-V.1-Setup-Intel.dmg",
             mac_silicon: "Cafeteria.Manager-V.1-Setup-Apple-Silicon.dmg",
-            linux: "Cafeteria.Manager-V.1-Setup.deb"
+            linux_deb: "Cafeteria.Manager-V.1-Setup.deb",
+            linux_appimage: "Cafeteria.Manager-V.1-Setup.AppImage"
         }
     }
 };
@@ -73,41 +75,52 @@ const generateGitHubDownloadUrl = (appName: string, platform: string): string =>
 const DownloadButton: React.FC<DownloadButtonProps> = ({ appName, colorScheme, appType = "electron" }) => {
     const [isExpanded, setIsExpanded] = useState(false);
     const [isDownloading, setIsDownloading] = useState(false);
-      // Fonction pour détecter le système d'exploitation
-    const detectOS = (): number => {
-        if (typeof window === 'undefined') {
-            // Côté serveur : Windows par défaut pour les apps normales, zip pour Specto
-            return appName === "Specto" ? 0 : 0;
+    // Initialize with a default value (0) for both server and client to avoid hydration mismatch
+    const [selectedPlatform, setSelectedPlatform] = useState(0);
+
+    // Use useEffect to update the platform after initial render (client-side only)
+    useEffect(() => {
+        // Only run on the client side
+        if (typeof window !== 'undefined') {
+            // Detect OS and update the platform
+            const detectClientOS = (): number => {
+                const userAgent = window.navigator.userAgent.toLowerCase();
+
+                // Cas spécial pour Specto : zip pour Windows, tar.gz pour autres
+                if (appName === "Specto") {
+                    return userAgent.includes('win') ? 0 : 1; // 0 = zip, 1 = tar.gz
+                }
+
+                // Cas spécial pour Ico : pas d'options macOS
+                if (appName === "Ico") {
+                    if (userAgent.includes('linux')) {
+                        // Pour Linux, on essaie de détecter si c'est Ubuntu/Debian ou autre
+                        if (userAgent.includes('ubuntu') || userAgent.includes('debian')) {
+                            return 1; // Ubuntu/Debian (.deb)
+                        } else {
+                            return 2; // Autres Linux (.AppImage)
+                        }
+                    }
+                    return 0; // Windows par défaut pour Ico
+                }
+
+                // Cas général pour les autres applications
+                if (userAgent.includes('mac')) {
+                    // Détection de Mac Apple Silicon vs Intel
+                    if (userAgent.includes('arm') || userAgent.includes('arm64')) {
+                        return 1; // Mac Apple Silicon
+                    } else {
+                        return 2; // Mac Intel (par défaut pour les autres Mac)
+                    }
+                }
+
+                if (userAgent.includes('linux')) return 3; // Linux
+                return 0; // Windows par défaut
+            };
+
+            setSelectedPlatform(detectClientOS());
         }
-
-        // Cas spécial pour Specto : zip pour Windows, tar.gz pour autres
-        if (appName === "Specto") {
-            const userAgent = window.navigator.userAgent.toLowerCase();
-            return userAgent.includes('win') ? 0 : 1; // 0 = zip, 1 = tar.gz
-        }
-
-        const userAgent = window.navigator.userAgent.toLowerCase();
-
-        if (userAgent.includes('mac')) {
-            // Détection de Mac Apple Silicon vs Intel
-            // Note: La détection côté client n'est pas 100% fiable car le user agent
-            // ne contient pas toujours l'information sur l'architecture du processeur
-            // Pour une détection plus précise, il faudrait utiliser une API côté serveur
-
-            // Tentative de détection basée sur certains indices dans le user agent
-            // Les Mac M1/M2/etc. peuvent avoir "arm" ou "arm64" dans leur user agent
-            if (userAgent.includes('arm') || userAgent.includes('arm64')) {
-                return 1; // Mac Apple Silicon
-            } else {
-                return 2; // Mac Intel (par défaut pour les autres Mac)
-            }
-        }
-
-        if (userAgent.includes('linux')) return 3; // Linux
-        return 0; // Windows par défaut
-    };
-
-    const [selectedPlatform, setSelectedPlatform] = useState(detectOS());    // Fonction pour gérer le téléchargement
+    }, [appName]);    // Fonction pour gérer le téléchargement
     const handleDownload = async (downloadUrl: string) => {
         if (!downloadUrl) {
             console.error('URL de téléchargement non disponible');
@@ -167,6 +180,27 @@ const DownloadButton: React.FC<DownloadButtonProps> = ({ appName, colorScheme, a
                 downloadUrl: generateGitHubDownloadUrl(appName, "targz")
             }
         ]
+        : appName === "Ico"
+        ? [
+            {
+                platform: "Windows",
+                icon: "🪟",
+                format: ".exe",
+                downloadUrl: generateGitHubDownloadUrl(appName, "windows")
+            },
+            {
+                platform: "Ubuntu/Debian",
+                icon: "🐧",
+                format: ".deb",
+                downloadUrl: generateGitHubDownloadUrl(appName, "linux_deb")
+            },
+            {
+                platform: "Linux",
+                icon: "🐧",
+                format: ".AppImage",
+                downloadUrl: generateGitHubDownloadUrl(appName, "linux_appimage")
+            }
+        ]
         : [
             {
                 platform: "Windows",
@@ -181,16 +215,16 @@ const DownloadButton: React.FC<DownloadButtonProps> = ({ appName, colorScheme, a
                 downloadUrl: generateGitHubDownloadUrl(appName, "mac_silicon")
             },
             {
-                platform: "MacOS Intel",
-                icon: "🍎",
-                format: ".dmg",
-                downloadUrl: generateGitHubDownloadUrl(appName, "mac_intel")
+                platform: "Ubuntu/Debian",
+                icon: "🐧",
+                format: ".deb",
+                downloadUrl: generateGitHubDownloadUrl(appName, "linux_deb")
             },
             {
                 platform: "Linux",
                 icon: "🐧",
-                format: ".deb",
-                downloadUrl: generateGitHubDownloadUrl(appName, "linux")
+                format: ".AppImage",
+                downloadUrl: generateGitHubDownloadUrl(appName, "linux_appimage")
             }
         ];const colorClasses = {
         blue: {
@@ -232,7 +266,7 @@ const DownloadButton: React.FC<DownloadButtonProps> = ({ appName, colorScheme, a
     };return (        <div className="relative inline-block">
             <div className="flex gap-0.5">                {/* Bouton principal Télécharger */}
                 <button
-                    onClick={() => handleDownload(currentOption.downloadUrl || '')}
+                    onClick={() => handleDownload(currentOption?.downloadUrl || '')}
                     disabled={isDownloading}
                     className={`${colors.bg} ${colors.hoverBg} text-white px-3 py-3 font-medium cursor-pointer transition-all duration-200 flex items-center justify-center rounded-l-full w-[8rem] h-[45px] disabled:opacity-50 disabled:cursor-not-allowed`}
                 >
@@ -250,7 +284,7 @@ const DownloadButton: React.FC<DownloadButtonProps> = ({ appName, colorScheme, a
                         onClick={() => setIsExpanded(!isExpanded)}
                     >
                         <span className="text-sm font-medium">
-                            {currentOption.format} ({currentOption.platform})
+                            {currentOption?.format || ''} {currentOption?.platform ? `(${currentOption.platform})` : ''}
                         </span>
                         <svg 
                             className={`w-4 h-4 transition-all duration-300 ease-in-out ${isExpanded ? 'rotate-180 translate-y-0.5' : 'rotate-0'}`}
@@ -278,13 +312,13 @@ const DownloadButton: React.FC<DownloadButtonProps> = ({ appName, colorScheme, a
                                     selectedPlatform === index ? 'bg-white dark:bg-gray-700' : ''
                                 }`}
                             >
-                                <span className="text-lg">{option.icon}</span>
+                                <span className="text-lg">{option?.icon || ''}</span>
                                 <div className="flex-1">
                                     <div className="text-sm font-medium text-black dark:text-white">
-                                        {option.format}
+                                        {option?.format || ''}
                                     </div>
                                     <div className="text-xs text-gray-500 dark:text-gray-400">
-                                        {option.platform}
+                                        {option?.platform || ''}
                                     </div>
                                 </div>
                                 {selectedPlatform === index && (
