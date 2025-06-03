@@ -11,7 +11,7 @@ interface DownloadOption {
 
 interface DownloadButtonProps {
     appName: string;
-    colorScheme: "blue" | "purple" | "green";
+    colorScheme: "blue" | "purple" | "gray";
     appType?: "electron" | "web"; // Nouveau prop pour différencier les types d'apps
 }
 
@@ -190,15 +190,15 @@ const DownloadButton: React.FC<DownloadButtonProps> = ({ appName, colorScheme, a
             optionHover: "hover:bg-purple-50 dark:hover:bg-purple-900/20",
             optionText: "hover:text-purple-600 dark:hover:text-purple-400"
         },
-        green: {
-            bg: "bg-green-600",
-            hoverBg: "hover:bg-green-700",
-            bgSecondary: "bg-green-600",
-            hoverBgSecondary: "hover:bg-green-700",
-            containerBg: "bg-white dark:bg-gray-800",
+        gray: {
+            bg: "bg-gray-500", // Modifié de bg-gray-600
+            hoverBg: "hover:bg-gray-600", // Modifié de hover:bg-gray-700
+            bgSecondary: "bg-gray-500", // Modifié de bg-gray-600
+            hoverBgSecondary: "hover:bg-gray-600", // Modifié de hover:bg-gray-700
+            containerBg: "bg-white dark:bg-gray-200",
             containerBorder: "border-gray-200 dark:border-gray-700",
-            optionHover: "hover:bg-green-50 dark:hover:bg-green-900/20",
-            optionText: "hover:text-green-600 dark:hover:text-green-400"
+            optionHover: "hover:bg-gray-100 dark:hover:bg-gray-700", // Ajusté pour un contraste plus clair
+            optionText: "hover:text-gray-700 dark:hover:text-gray-300" // Ajusté pour un contraste plus clair
         }
     };const colors = colorClasses[colorScheme];
     const currentOption = downloadOptions[selectedPlatform];
