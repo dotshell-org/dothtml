@@ -55,9 +55,9 @@ const Specto = () => {
                 <div className="text-center">
                     <div className="bg-green-50 dark:bg-green-900/20 rounded-lg p-8">
                         <h2 className="text-3xl font-bold mb-4">Monitor with confidence</h2>                        <p className="text-lg text-gray-600 dark:text-gray-400 mb-6">
-                            Download Specto and take control of your system performance
+                            Download Specto source code and deploy your own monitoring solution
                         </p>
-                        <DownloadButton appName="Specto" colorScheme="green" />
+                        <DownloadButton appName="Specto" colorScheme="green" appType="web" />
                     </div>
                 </div>
             </div>

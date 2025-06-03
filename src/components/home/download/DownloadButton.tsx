@@ -12,32 +12,49 @@ interface DownloadOption {
 interface DownloadButtonProps {
     appName: string;
     colorScheme: "blue" | "purple" | "green";
+    appType?: "electron" | "web"; // Nouveau prop pour différencier les types d'apps
 }
 
-const DownloadButton: React.FC<DownloadButtonProps> = ({ appName, colorScheme }) => {
+const DownloadButton: React.FC<DownloadButtonProps> = ({ appName, colorScheme, appType = "electron" }) => {
     const [isExpanded, setIsExpanded] = useState(false);
     const [selectedPlatform, setSelectedPlatform] = useState(0); // Index de la plateforme sélectionnée
 
-    const downloadOptions: DownloadOption[] = [
-        {
-            platform: "Windows",
-            icon: "🪟",
-            format: ".exe",
-            downloadUrl: `/downloads/${appName.toLowerCase()}/windows`
-        },
-        {
-            platform: "macOS",
-            icon: "🍎",
-            format: ".dmg",
-            downloadUrl: `/downloads/${appName.toLowerCase()}/mac`
-        },
-        {
-            platform: "Linux",
-            icon: "🐧",
-            format: ".AppImage",
-            downloadUrl: `/downloads/${appName.toLowerCase()}/linux`
-        }
-    ];    const colorClasses = {
+    // Options de téléchargement selon le type d'application
+    const downloadOptions: DownloadOption[] = appType === "web" 
+        ? [
+            {
+                platform: "Source",
+                icon: "📦",
+                format: ".zip",
+                downloadUrl: `/downloads/${appName.toLowerCase()}/source.zip`
+            },
+            {
+                platform: "Source",
+                icon: "🗜️",
+                format: ".tar.gz",
+                downloadUrl: `/downloads/${appName.toLowerCase()}/source.tar.gz`
+            }
+        ]
+        : [
+            {
+                platform: "Windows",
+                icon: "🪟",
+                format: ".exe",
+                downloadUrl: `/downloads/${appName.toLowerCase()}/windows`
+            },
+            {
+                platform: "macOS",
+                icon: "🍎",
+                format: ".dmg",
+                downloadUrl: `/downloads/${appName.toLowerCase()}/mac`
+            },
+            {
+                platform: "Linux",
+                icon: "🐧",
+                format: ".AppImage",
+                downloadUrl: `/downloads/${appName.toLowerCase()}/linux`
+            }
+        ];const colorClasses = {
         blue: {
             bg: "bg-blue-600",
             hoverBg: "hover:bg-blue-700",
