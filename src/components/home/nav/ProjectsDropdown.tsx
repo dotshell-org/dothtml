@@ -8,31 +8,30 @@ interface ProjectsDropdownProps {
 
 const ProjectsDropdown: React.FC<ProjectsDropdownProps> = ({ isVisible }) => {
     const projects: SoftwareCardType[] = [
-        {imageSrc: "cafeteria-manager.svg", title: "Cafeteria Manager", description: "Your companion to manage your cafeteria business"},
-        {imageSrc: "ico.svg", title: "Ico", description: "Your powerful space to manage accounting, stocks and sales"},
-        {imageSrc: "specto.svg", title: "Specto", description: "Your centralized server for your logging and monitoring needs"},    ];    return (
-        <div className={`absolute top-full left-1/2 -translate-x-1/2 mt-4 w-[800px] bg-white dark:bg-gray-900 rounded-lg shadow-xl border border-gray-200 dark:border-gray-700 transition-all duration-300 backdrop-blur-sm z-50 ${
+        {imageSrc: "cafeteria-manager.svg", title: "Cafeteria Manager", description: "Companion to manage your cafeteria business"},
+        {imageSrc: "ico.svg", title: "Ico", description: "Powerful space to manage accounting, stocks etc"},
+        {imageSrc: "specto.svg", title: "Specto", description: "Centralized server, logging and monitoring"},    ];    return (        <div className={`absolute top-full left-1/2 -translate-x-1/2 mt-4 w-64 bg-white dark:bg-gray-900 rounded-lg shadow-xl border border-gray-200 dark:border-gray-700 transition-all duration-300 backdrop-blur-sm z-50 ${
             isVisible ? 'opacity-100 translate-y-0 pointer-events-auto' : 'opacity-0 -translate-y-2 pointer-events-none'
         }`}>
             {/* Petite flèche pointant vers le haut */}
             <div className="absolute -top-2 left-1/2 -translate-x-1/2 w-4 h-4 bg-white dark:bg-gray-900 border-l border-t border-gray-200 dark:border-gray-700 rotate-45 z-51"></div>
-              <div className="p-6 relative z-10">
-                <div className="flex gap-4 justify-center">                    {projects.map((project) => (
+              <div className="p-4 relative z-10">
+                <div className="flex flex-col gap-2">                    {projects.map((project) => (
                         <a
                             key={project.title}
                             href={`/${project.title.toLowerCase().replace(' ', '-')}`}
-                            className="flex flex-col items-center p-4 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800 transition-all duration-300 group hover:shadow-lg w-56 hover:scale-110 hover:z-10"
+                            className="flex items-center p-3 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800 transition-all duration-300 group hover:shadow-md w-full"
                         >
-                            <div className="flex-shrink-0 w-12 h-12 flex items-center justify-center bg-gray-50 dark:bg-gray-800 rounded-lg group-hover:bg-gray-100 dark:group-hover:bg-gray-700 transition-colors duration-300 mb-3">
+                            <div className="flex-shrink-0 w-10 h-10 flex items-center justify-center bg-gray-50 dark:bg-gray-800 rounded-lg group-hover:bg-gray-100 dark:group-hover:bg-gray-700 transition-colors duration-300 mr-3">
                                 <Image 
                                     src={`/softwares/${project.imageSrc}`} 
                                     alt={project.title}
-                                    width={28}
-                                    height={28}
+                                    width={24}
+                                    height={24}
                                     className="dark:invert"
                                 />
                             </div>
-                            <div className="text-center">
+                            <div className="flex-1">
                                 <h4 className="text-sm font-semibold text-gray-900 dark:text-gray-100 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-200 mb-1">
                                     {project.title}
                                 </h4>
@@ -41,7 +40,7 @@ const ProjectsDropdown: React.FC<ProjectsDropdownProps> = ({ isVisible }) => {
                                 </p>
                             </div>
                         </a>
-                    ))}                </div>
+                    ))}</div>
             </div>
         </div>
     );
