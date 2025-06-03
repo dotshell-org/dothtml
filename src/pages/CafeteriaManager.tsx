@@ -27,10 +27,8 @@ const CafeteriaManager = () => {
                     <p className="text-xl text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
                         Your companion to manage your cafeteria business with ease and efficiency
                     </p>
-                </div>
-
-                {/* Features Section */}
-                <div className="grid md:grid-cols-3 gap-8 mb-16">
+                </div>                {/* Features Section */}
+                <div className="grid md:grid-cols-3 gap-8 mb-8">
                     <div className="text-center p-6 bg-gray-50 dark:bg-gray-800 rounded-lg">
                         <h3 className="text-xl font-semibold mb-3">Order Management</h3>
                         <p className="text-gray-600 dark:text-gray-400">

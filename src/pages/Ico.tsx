@@ -27,7 +27,7 @@ const Ico = () => {
                         Your powerful accounting solution to manage finances, inventory, and sales with ease
                     </p>
                 </div>                {/* Features Section */}
-                <div className="grid md:grid-cols-3 gap-8 mb-16">
+                <div className="grid md:grid-cols-3 gap-8 mb-8">
                     <div className="text-center p-6 bg-gray-50 dark:bg-gray-800 rounded-lg">
                         <h3 className="text-xl font-semibold mb-3">Financial Management</h3>
                         <p className="text-gray-600 dark:text-gray-400">

@@ -27,10 +27,8 @@ const Specto = () => {
                     <p className="text-xl text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
                         Advanced system monitoring and performance analysis for your infrastructure
                     </p>
-                </div>
-
-                {/* Features Section */}
-                <div className="grid md:grid-cols-3 gap-8 mb-16">
+                </div>                {/* Features Section */}
+                <div className="grid md:grid-cols-3 gap-8 mb-8">
                     <div className="text-center p-6 bg-gray-50 dark:bg-gray-800 rounded-lg">
                         <h3 className="text-xl font-semibold mb-3">Real-time Monitoring</h3>
                         <p className="text-gray-600 dark:text-gray-400">
