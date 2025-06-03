@@ -15,12 +15,112 @@ interface DownloadButtonProps {
     appType?: "electron" | "web"; // Nouveau prop pour différencier les types d'apps
 }
 
+// Configuration des repositories GitHub et versions pour chaque application
+const appConfig = {
+    "Ico": {
+        repo: "dotshell-org/ico",
+        version: "V1",
+        releases: {
+            windows: "Ico-V.1-Setup.exe",
+            mac: "Ico-V.1-Setup.dmg", // À ajuster selon le nom réel
+            linux: "Ico-V.1-Setup.AppImage" // À ajuster selon le nom réel
+        }
+    },    "Specto": {
+        repo: "dotshell-org/specto",
+        version: "V1",
+        releases: {
+            zip: "Specto-V.1.zip",
+            targz: "Specto-V.1.tar.gz"
+        }
+    },
+    "Cafeteria Manager": {
+        repo: "dotshell-org/cafeteria-manager",
+        version: "V1",
+        releases: {
+            windows: "Cafeteria.Manager-V.1-Setup.exe",
+            mac: "Cafeteria.Manager-V.1-Setup.dmg",
+            linux: "Cafeteria.Manager-V.1-Setup.AppImage"
+        }
+    }
+};
+
+// Fonction pour générer l'URL de téléchargement GitHub
+const generateGitHubDownloadUrl = (appName: string, platform: string): string => {
+    const config = appConfig[appName as keyof typeof appConfig];
+    if (!config) {
+        return `/downloads/${appName.toLowerCase()}/${platform}`;
+    }
+    
+    // Cas spécial pour Specto qui a zip/targz au lieu de windows/mac/linux
+    if (appName === "Specto") {
+        const releaseFile = config.releases[platform as keyof typeof config.releases];
+        if (!releaseFile) {
+            return `/downloads/${appName.toLowerCase()}/${platform}`;
+        }
+        return `https://github.com/${config.repo}/releases/download/${config.version}/${releaseFile}`;
+    }
+    
+    const releaseFile = config.releases[platform as keyof typeof config.releases];
+    if (!releaseFile) {
+        return `/downloads/${appName.toLowerCase()}/${platform}`;
+    }
+    
+    return `https://github.com/${config.repo}/releases/download/${config.version}/${releaseFile}`;
+};
+
 const DownloadButton: React.FC<DownloadButtonProps> = ({ appName, colorScheme, appType = "electron" }) => {
     const [isExpanded, setIsExpanded] = useState(false);
-    const [selectedPlatform, setSelectedPlatform] = useState(0); // Index de la plateforme sélectionnée
+    const [isDownloading, setIsDownloading] = useState(false);
+      // Fonction pour détecter le système d'exploitation
+    const detectOS = (): number => {
+        if (typeof window === 'undefined') {
+            // Côté serveur : Windows par défaut pour les apps normales, zip pour Specto
+            return appName === "Specto" ? 0 : 0;
+        }
+        
+        // Cas spécial pour Specto : zip pour Windows, tar.gz pour autres
+        if (appName === "Specto") {
+            const userAgent = window.navigator.userAgent.toLowerCase();
+            return userAgent.includes('win') ? 0 : 1; // 0 = zip, 1 = tar.gz
+        }
+        
+        const userAgent = window.navigator.userAgent.toLowerCase();
+        if (userAgent.includes('mac')) return 1; // macOS
+        if (userAgent.includes('linux')) return 2; // Linux
+        return 0; // Windows par défaut
+    };
+    
+    const [selectedPlatform, setSelectedPlatform] = useState(detectOS());    // Fonction pour gérer le téléchargement
+    const handleDownload = async (downloadUrl: string) => {
+        if (!downloadUrl) {
+            console.error('URL de téléchargement non disponible');
+            return;
+        }
 
-    // Options de téléchargement selon le type d'application
-    const downloadOptions: DownloadOption[] = appType === "web" 
+        setIsDownloading(true);
+        try {
+            // Vérifier si l'URL est une URL GitHub Release
+            if (downloadUrl.includes('github.com') && downloadUrl.includes('/releases/download/')) {
+                // Ouvrir directement le lien GitHub
+                window.open(downloadUrl, '_blank');
+            } else {
+                // Pour les autres URLs, utiliser la méthode de téléchargement classique
+                const link = document.createElement('a');
+                link.href = downloadUrl;
+                link.download = '';
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+            }
+        } catch (error) {
+            console.error('Erreur lors du téléchargement:', error);
+            // En cas d'erreur, essayer d'ouvrir le lien dans un nouvel onglet
+            window.open(downloadUrl, '_blank');
+        } finally {
+            setIsDownloading(false);
+        }
+    };    // Options de téléchargement selon le type d'application
+    const downloadOptions: DownloadOption[] = appType === "web" && appName !== "Specto"
         ? [
             {
                 platform: "Source",
@@ -35,24 +135,39 @@ const DownloadButton: React.FC<DownloadButtonProps> = ({ appName, colorScheme, a
                 downloadUrl: `/downloads/${appName.toLowerCase()}/source.tar.gz`
             }
         ]
+        : appName === "Specto"
+        ? [
+            {
+                platform: "Windows",
+                icon: "📦",
+                format: ".zip",
+                downloadUrl: generateGitHubDownloadUrl(appName, "zip")
+            },
+            {
+                platform: "Universal",
+                icon: "🗜️",
+                format: ".tar.gz",
+                downloadUrl: generateGitHubDownloadUrl(appName, "targz")
+            }
+        ]
         : [
             {
                 platform: "Windows",
                 icon: "🪟",
                 format: ".exe",
-                downloadUrl: `/downloads/${appName.toLowerCase()}/windows`
+                downloadUrl: generateGitHubDownloadUrl(appName, "windows")
             },
             {
                 platform: "macOS",
                 icon: "🍎",
                 format: ".dmg",
-                downloadUrl: `/downloads/${appName.toLowerCase()}/mac`
+                downloadUrl: generateGitHubDownloadUrl(appName, "mac")
             },
             {
                 platform: "Linux",
                 icon: "🐧",
                 format: ".AppImage",
-                downloadUrl: `/downloads/${appName.toLowerCase()}/linux`
+                downloadUrl: generateGitHubDownloadUrl(appName, "linux")
             }
         ];const colorClasses = {
         blue: {
@@ -92,13 +207,21 @@ const DownloadButton: React.FC<DownloadButtonProps> = ({ appName, colorScheme, a
         setSelectedPlatform(index);
         setIsExpanded(false);
     };return (        <div className="relative inline-block">
-            <div className="flex gap-0.5">{/* Bouton principal Télécharger */}
-                <a
-                    href={currentOption.downloadUrl}
-                    className={`${colors.bg} ${colors.hoverBg} text-white px-3 py-3 font-medium cursor-pointer transition-all duration-200 flex items-center justify-center rounded-l-lg w-[140px] h-[45px]`}
+            <div className="flex gap-0.5">                {/* Bouton principal Télécharger */}
+                <button
+                    onClick={() => handleDownload(currentOption.downloadUrl || '')}
+                    disabled={isDownloading}
+                    className={`${colors.bg} ${colors.hoverBg} text-white px-3 py-3 font-medium cursor-pointer transition-all duration-200 flex items-center justify-center rounded-l-lg w-[140px] h-[45px] disabled:opacity-50 disabled:cursor-not-allowed`}
                 >
-                    <span className="text-sm">Download</span>
-                </a>                {/* Bouton avec flèche déroulante */}
+                    {isDownloading ? (
+                        <svg className="animate-spin h-4 w-4" viewBox="0 0 24 24">
+                            <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none"></circle>
+                            <path className="opacity-75" fill="currentColor" d="m4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                        </svg>
+                    ) : (
+                        <span className="text-sm">Download</span>
+                    )}
+                </button>{/* Bouton avec flèche déroulante */}
                 <div className="relative">                    <button
                         className={`${colors.bg} ${colors.hoverBg} text-white px-3 py-3 cursor-pointer transition-all duration-200 flex items-center justify-center gap-2 rounded-r-lg w-[140px] h-[45px]`}
                         onClick={() => setIsExpanded(!isExpanded)}
