@@ -3,60 +3,42 @@
 import NavBar from "../components/home/nav/NavBar";
 import DownloadButton from "../components/home/download/DownloadButton";
 import Image from "next/image";
+import LineChartDivider from "@/components/home/line-chart-divider/LineChartDivider";
+import {Direction} from "@/types/home/Direction";
 
 const Ico = () => {
     return (
         <div className="min-h-screen bg-background text-foreground">
             <NavBar />
-            
-            <div className="container mx-auto px-6 py-16">                {/* Header Section */}
-                <div className="text-center mb-16">
-                    <div className="flex justify-center mb-6">
-                        <div className="liquid-container w-32 h-32 bg-purple-500 flex items-center justify-center">
-                            <Image 
-                                src="/softwares/ico.svg" 
+
+            <div className="container mt-24 mb-16 mx-auto px-6 py-16 w-[55rem]">
+                <div className="flex flex-col md:flex-row items-center md:items-start gap-8 mb-16">
+                    <div className="flex-1 relative">
+                        <div className="liquid-container w-80 h-80 bg-purple-500 flex absolute right-0 items-center justify-center">
+                            <Image
+                                src="/softwares/ico.svg"
                                 alt="Ico"
-                                width={60}
-                                height={60}
+                                width={140}
+                                height={140}
                                 className="dark:invert filter brightness-0 invert"
                             />
                         </div>
                     </div>
-                    <h1 className="text-5xl font-black mb-4">
-                        <span className="text-purple-500">Ico</span>
-                    </h1>                    <p className="text-xl text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
-                        Your powerful accounting solution to manage finances, inventory, and sales with ease
-                    </p>
-                </div>                {/* Features Section */}
-                <div className="grid md:grid-cols-3 gap-8 mb-8">
-                    <div className="text-center p-6 bg-gray-50 dark:bg-gray-800 rounded-lg">
-                        <h3 className="text-xl font-semibold mb-3">Financial Management</h3>
-                        <p className="text-gray-600 dark:text-gray-400">
-                            Track income, expenses, and generate detailed financial reports
-                        </p>
-                    </div>
-                    <div className="text-center p-6 bg-gray-50 dark:bg-gray-800 rounded-lg">
-                        <h3 className="text-xl font-semibold mb-3">Inventory Control</h3>
-                        <p className="text-gray-600 dark:text-gray-400">
-                            Manage your stock levels, suppliers, and product catalog efficiently
-                        </p>
-                    </div>
-                    <div className="text-center p-6 bg-gray-50 dark:bg-gray-800 rounded-lg">
-                        <h3 className="text-xl font-semibold mb-3">Sales Analytics</h3>
-                        <p className="text-gray-600 dark:text-gray-400">
-                            Monitor sales performance and customer trends with powerful analytics
-                        </p>
-                    </div>
-                </div>                {/* CTA Section */}
-                <div className="text-center">
-                    <div className="bg-purple-50 dark:bg-purple-900/20 rounded-lg p-8">
-                        <h2 className="text-3xl font-bold mb-4">Ready to streamline your accounting?</h2>                        <p className="text-lg text-gray-600 dark:text-gray-400 mb-6">
-                            Download Ico and take control of your business finances today
-                        </p>
-                        <DownloadButton appName="Ico" colorScheme="purple" />
+                    <div className="flex-1">
+                        <div className="flex flex-col md:text-left">
+                            <h1 className="text-5xl font-black mb-4 mt-20">
+                                <span className="text-purple-500">Ico</span>
+                            </h1>
+                            <p className="text-xl font-light text-gray-600 dark:text-white mb-6">
+                                Your powerful accounting solution to manage finances, inventory, and sales with ease
+                            </p>
+                            <DownloadButton appName="Ico" colorScheme="purple" />
+                        </div>
                     </div>
                 </div>
             </div>
+
+            <LineChartDivider color="#ad46ff" direction={Direction.Right} />
         </div>
     );
 };

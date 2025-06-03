@@ -11,8 +11,8 @@ interface DownloadOption {
 
 interface DownloadButtonProps {
     appName: string;
-    colorScheme: "blue" | "purple" | "gray";
-    appType?: "electron" | "web"; // Nouveau prop pour différencier les types d'apps
+    colorScheme: "blue" | "purple" | "red";
+    appType?: "electron" | "web";
 }
 
 // Configuration des repositories GitHub et versions pour chaque application
@@ -22,8 +22,9 @@ const appConfig = {
         version: "V1",
         releases: {
             windows: "Ico-V.1-Setup.exe",
-            mac: "Ico-V.1-Setup.dmg", // À ajuster selon le nom réel
-            linux: "Ico-V.1-Setup.AppImage" // À ajuster selon le nom réel
+            mac_intel: "Cafeteria.Manager-V.1-Setup-Intel.dmg",
+            mac_silicon: "Cafeteria.Manager-V.1-Setup-Apple-Silicon.dmg",
+            linux: "Ico-V.1-Setup.deb"
         }
     },    "Specto": {
         repo: "dotshell-org/specto",
@@ -38,8 +39,9 @@ const appConfig = {
         version: "V1",
         releases: {
             windows: "Cafeteria.Manager-V.1-Setup.exe",
-            mac: "Cafeteria.Manager-V.1-Setup.dmg",
-            linux: "Cafeteria.Manager-V.1-Setup.AppImage"
+            mac_intel: "Cafeteria.Manager-V.1-Setup-Intel.dmg",
+            mac_silicon: "Cafeteria.Manager-V.1-Setup-Apple-Silicon.dmg",
+            linux: "Cafeteria.Manager-V.1-Setup.deb"
         }
     }
 };
@@ -50,7 +52,7 @@ const generateGitHubDownloadUrl = (appName: string, platform: string): string =>
     if (!config) {
         return `/downloads/${appName.toLowerCase()}/${platform}`;
     }
-    
+
     // Cas spécial pour Specto qui a zip/targz au lieu de windows/mac/linux
     if (appName === "Specto") {
         const releaseFile = config.releases[platform as keyof typeof config.releases];
@@ -59,12 +61,12 @@ const generateGitHubDownloadUrl = (appName: string, platform: string): string =>
         }
         return `https://github.com/${config.repo}/releases/download/${config.version}/${releaseFile}`;
     }
-    
+
     const releaseFile = config.releases[platform as keyof typeof config.releases];
     if (!releaseFile) {
         return `/downloads/${appName.toLowerCase()}/${platform}`;
     }
-    
+
     return `https://github.com/${config.repo}/releases/download/${config.version}/${releaseFile}`;
 };
 
@@ -77,19 +79,34 @@ const DownloadButton: React.FC<DownloadButtonProps> = ({ appName, colorScheme, a
             // Côté serveur : Windows par défaut pour les apps normales, zip pour Specto
             return appName === "Specto" ? 0 : 0;
         }
-        
+
         // Cas spécial pour Specto : zip pour Windows, tar.gz pour autres
         if (appName === "Specto") {
             const userAgent = window.navigator.userAgent.toLowerCase();
             return userAgent.includes('win') ? 0 : 1; // 0 = zip, 1 = tar.gz
         }
-        
+
         const userAgent = window.navigator.userAgent.toLowerCase();
-        if (userAgent.includes('mac')) return 1; // macOS
-        if (userAgent.includes('linux')) return 2; // Linux
+
+        if (userAgent.includes('mac')) {
+            // Détection de Mac Apple Silicon vs Intel
+            // Note: La détection côté client n'est pas 100% fiable car le user agent
+            // ne contient pas toujours l'information sur l'architecture du processeur
+            // Pour une détection plus précise, il faudrait utiliser une API côté serveur
+
+            // Tentative de détection basée sur certains indices dans le user agent
+            // Les Mac M1/M2/etc. peuvent avoir "arm" ou "arm64" dans leur user agent
+            if (userAgent.includes('arm') || userAgent.includes('arm64')) {
+                return 1; // Mac Apple Silicon
+            } else {
+                return 2; // Mac Intel (par défaut pour les autres Mac)
+            }
+        }
+
+        if (userAgent.includes('linux')) return 3; // Linux
         return 0; // Windows par défaut
     };
-    
+
     const [selectedPlatform, setSelectedPlatform] = useState(detectOS());    // Fonction pour gérer le téléchargement
     const handleDownload = async (downloadUrl: string) => {
         if (!downloadUrl) {
@@ -158,15 +175,21 @@ const DownloadButton: React.FC<DownloadButtonProps> = ({ appName, colorScheme, a
                 downloadUrl: generateGitHubDownloadUrl(appName, "windows")
             },
             {
-                platform: "macOS",
+                platform: "MacOS Apple Silicon",
                 icon: "🍎",
                 format: ".dmg",
-                downloadUrl: generateGitHubDownloadUrl(appName, "mac")
+                downloadUrl: generateGitHubDownloadUrl(appName, "mac_silicon")
+            },
+            {
+                platform: "MacOS Intel",
+                icon: "🍎",
+                format: ".dmg",
+                downloadUrl: generateGitHubDownloadUrl(appName, "mac_intel")
             },
             {
                 platform: "Linux",
                 icon: "🐧",
-                format: ".AppImage",
+                format: ".deb",
                 downloadUrl: generateGitHubDownloadUrl(appName, "linux")
             }
         ];const colorClasses = {
@@ -176,7 +199,7 @@ const DownloadButton: React.FC<DownloadButtonProps> = ({ appName, colorScheme, a
             bgSecondary: "bg-blue-600",
             hoverBgSecondary: "hover:bg-blue-700",
             containerBg: "bg-white dark:bg-gray-800",
-            containerBorder: "border-gray-200 dark:border-gray-700",
+            containerBorder: "border-blue-200 dark:border-transparent",
             optionHover: "hover:bg-blue-50 dark:hover:bg-blue-900/20",
             optionText: "hover:text-blue-600 dark:hover:text-blue-400"
         },
@@ -186,19 +209,19 @@ const DownloadButton: React.FC<DownloadButtonProps> = ({ appName, colorScheme, a
             bgSecondary: "bg-purple-600",
             hoverBgSecondary: "hover:bg-purple-700",
             containerBg: "bg-white dark:bg-gray-800",
-            containerBorder: "border-gray-200 dark:border-gray-700",
+            containerBorder: "border-purple-200 dark:border-transparent",
             optionHover: "hover:bg-purple-50 dark:hover:bg-purple-900/20",
             optionText: "hover:text-purple-600 dark:hover:text-purple-400"
         },
-        gray: {
-            bg: "bg-gray-500", // Modifié de bg-gray-600
-            hoverBg: "hover:bg-gray-600", // Modifié de hover:bg-gray-700
-            bgSecondary: "bg-gray-500", // Modifié de bg-gray-600
-            hoverBgSecondary: "hover:bg-gray-600", // Modifié de hover:bg-gray-700
-            containerBg: "bg-white dark:bg-gray-200",
-            containerBorder: "border-gray-200 dark:border-gray-700",
-            optionHover: "hover:bg-gray-100 dark:hover:bg-gray-700", // Ajusté pour un contraste plus clair
-            optionText: "hover:text-gray-700 dark:hover:text-gray-300" // Ajusté pour un contraste plus clair
+        red: {
+            bg: "bg-red-600",
+            hoverBg: "hover:bg-red-700",
+            bgSecondary: "bg-red-600",
+            hoverBgSecondary: "hover:bg-red-700",
+            containerBg: "bg-white dark:bg-gray-800",
+            containerBorder: "border-red-200 dark:border-transparent",
+            optionHover: "hover:bg-red-50 dark:hover:bg-red-900/20",
+            optionText: "hover:text-red-600 dark:hover:text-red-400"
         }
     };const colors = colorClasses[colorScheme];
     const currentOption = downloadOptions[selectedPlatform];
@@ -211,7 +234,7 @@ const DownloadButton: React.FC<DownloadButtonProps> = ({ appName, colorScheme, a
                 <button
                     onClick={() => handleDownload(currentOption.downloadUrl || '')}
                     disabled={isDownloading}
-                    className={`${colors.bg} ${colors.hoverBg} text-white px-3 py-3 font-medium cursor-pointer transition-all duration-200 flex items-center justify-center rounded-l-lg w-[140px] h-[45px] disabled:opacity-50 disabled:cursor-not-allowed`}
+                    className={`${colors.bg} ${colors.hoverBg} text-white px-3 py-3 font-medium cursor-pointer transition-all duration-200 flex items-center justify-center rounded-l-full w-[8rem] h-[45px] disabled:opacity-50 disabled:cursor-not-allowed`}
                 >
                     {isDownloading ? (
                         <svg className="animate-spin h-4 w-4" viewBox="0 0 24 24">
@@ -223,11 +246,11 @@ const DownloadButton: React.FC<DownloadButtonProps> = ({ appName, colorScheme, a
                     )}
                 </button>{/* Bouton avec flèche déroulante */}
                 <div className="relative">                    <button
-                        className={`${colors.bg} ${colors.hoverBg} text-white px-3 py-3 cursor-pointer transition-all duration-200 flex items-center justify-center gap-2 rounded-r-lg w-[140px] h-[45px]`}
+                        className={`${colors.bg} ${colors.hoverBg} text-white px-3 py-3 cursor-pointer transition-all duration-200 flex items-center justify-center gap-2 rounded-r-full w-[16rem] h-[45px]`}
                         onClick={() => setIsExpanded(!isExpanded)}
                     >
                         <span className="text-sm font-medium">
-                            {currentOption.platform}
+                            {currentOption.format} ({currentOption.platform})
                         </span>
                         <svg 
                             className={`w-4 h-4 transition-all duration-300 ease-in-out ${isExpanded ? 'rotate-180 translate-y-0.5' : 'rotate-0'}`}
@@ -240,28 +263,28 @@ const DownloadButton: React.FC<DownloadButtonProps> = ({ appName, colorScheme, a
 
                     {/* Menu déroulant */}
                     <div 
-                        className={`absolute top-full right-0 mt-1 min-w-48 ${colors.containerBg} rounded-lg shadow-xl border ${colors.containerBorder} transition-all duration-200 z-50 ${
+                        className={`absolute top-full right-0 mt-1 ${colors.containerBg} rounded-lg shadow-xl border ${colors.containerBorder} transition-all duration-200 z-50 ${
                             isExpanded ? 'opacity-100 translate-y-0 pointer-events-auto' : 'opacity-0 -translate-y-2 pointer-events-none'
                         }`}
                     >                        {downloadOptions.map((option, index) => (
                             <button
                                 key={`${option.platform}-${option.format}`}
                                 onClick={() => handlePlatformSelect(index)}
-                                className={`w-full flex items-center gap-3 px-4 py-3 text-left transition-colors duration-200 ${colors.optionHover} ${colors.optionText} ${
+                                className={`w-full flex items-center gap-3 px-4 py-3 text-left transition-colors duration-200 cursor-pointer ${colors.optionHover} ${colors.optionText} ${
                                     index === 0 ? 'rounded-t-lg' : ''
                                 } ${
                                     index === downloadOptions.length - 1 ? 'rounded-b-lg' : ''
                                 } ${
-                                    selectedPlatform === index ? 'bg-gray-50 dark:bg-gray-700' : ''
+                                    selectedPlatform === index ? 'bg-white dark:bg-gray-700' : ''
                                 }`}
                             >
                                 <span className="text-lg">{option.icon}</span>
                                 <div className="flex-1">
-                                    <div className="text-sm font-medium text-gray-900 dark:text-gray-100">
-                                        {option.platform}
+                                    <div className="text-sm font-medium text-black dark:text-white">
+                                        {option.format}
                                     </div>
                                     <div className="text-xs text-gray-500 dark:text-gray-400">
-                                        {option.format}
+                                        {option.platform}
                                     </div>
                                 </div>
                                 {selectedPlatform === index && (
