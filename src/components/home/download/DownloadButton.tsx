@@ -37,12 +37,10 @@ const DownloadButton: React.FC<DownloadButtonProps> = ({ appName, colorScheme })
             format: ".AppImage",
             downloadUrl: `/downloads/${appName.toLowerCase()}/linux`
         }
-    ];
-
-    const colorClasses = {
+    ];    const colorClasses = {
         blue: {
-            bg: "bg-blue-500",
-            hoverBg: "hover:bg-blue-600",
+            bg: "bg-blue-600",
+            hoverBg: "hover:bg-blue-700",
             bgSecondary: "bg-blue-600",
             hoverBgSecondary: "hover:bg-blue-700",
             containerBg: "bg-white dark:bg-gray-800",
@@ -51,8 +49,8 @@ const DownloadButton: React.FC<DownloadButtonProps> = ({ appName, colorScheme })
             optionText: "hover:text-blue-600 dark:hover:text-blue-400"
         },
         purple: {
-            bg: "bg-purple-500",
-            hoverBg: "hover:bg-purple-600",
+            bg: "bg-purple-600",
+            hoverBg: "hover:bg-purple-700",
             bgSecondary: "bg-purple-600",
             hoverBgSecondary: "hover:bg-purple-700",
             containerBg: "bg-white dark:bg-gray-800",
@@ -61,8 +59,8 @@ const DownloadButton: React.FC<DownloadButtonProps> = ({ appName, colorScheme })
             optionText: "hover:text-purple-600 dark:hover:text-purple-400"
         },
         green: {
-            bg: "bg-green-500",
-            hoverBg: "hover:bg-green-600",
+            bg: "bg-green-600",
+            hoverBg: "hover:bg-green-700",
             bgSecondary: "bg-green-600",
             hoverBgSecondary: "hover:bg-green-700",
             containerBg: "bg-white dark:bg-gray-800",
@@ -70,30 +68,28 @@ const DownloadButton: React.FC<DownloadButtonProps> = ({ appName, colorScheme })
             optionHover: "hover:bg-green-50 dark:hover:bg-green-900/20",
             optionText: "hover:text-green-600 dark:hover:text-green-400"
         }
-    };    const colors = colorClasses[colorScheme];
+    };const colors = colorClasses[colorScheme];
     const currentOption = downloadOptions[selectedPlatform];
 
     const handlePlatformSelect = (index: number) => {
         setSelectedPlatform(index);
         setIsExpanded(false);
-    };return (
-        <div className="relative inline-block">
-            <div className="flex">                {/* Bouton principal Télécharger */}
+    };return (        <div className="relative inline-block">
+            <div className="flex gap-0.5">{/* Bouton principal Télécharger */}
                 <a
                     href={currentOption.downloadUrl}
-                    className={`${colors.bg} ${colors.hoverBg} text-white px-3 py-3 font-semibold cursor-pointer transition-all duration-200 flex items-center justify-center rounded-l-lg border-r border-white/20 w-[140px]`}
+                    className={`${colors.bg} ${colors.hoverBg} text-white px-3 py-3 font-medium cursor-pointer transition-all duration-200 flex items-center justify-center rounded-l-lg w-[140px] h-[45px]`}
                 >
-                    <span>Télécharger</span>
-                </a>
-
-                {/* Bouton avec flèche déroulante */}
+                    <span className="text-sm">Télécharger</span>
+                </a>                {/* Bouton avec flèche déroulante */}
                 <div className="relative">                    <button
-                        className={`${colors.bgSecondary} ${colors.hoverBgSecondary} text-white px-3 py-3 cursor-pointer transition-all duration-200 flex items-center justify-center gap-2 rounded-r-lg w-[140px]`}
+                        className={`${colors.bg} ${colors.hoverBg} text-white px-3 py-3 cursor-pointer transition-all duration-200 flex items-center justify-center gap-2 rounded-r-lg w-[140px] h-[45px]`}
                         onClick={() => setIsExpanded(!isExpanded)}
                     >
                         <span className="text-sm font-medium">
                             {currentOption.platform}
-                        </span>                        <svg 
+                        </span>
+                        <svg 
                             className={`w-4 h-4 transition-all duration-300 ease-in-out ${isExpanded ? 'rotate-180 translate-y-0.5' : 'rotate-0'}`}
                             viewBox="0 0 24 24" 
                             fill="currentColor"
