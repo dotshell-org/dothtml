@@ -9,17 +9,18 @@ const Ico = () => {
         <div className="min-h-screen bg-background text-foreground">
             <NavBar />
             
-            <div className="container mx-auto px-6 py-16">
-                {/* Header Section */}
+            <div className="container mx-auto px-6 py-16">                {/* Header Section */}
                 <div className="text-center mb-16">
                     <div className="flex justify-center mb-6">
-                        <Image 
-                            src="/softwares/ico.svg" 
-                            alt="Ico"
-                            width={80}
-                            height={80}
-                            className="dark:invert"
-                        />
+                        <div className="liquid-container w-32 h-32 bg-purple-500 flex items-center justify-center">
+                            <Image 
+                                src="/softwares/ico.svg" 
+                                alt="Ico"
+                                width={60}
+                                height={60}
+                                className="dark:invert filter brightness-0 invert"
+                            />
+                        </div>
                     </div>
                     <h1 className="text-5xl font-black mb-4">
                         <span className="text-purple-500">Ico</span>

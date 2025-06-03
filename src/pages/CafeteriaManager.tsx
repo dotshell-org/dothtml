@@ -9,17 +9,18 @@ const CafeteriaManager = () => {
         <div className="min-h-screen bg-background text-foreground">
             <NavBar />
             
-            <div className="container mx-auto px-6 py-16">
-                {/* Header Section */}
+            <div className="container mx-auto px-6 py-16">                {/* Header Section */}
                 <div className="text-center mb-16">
                     <div className="flex justify-center mb-6">
-                        <Image 
-                            src="/softwares/cafeteria-manager.svg" 
-                            alt="Cafeteria Manager"
-                            width={80}
-                            height={80}
-                            className="dark:invert"
-                        />
+                        <div className="liquid-container w-32 h-32 bg-blue-500 flex items-center justify-center">
+                            <Image 
+                                src="/softwares/cafeteria-manager.svg" 
+                                alt="Cafeteria Manager"
+                                width={60}
+                                height={60}
+                                className="dark:invert filter brightness-0 invert"
+                            />
+                        </div>
                     </div>
                     <h1 className="text-5xl font-black mb-4">
                         Cafeteria <span className="text-blue-500">Manager</span>

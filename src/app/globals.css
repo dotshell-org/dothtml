@@ -232,3 +232,61 @@ body {
 .animate-slide-fade-out-down {
   animation: slideFadeOutDown 0.5s cubic-bezier(0.4,0,0.2,1);
 }
+
+/* Liquid container animation for logo */
+.liquid-container {
+  position: relative;
+  overflow: hidden;
+  border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+  animation: liquidBorder 8s ease-in-out infinite;
+  box-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
+}
+
+/* Purple variant for Ico */
+.liquid-container.bg-purple-500 {
+  box-shadow: 0 0 20px rgba(168, 85, 247, 0.3);
+}
+
+/* Green variant for Specto */
+.liquid-container.bg-gray-400 {
+  box-shadow: 0 0 20px rgba(221, 221, 223, 0.3);
+}
+
+@keyframes liquidBorder {
+  0%, 100% {
+    border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+  }
+  25% {
+    border-radius: 60% 40% 40% 60% / 50% 60% 40% 50%;
+  }
+  50% {
+    border-radius: 40% 60% 60% 40% / 40% 50% 50% 60%;
+  }
+  75% {
+    border-radius: 50% 50% 60% 40% / 60% 40% 50% 50%;
+  }
+}
+
+/* Liquid container animation for logo */
+.liquid-container {
+  position: relative;
+  overflow: hidden;
+  border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+  animation: liquidBorder 8s ease-in-out infinite;
+  box-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
+}
+
+@keyframes liquidBorder {
+  0%, 100% {
+    border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+  }
+  25% {
+    border-radius: 60% 40% 40% 60% / 50% 60% 40% 50%;
+  }
+  50% {
+    border-radius: 40% 60% 60% 40% / 40% 50% 50% 60%;
+  }
+  75% {
+    border-radius: 50% 50% 60% 40% / 60% 40% 50% 50%;
+  }
+}
