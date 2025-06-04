@@ -1,15 +1,19 @@
-import Image from "next/image";
+// import MetallicLogo from "@/components/home/logo/MetallicLogo";
+import Image from 'next/image';
 
 const LogoContainer = () => {
     return (
         <div className="absolute w-full top-1/2 -translate-y-1/2 flex flex-col items-center justify-center">
-            <Image 
+            <Image
                 className="dark:invert"
                 src="/dotshell-logo.svg"
                 alt="Dotshell Logo"
                 width={350}
                 height={350}
             />
+
+            { /* <MetallicLogo /> */ }
+
             <h1 className="text-7xl font-black text-gray-900 dark:text-white">
                 Dotshell
             </h1>
@@ -17,7 +21,7 @@ const LogoContainer = () => {
                 Believe in the open
             </h2>
         </div>
-    )
-}
+    );
+};
 
 export default LogoContainer;
