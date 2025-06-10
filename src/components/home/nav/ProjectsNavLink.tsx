@@ -72,7 +72,6 @@ const ProjectsNavLink: React.FC<ProjectsNavLinkProps> = ({ href, children }) => 
             onMouseLeave={handleMouseLeave}
         >
             <a
-                href={href}
                 className="relative inline-block text-center text-lg font-light mx-15 group"
             >
                 <span className="">{children}</span>

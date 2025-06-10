@@ -6,6 +6,7 @@ import SoftwareCardsGroup from "@/components/home/software-cards/SoftwareCardsGr
 import {Direction} from "@/types/home/Direction";
 import BarChart from "@/components/home/bar-chart/BarChart";
 import EmojiContainer from "@/components/home/emoji/EmojiContainer";
+import BlurText from "@/components/home/text/BlurText";
 
 const Home = () => {
     return (
@@ -24,13 +25,15 @@ const Home = () => {
                 <br />
                 the best option for all your software
             </p>
-
             <p className="mt-40 text-center text-xl font-light">
                 By giving you
-            </p>
-            <h1 className="text-center text-7xl font-black">
-                What You <span className="text-blue-500">Need</span>
-            </h1>
+            </p>            <BlurText
+                text="What You Need"
+                className="text-center text-7xl font-black"
+                delay={150}
+                animateBy="words"
+                coloredWords={{ 'need': 'text-blue-500' }}
+            />
 
             <SoftwareCardsGroup />
 
@@ -44,14 +47,16 @@ const Home = () => {
                 <SemiBold>every day</SemiBold>
             </p>
 
-            <LineChartDivider color="#EF4444" direction={Direction.Right} />
-
-            <p className="mt-40 text-center text-xl font-light">
+            <LineChartDivider color="#EF4444" direction={Direction.Right} />            <p className="mt-40 text-center text-xl font-light">
                 Benefit from
             </p>
-            <h1 className="text-center text-7xl font-black">
-                <span className="text-red-500">Powerful</span> Tools
-            </h1>
+            <BlurText 
+                text="Powerful Tools"
+                className="text-center text-7xl font-black"
+                delay={150}
+                animateBy="words"
+                coloredWords={{ 'powerful': 'text-red-500' }}
+            />
 
             <BarChart />
 
@@ -66,14 +71,16 @@ const Home = () => {
             </p>
             <p className="mt-4 text-center text-xl font-light">
                 No more software with a 20-years-old design !
-            </p>
-
-            <p className="mt-40 text-center text-xl font-light">
+            </p>            <p className="mt-40 text-center text-xl font-light">
                 Meet our
             </p>
-            <h1 className="text-center text-7xl font-black">
-                <span className="text-green-500">Modern</span> Design
-            </h1>
+            <BlurText 
+                text="Modern Design"
+                className="text-center text-7xl font-black"
+                delay={150}
+                animateBy="words"
+                coloredWords={{ 'modern': 'text-green-500' }}
+            />
 
             <EmojiContainer />
 
@@ -87,14 +94,16 @@ const Home = () => {
                 Take a long breath with Dotshell
             </p>
 
-            <LineChartDivider color="#F0B100" direction={Direction.Right} />
-
-            <p className="mt-40 text-center text-xl font-light">
+            <LineChartDivider color="#F0B100" direction={Direction.Right} />            <p className="mt-40 text-center text-xl font-light">
                 And be sure
             </p>
-            <h1 className="text-center text-7xl font-black">
-                Your Data Is <span className="text-yellow-500">Safe</span>
-            </h1>
+            <BlurText 
+                text="Your Data Is Safe"
+                className="text-center text-7xl font-black"
+                delay={150}
+                animateBy="words"
+                coloredWords={{ 'safe': 'text-yellow-500' }}
+            />
 
             <p className="mt-20 mb-40 text-center text-xl font-light">
                 All you data is stored locally
