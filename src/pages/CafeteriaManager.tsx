@@ -8,6 +8,7 @@ import LineChartDivider from "@/components/home/line-chart-divider/LineChartDivi
 import FakeCalendar from "@/components/home/calendar/FakeCalendar";
 import BlurText from "@/components/home/text/BlurText";
 import SemiBold from "@/components/style/SemiBold";
+import FakeCashRegister from "@/components/home/cash-register/FakeCashRegister";
 
 const CafeteriaManager = () => {
     return (
@@ -66,6 +67,13 @@ const CafeteriaManager = () => {
                 <br />
                 And <SemiBold>Take Action</SemiBold> !
             </p>
+
+            <div className="w-full max-w-6xl mx-auto mt-10 mb-20 relative h-[45rem]">
+                <div className="rounded-2xl bg-blue-500 dark:bg-gray-900/80 shadow-lg p-6 h-full">
+                    <FakeCashRegister />
+                </div>
+            </div>
+            
         </div>
     );
 };
