@@ -19,7 +19,7 @@ const ProjectsDropdown: React.FC<ProjectsDropdownProps> = ({ isVisible }) => {
                 <div className="flex flex-col gap-2">                    {projects.map((project) => (
                         <a
                             key={project.title}
-                            href={`/${project.title.toLowerCase().replace(' ', '-')}`}
+                            href={`/projects/${project.title.toLowerCase().replace(' ', '-')}`}
                             className="flex items-center p-3 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800 transition-all duration-300 group hover:shadow-md w-full"
                         >
                             <div className="flex-shrink-0 w-10 h-10 flex items-center justify-center bg-gray-50 dark:bg-gray-800 rounded-lg group-hover:bg-gray-100 dark:group-hover:bg-gray-700 transition-colors duration-300 mr-3">

@@ -24,9 +24,10 @@ const Home = () => {
                 Our ambition is to make open source
                 <br />
                 the best option for all your software
-            </p>            <p className="mt-40 text-center text-xl font-light">
+            </p>
+            <p className="mt-40 text-center text-xl font-light">
                 By giving you
-            </p>            <BlurText 
+            </p>            <BlurText
                 text="What You Need"
                 className="text-center text-7xl font-black"
                 delay={150}
