@@ -5,6 +5,9 @@ import DownloadButton from "../components/home/download/DownloadButton";
 import Image from "next/image";
 import {Direction} from "@/types/home/Direction";
 import LineChartDivider from "@/components/home/line-chart-divider/LineChartDivider";
+import FakeCalendar from "@/components/home/calendar/FakeCalendar";
+import BlurText from "@/components/home/text/BlurText";
+import SemiBold from "@/components/style/SemiBold";
 
 const CafeteriaManager = () => {
     return (
@@ -40,6 +43,29 @@ const CafeteriaManager = () => {
             </div>
 
             <LineChartDivider color="#2b7fff" direction={Direction.Right} />
+
+            <p className="text-center text-xl font-light mt-28">
+                Everything starts
+            </p>
+            <BlurText 
+                text="With a Calendar"
+                className="text-center text-7xl mb-24 font-black"
+                delay={150}
+                animateBy="words"
+                coloredWords={{ 'calendar': 'text-blue-500' }}
+            />
+            
+            <div className="w-full max-w-5xl mx-auto mt-10 mb-20">
+                <div className="rounded-2xl bg-white/80 dark:bg-gray-900/80 shadow-lg p-4">
+                    <FakeCalendar />
+                </div>
+            </div>
+
+            <p className="text-center text-xl font-light mt-28 mb-20">
+                Pick a Day
+                <br />
+                And <SemiBold>Take Action</SemiBold> !
+            </p>
         </div>
     );
 };
