@@ -209,7 +209,7 @@ const FakeCalendar: React.FC = () => {
                         animate="visible"
                         exit="exit"
                     >
-                        {displayedDays.map((day, index) => (
+                        {displayedDays.map((day) => (
                             <motion.div
                                 key={`header-${day.format('YYYY-MM-DD')}`}
                                 className={

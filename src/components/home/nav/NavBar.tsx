@@ -14,7 +14,7 @@ const NavBar = () => {    const elements = [
                     elements.map(element => {
                         if (element.text === "Projects") {
                             return (
-                                <ProjectsNavLink href={element.href} key={element.href}>
+                                <ProjectsNavLink key={element.href}>
                                     {element.text}
                                 </ProjectsNavLink>
                             );

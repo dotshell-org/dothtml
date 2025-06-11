@@ -4,11 +4,10 @@ import React, { useState, useRef } from "react";
 import ProjectsDropdown from "./ProjectsDropdown";
 
 interface ProjectsNavLinkProps {
-    href: string;
     children: React.ReactNode;
 }
 
-const ProjectsNavLink: React.FC<ProjectsNavLinkProps> = ({ href, children }) => {
+const ProjectsNavLink: React.FC<ProjectsNavLinkProps> = ({ children }) => {
     const [isDropdownVisible, setIsDropdownVisible] = useState(false);
     const hoverTimeoutRef = useRef<NodeJS.Timeout | null>(null);
     const containerRef = useRef<HTMLDivElement>(null);
