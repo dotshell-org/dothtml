@@ -109,7 +109,8 @@ const BlurText: React.FC<BlurTextProps> = ({
           duration: totalDuration,
           times,
           delay: (index * delay) / 1000,
-        };        (spanTransition as any).ease = easing;
+        };
+        spanTransition.ease = easing;
 
         // Appliquer les couleurs personnalisées aux mots spécifiés
         const wordLower = segment.toLowerCase();

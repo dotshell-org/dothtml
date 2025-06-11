@@ -1,5 +1,6 @@
 import React from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { SoftwareCardType } from "@/types/home/SoftwareCardType";
 
 interface ProjectsDropdownProps {
@@ -16,8 +17,9 @@ const ProjectsDropdown: React.FC<ProjectsDropdownProps> = ({ isVisible }) => {
             {/* Petite flèche pointant vers le haut */}
             <div className="absolute -top-2 left-1/2 -translate-x-1/2 w-4 h-4 bg-white dark:bg-gray-900 border-l border-t border-gray-200 dark:border-gray-700 rotate-45 z-51"></div>
               <div className="p-4 relative z-10">
-                <div className="flex flex-col gap-2">                    {projects.map((project) => (
-                        <a
+                <div className="flex flex-col gap-2">                    
+                    {projects.map((project) => (
+                        <Link
                             key={project.title}
                             href={`/projects/${project.title.toLowerCase().replace(' ', '-')}`}
                             className="flex items-center p-3 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800 transition-all duration-300 group hover:shadow-md w-full"
@@ -43,8 +45,9 @@ const ProjectsDropdown: React.FC<ProjectsDropdownProps> = ({ isVisible }) => {
                                     {project.description}
                                 </p>
                             </div>
-                        </a>
-                    ))}</div>
+                        </Link>
+                    ))}
+                </div>
             </div>
         </div>
     );
