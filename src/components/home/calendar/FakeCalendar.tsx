@@ -152,7 +152,7 @@ const FakeCalendar: React.FC = () => {
             >
                 <motion.button
                     onClick={navigateToPreviousDays}
-                    className="p-2 rounded-lg bg-gray-100 dark:bg-gray-800 dark:text-gray-200 border border-transparent hover:border-[#646cff] focus:outline-4 focus:outline-auto focus:outline-[#646cff] transition-all cursor-pointer"
+                    className="p-2 rounded-lg bg-gray-100 dark:bg-gray-700 dark:text-gray-200 border border-transparent hover:border-[#646cff] focus:outline-4 focus:outline-auto focus:outline-[#646cff] transition-all cursor-pointer"
                     variants={buttonVariants}
                 >
                     <svg
@@ -172,7 +172,7 @@ const FakeCalendar: React.FC = () => {
 
                 <motion.button
                     onClick={goToToday}
-                    className="bg-gray-100 dark:bg-gray-800 dark:text-gray-200 px-4 py-2 rounded-lg border border-transparent hover:border-[#646cff] focus:outline-4 focus:outline-auto focus:outline-[#646cff] transition-all cursor-pointer"
+                    className="bg-gray-100 dark:bg-gray-700 dark:text-gray-200 px-4 py-2 rounded-lg border border-transparent hover:border-[#646cff] focus:outline-4 focus:outline-auto focus:outline-[#646cff] transition-all cursor-pointer"
                     variants={buttonVariants}
                 >
                     Today
@@ -180,7 +180,7 @@ const FakeCalendar: React.FC = () => {
 
                 <motion.button
                     onClick={navigateToNextDays}
-                    className="p-2 rounded-lg bg-gray-100 dark:bg-gray-800 dark:text-gray-200 border border-transparent hover:border-[#646cff] focus:outline-4 focus:outline-auto focus:outline-[#646cff] transition-all cursor-pointer"
+                    className="p-2 rounded-lg bg-gray-100 dark:bg-gray-700 dark:text-gray-200 border border-transparent hover:border-[#646cff] focus:outline-4 focus:outline-auto focus:outline-[#646cff] transition-all cursor-pointer"
                     variants={buttonVariants}
                 >
                     <svg

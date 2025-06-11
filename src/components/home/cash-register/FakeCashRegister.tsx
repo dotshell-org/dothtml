@@ -94,9 +94,9 @@ const FakeCashRegister = () => {
     };
 
     return (
-        <div className="h-full flex flex-col bg-blue-500">
+        <div className="h-full flex flex-col bg-blue-500 select-none">
             <motion.div
-                className="absolute right-0 bottom-0 pb-0 rounded-tl-2xl shadow-xl shadow-transparent dark:shadow-gray-200 bg-white dark:bg-gray-900 p-8 w-[calc(100%-2rem)] h-[calc(100%-2rem)] text-black dark:text-white flex"
+                className="absolute right-0 bottom-0 pb-0 rounded-tl-2xl shadow-xl shadow-transparent dark:border-r dark:border-b border-gray-600 bg-white dark:bg-gray-900 p-8 w-[calc(100%-2rem)] h-[calc(100%-2rem)] text-black dark:text-white flex select-none"
                 initial={{opacity: 0, y: 40}}
                 animate="enter"
                 exit="exit"
@@ -207,11 +207,11 @@ const FakeCashRegister = () => {
                         <span className="text-2xl mt-4 font-bold text-black dark:text-white">€{itemsInCommand.reduce((acc, item) => acc + item.quantity * item.price, 0).toFixed(2)}</span>
                     </div>
                     <button
-                        className={`w-full mt-4 p-2 text-center text-lg rounded-md transition-colors cursor-pointer ${
+                        className={`w-full mt-4 p-2 text-center text-lg rounded-md border border-transparent hover:border-[#646cff] focus:outline-4 focus:outline-auto focus:outline-[#646cff] transition-all cursor-pointer ${
                             orderStatus === 'idle' 
-                                ? 'bg-gray-100 hover:bg-gray-200 dark:bg-gray-800 dark:hover:bg-gray-700' 
+                                ? 'bg-gray-100 dark:bg-gray-800' 
                                 : orderStatus === 'saving' 
-                                    ? 'bg-blue-100 dark:bg-blue-800 cursor-wait' 
+                                    ? 'bg-green-100 dark:bg-green-800 cursor-wait' 
                                     : orderStatus === 'success' 
                                         ? 'bg-green-100 dark:bg-green-800' 
                                         : 'bg-red-100 dark:bg-red-800'
@@ -222,9 +222,9 @@ const FakeCashRegister = () => {
                         {orderStatus === 'idle'
                             ? "Validate"
                             : orderStatus === 'saving'
-                                ? "Saving..."
+                                ? "Order Saved!"
                                 : orderStatus === 'success'
-                                    ? "Order Saved"
+                                    ? "Order Saved!"
                                     : "Error"}
                     </button>
                 </div>

@@ -57,7 +57,7 @@ const CafeteriaManager = () => {
             />
             
             <div className="w-full max-w-5xl mx-auto mt-10 mb-20">
-                <div className="rounded-2xl bg-white/80 dark:bg-gray-900/80 shadow-lg p-4">
+                <div className="rounded-2xl bg-white dark:bg-gray-800 shadow-lg p-4 dark:border dark:border-gray-700">
                     <FakeCalendar />
                 </div>
             </div>
@@ -69,7 +69,7 @@ const CafeteriaManager = () => {
             </p>
 
             <div className="w-full max-w-6xl mx-auto mt-10 mb-20 relative h-[45rem]">
-                <div className="rounded-2xl bg-blue-500 dark:bg-gray-900/80 shadow-lg p-6 h-full">
+                <div className="rounded-2xl bg-blue-500 shadow-lg p-6 h-full">
                     <FakeCashRegister />
                 </div>
             </div>
