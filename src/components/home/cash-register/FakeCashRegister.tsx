@@ -50,16 +50,16 @@ const FakeCashRegister = () => {
     }
 
     const [allItems] = useState<FakeItem[]>([
-        { id: 1, name: "Coffee", price: 1.50, category: "Beverages", quantity: 1, image: "/items/coffee.jpg" },
-        { id: 2, name: "Tea", price: 1.20, category: "Beverages", quantity: 1, image: "/items/tea.jpg" },
-        { id: 3, name: "Water", price: 0.80, category: "Beverages", quantity: 1, image: "/items/water.jpg" },
-        { id: 4, name: "Coca-Cola", price: 2.00, category: "Beverages", quantity: 1, image: "/items/coca.jpg" },
-        { id: 5, name: "Ham Sandwich", price: 4.50, category: "Sandwiches", quantity: 1, image: "/items/ham-sandwich.jpg" },
-        { id: 6, name: "Tuna Sandwich", price: 4.80, category: "Sandwiches", quantity: 1, image: "/items/tuna-sandwich.jpg" },
-        { id: 7, name: "Croissant", price: 1.20, category: "Desserts", quantity: 1, image: "/items/croissant.jpg" },
-        { id: 8, name: "Muffin", price: 2.50, category: "Desserts", quantity: 1, image: "/items/muffin.jpg" },
-        { id: 9, name: "Chips", price: 1.50, category: "Snacks", quantity: 1, image: "/items/chips.jpg" },
-        { id: 10, name: "Cookies", price: 2.00, category: "Snacks", quantity: 1, image: "/items/cookies.jpg" }
+        { id: 1, name: "Coffee", price: 1.50, category: "Beverages", quantity: 1, image: "/items/coffee.png" },
+        { id: 2, name: "Tea", price: 1.20, category: "Beverages", quantity: 1, image: "/items/tea.png" },
+        { id: 3, name: "Water", price: 0.80, category: "Beverages", quantity: 1, image: "/items/water.png" },
+        { id: 4, name: "Soda", price: 2.00, category: "Beverages", quantity: 1, image: "/items/soda.png" },
+        { id: 5, name: "Ham Sandwich", price: 4.50, category: "Sandwiches", quantity: 1, image: "/items/ham-sandwich.png" },
+        { id: 6, name: "Tuna Sandwich", price: 4.80, category: "Sandwiches", quantity: 1, image: "/items/tuna-sandwich.png" },
+        { id: 7, name: "Croissant", price: 1.20, category: "Desserts", quantity: 1, image: "/items/croissant.png" },
+        { id: 8, name: "Muffin", price: 2.50, category: "Desserts", quantity: 1, image: "/items/muffin.png" },
+        { id: 9, name: "Chips", price: 1.50, category: "Snacks", quantity: 1, image: "/items/chips.png" },
+        { id: 10, name: "Cookies", price: 2.00, category: "Snacks", quantity: 1, image: "/items/cookies.png" }
     ]);
 
     const [searchTerm, setSearchTerm] = useState<string>("");
