@@ -39,6 +39,7 @@ const Ico = () => {
             </div>
 
             <LineChartDivider color="#ad46ff" direction={Direction.Right} />
+            
         </div>
     );
 };

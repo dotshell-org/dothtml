@@ -1,8 +1,8 @@
 "use client";
 
 import NavBar from "@/components/home/nav/NavBar";
-import SemiBold from "@/components/style/SemiBold";
 import React, { useState } from "react";
+import Footer from "@/components/home/footer/Footer";
 
 const Contact = () => {
     const [form, setForm] = useState({
@@ -123,18 +123,9 @@ const Contact = () => {
                 </button>
             </form>
             {status === "error" && <p className="text-center text-red-600">{errorMsg}</p>}
-            <footer className="w-full text-center text-xl font-light mt-20 py-20 bg-gray-100 text-gray-600 dark:bg-gray-800 dark:text-gray-400">
-                <p className="mb-4">
-                    Made with 🥐 by <SemiBold>Dotshell</SemiBold>, France • Open Source & Privacy First
-                </p>
-                <p className="mb-2">
-                    Follow us on
-                    <a href="https://github.com/dotshell-org" className="text-blue-500 hover:underline mx-1" target="_blank" rel="noopener noreferrer">GitHub</a>
-                </p>
-                <p className="text-sm text-neutral-400 mt-4">
-                    © {new Date().getFullYear()} Dotshell. All rights reserved.
-                </p>
-            </footer>
+            
+            <Footer />
+
         </div>
     );
 }
