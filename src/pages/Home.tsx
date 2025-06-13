@@ -7,6 +7,7 @@ import {Direction} from "@/types/home/Direction";
 import BarChart from "@/components/home/bar-chart/BarChart";
 import EmojiContainer from "@/components/home/emoji/EmojiContainer";
 import BlurText from "@/components/home/text/BlurText";
+import Footer from "@/components/home/footer/Footer";
 
 const Home = () => {
     return (
@@ -70,7 +71,7 @@ const Home = () => {
                 And <SemiBold>Open Source</SemiBold> doesn&#39;t mean <s>ugly</s>
             </p>
             <p className="mt-4 text-center text-xl font-light">
-                No more software with a 20-years-old design !
+                No more software with a 20-years-old design!
             </p>            <p className="mt-40 text-center text-xl font-light">
                 Meet our
             </p>
@@ -117,18 +118,7 @@ const Home = () => {
                 Your data is yours and yours only.
             </p>
 
-            <footer className="w-full text-center text-xl font-light py-20 bg-gray-100 text-gray-600 dark:bg-gray-800 dark:text-gray-400">
-                <p className="mb-4">
-                    Made with 🥐 by <SemiBold>Dotshell</SemiBold>, France • Open Source &amp; Privacy First
-                </p>
-                <p className="mb-2">
-                    Follow us on
-                    <a href="https://github.com/dotshell-org" className="text-blue-500 hover:underline mx-1" target="_blank" rel="noopener noreferrer">GitHub</a>
-                </p>
-                <p className="text-sm text-neutral-400 mt-4">
-                    © {new Date().getFullYear()} Dotshell. All rights reserved.
-                </p>
-            </footer>
+            <Footer />
 
 
         </div>

@@ -2,7 +2,7 @@
 
 
 import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, Variants } from 'framer-motion';
 
 
 const emojis = ['💳', '⚙️', '📦', '🕒', '📉', '⏳', '🧾', '📊', '📑', '🛒', '📅', '💰', '📈', '✏️', '📝', '💵', '🪙'];
@@ -25,16 +25,12 @@ const EmojiContainer = () => {
 
 
     const currentEmoji = emojis[currentEmojiIndex];
-
-
-    const emojiVariants = {
+    const emojiVariants: Variants = {
         initial: { opacity: 0, y: -50, scale: 0.5 },
-        animate: { opacity: 1, y: 0, scale: 1, transition: { duration: 0.4, ease: 'easeInOut' } },
-        exit: { opacity: 0, y: 50, scale: 1.5, transition: { duration: 0.4, ease: 'easeInOut' } },
+        animate: { opacity: 1, y: 0, scale: 1, transition: { duration: 0.4, ease: [0.4, 0, 0.2, 1] } },
+        exit: { opacity: 0, y: 50, scale: 1.5, transition: { duration: 0.4, ease: [0.4, 0, 0.2, 1] } },
     };
-
-
-    const textVariants = {
+    const textVariants: Variants = {
         initial: { opacity: 0, y: 30 },
         animate: { opacity: 1, y: 0, transition: { duration: 0.5 } },
         exit: { opacity: 0, y: -30, transition: { duration: 0.3 } },

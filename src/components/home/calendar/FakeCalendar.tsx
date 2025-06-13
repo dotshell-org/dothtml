@@ -2,7 +2,7 @@
 
 import React, { useState, useRef, useEffect } from 'react';
 import dayjs from 'dayjs';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, Variants } from 'framer-motion';
 
 // Format days: "Mon 12 April"
 const formatDate = (date: string | number | dayjs.Dayjs | Date | null | undefined) => {
@@ -80,8 +80,7 @@ const FakeCalendar: React.FC = () => {
                 staggerDirection: animDirection > 0 ? 1 : -1,
             },
         },
-    };
-    const itemVariants = {
+    };    const itemVariants: Variants = {
         hidden: {
             opacity: 0,
             y: 30,
@@ -90,7 +89,7 @@ const FakeCalendar: React.FC = () => {
             opacity: 1,
             y: 0,
             transition: {
-                type: 'spring',
+                type: 'spring' as const,
                 stiffness: 400,
                 damping: 30,
             },
@@ -99,13 +98,12 @@ const FakeCalendar: React.FC = () => {
             opacity: 0,
             y: -30,
             transition: {
-                type: 'spring',
+                type: 'spring' as const,
                 stiffness: 400,
                 damping: 30,
             },
         },
-    };
-    const slideUpVariants = {
+    };const slideUpVariants: Variants = {
         hidden: {
             opacity: 0,
             y: 20,
@@ -114,13 +112,12 @@ const FakeCalendar: React.FC = () => {
             opacity: 1,
             y: 0,
             transition: { 
-                type: 'spring',
+                type: 'spring' as const,
                 stiffness: 300,
                 damping: 25,
             }
         },
-    };
-    const buttonVariants = {
+    };    const buttonVariants: Variants = {
         hidden: { 
             opacity: 0,
             scale: 0.95,
@@ -130,7 +127,7 @@ const FakeCalendar: React.FC = () => {
             scale: 1,
             transition: {
                 delay: 0.3,
-                type: 'spring',
+                type: 'spring' as const,
                 stiffness: 300,
                 damping: 25,
             }
@@ -152,7 +149,7 @@ const FakeCalendar: React.FC = () => {
             >
                 <motion.button
                     onClick={navigateToPreviousDays}
-                    className="p-2 rounded-lg bg-gray-100 dark:bg-gray-800 dark:text-gray-200 border border-transparent hover:border-[#646cff] focus:outline-4 focus:outline-auto focus:outline-[#646cff] transition-all cursor-pointer"
+                    className="p-2 rounded-lg bg-gray-100 dark:bg-gray-700 dark:text-gray-200 border border-transparent hover:border-[#646cff] focus:outline-4 focus:outline-auto focus:outline-[#646cff] transition-all cursor-pointer"
                     variants={buttonVariants}
                 >
                     <svg
@@ -172,7 +169,7 @@ const FakeCalendar: React.FC = () => {
 
                 <motion.button
                     onClick={goToToday}
-                    className="bg-gray-100 dark:bg-gray-800 dark:text-gray-200 px-4 py-2 rounded-lg border border-transparent hover:border-[#646cff] focus:outline-4 focus:outline-auto focus:outline-[#646cff] transition-all cursor-pointer"
+                    className="bg-gray-100 dark:bg-gray-700 dark:text-gray-200 px-4 py-2 rounded-lg border border-transparent hover:border-[#646cff] focus:outline-4 focus:outline-auto focus:outline-[#646cff] transition-all cursor-pointer"
                     variants={buttonVariants}
                 >
                     Today
@@ -180,7 +177,7 @@ const FakeCalendar: React.FC = () => {
 
                 <motion.button
                     onClick={navigateToNextDays}
-                    className="p-2 rounded-lg bg-gray-100 dark:bg-gray-800 dark:text-gray-200 border border-transparent hover:border-[#646cff] focus:outline-4 focus:outline-auto focus:outline-[#646cff] transition-all cursor-pointer"
+                    className="p-2 rounded-lg bg-gray-100 dark:bg-gray-700 dark:text-gray-200 border border-transparent hover:border-[#646cff] focus:outline-4 focus:outline-auto focus:outline-[#646cff] transition-all cursor-pointer"
                     variants={buttonVariants}
                 >
                     <svg

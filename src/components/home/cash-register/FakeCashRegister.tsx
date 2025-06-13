@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { motion } from "framer-motion";
+import { motion, Variants } from "framer-motion";
 import ProductCard from "./ProductCard";
 
 interface FakeItem {
@@ -21,16 +21,16 @@ interface FakeItemGroup {
 
 const FakeCashRegister = () => {
     // Animation variants for both entering and exiting
-    const variants = {
+    const variants: Variants = {
         enter: {
             opacity: 1,
             y: 0,
-            transition: {duration: 0.4, ease: "easeOut", delay: 0.3}
+            transition: {duration: 0.4, ease: [0.25, 0.1, 0.25, 1], delay: 0.3}
         },
         exit: {
             opacity: 0,
             y: 40,
-            transition: {duration: 0.3, ease: "easeIn"}
+            transition: {duration: 0.3, ease: [0.4, 0, 1, 1]}
         }
     };
 
@@ -50,16 +50,16 @@ const FakeCashRegister = () => {
     }
 
     const [allItems] = useState<FakeItem[]>([
-        { id: 1, name: "Coffee", price: 1.50, category: "Beverages", quantity: 1, image: "/items/coffee.jpg" },
-        { id: 2, name: "Tea", price: 1.20, category: "Beverages", quantity: 1, image: "/items/tea.jpg" },
-        { id: 3, name: "Water", price: 0.80, category: "Beverages", quantity: 1, image: "/items/water.jpg" },
-        { id: 4, name: "Coca-Cola", price: 2.00, category: "Beverages", quantity: 1, image: "/items/coca.jpg" },
-        { id: 5, name: "Ham Sandwich", price: 4.50, category: "Sandwiches", quantity: 1, image: "/items/ham-sandwich.jpg" },
-        { id: 6, name: "Tuna Sandwich", price: 4.80, category: "Sandwiches", quantity: 1, image: "/items/tuna-sandwich.jpg" },
-        { id: 7, name: "Croissant", price: 1.20, category: "Desserts", quantity: 1, image: "/items/croissant.jpg" },
-        { id: 8, name: "Muffin", price: 2.50, category: "Desserts", quantity: 1, image: "/items/muffin.jpg" },
-        { id: 9, name: "Chips", price: 1.50, category: "Snacks", quantity: 1, image: "/items/chips.jpg" },
-        { id: 10, name: "Cookies", price: 2.00, category: "Snacks", quantity: 1, image: "/items/cookies.jpg" }
+        { id: 1, name: "Coffee", price: 1.50, category: "Beverages", quantity: 1, image: "/items/coffee.png" },
+        { id: 2, name: "Tea", price: 1.20, category: "Beverages", quantity: 1, image: "/items/tea.png" },
+        { id: 3, name: "Water", price: 0.80, category: "Beverages", quantity: 1, image: "/items/water.png" },
+        { id: 4, name: "Soda", price: 2.00, category: "Beverages", quantity: 1, image: "/items/soda.png" },
+        { id: 5, name: "Ham Sandwich", price: 4.50, category: "Sandwiches", quantity: 1, image: "/items/ham-sandwich.png" },
+        { id: 6, name: "Tuna Sandwich", price: 4.80, category: "Sandwiches", quantity: 1, image: "/items/tuna-sandwich.png" },
+        { id: 7, name: "Croissant", price: 1.20, category: "Desserts", quantity: 1, image: "/items/croissant.png" },
+        { id: 8, name: "Muffin", price: 2.50, category: "Desserts", quantity: 1, image: "/items/muffin.png" },
+        { id: 9, name: "Chips", price: 1.50, category: "Snacks", quantity: 1, image: "/items/chips.png" },
+        { id: 10, name: "Cookies", price: 2.00, category: "Snacks", quantity: 1, image: "/items/cookies.png" }
     ]);
 
     const [searchTerm, setSearchTerm] = useState<string>("");
@@ -94,9 +94,9 @@ const FakeCashRegister = () => {
     };
 
     return (
-        <div className="h-full flex flex-col bg-blue-500">
+        <div className="h-full flex flex-col bg-blue-500 select-none">
             <motion.div
-                className="absolute right-0 bottom-0 pb-0 rounded-tl-2xl shadow-xl shadow-transparent dark:shadow-gray-200 bg-white dark:bg-gray-900 p-8 w-[calc(100%-2rem)] h-[calc(100%-2rem)] text-black dark:text-white flex"
+                className="absolute right-0 bottom-0 pb-0 rounded-tl-2xl shadow-xl shadow-transparent dark:border-r dark:border-b border-gray-600 bg-white dark:bg-gray-900 p-8 w-[calc(100%-2rem)] h-[calc(100%-2rem)] text-black dark:text-white flex select-none"
                 initial={{opacity: 0, y: 40}}
                 animate="enter"
                 exit="exit"
@@ -207,11 +207,11 @@ const FakeCashRegister = () => {
                         <span className="text-2xl mt-4 font-bold text-black dark:text-white">€{itemsInCommand.reduce((acc, item) => acc + item.quantity * item.price, 0).toFixed(2)}</span>
                     </div>
                     <button
-                        className={`w-full mt-4 p-2 text-center text-lg rounded-md transition-colors cursor-pointer ${
+                        className={`w-full mt-4 p-2 text-center text-lg rounded-md border border-transparent hover:border-[#646cff] focus:outline-4 focus:outline-auto focus:outline-[#646cff] transition-all cursor-pointer ${
                             orderStatus === 'idle' 
-                                ? 'bg-gray-100 hover:bg-gray-200 dark:bg-gray-800 dark:hover:bg-gray-700' 
+                                ? 'bg-gray-100 dark:bg-gray-800' 
                                 : orderStatus === 'saving' 
-                                    ? 'bg-blue-100 dark:bg-blue-800 cursor-wait' 
+                                    ? 'bg-green-100 dark:bg-green-800 cursor-wait' 
                                     : orderStatus === 'success' 
                                         ? 'bg-green-100 dark:bg-green-800' 
                                         : 'bg-red-100 dark:bg-red-800'
@@ -222,9 +222,9 @@ const FakeCashRegister = () => {
                         {orderStatus === 'idle'
                             ? "Validate"
                             : orderStatus === 'saving'
-                                ? "Saving..."
+                                ? "Order Saved!"
                                 : orderStatus === 'success'
-                                    ? "Order Saved"
+                                    ? "Order Saved!"
                                     : "Error"}
                     </button>
                 </div>
