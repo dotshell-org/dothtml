@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { motion } from "framer-motion";
+import { motion, Variants } from "framer-motion";
 import ProductCard from "./ProductCard";
 
 interface FakeItem {
@@ -21,16 +21,16 @@ interface FakeItemGroup {
 
 const FakeCashRegister = () => {
     // Animation variants for both entering and exiting
-    const variants = {
+    const variants: Variants = {
         enter: {
             opacity: 1,
             y: 0,
-            transition: {duration: 0.4, ease: "easeOut", delay: 0.3}
+            transition: {duration: 0.4, ease: [0.25, 0.1, 0.25, 1], delay: 0.3}
         },
         exit: {
             opacity: 0,
             y: 40,
-            transition: {duration: 0.3, ease: "easeIn"}
+            transition: {duration: 0.3, ease: [0.4, 0, 1, 1]}
         }
     };
 
