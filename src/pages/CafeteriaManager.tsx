@@ -98,7 +98,7 @@ const CafeteriaManager = () => {
             </div>
 
             <p className="text-center text-xl font-light mt-28 mb-20">
-                Monitor, measure, and improve your cafeteria's
+                Monitor, measure, and improve your cafeteria&#39;s
                 <br />
                 performance with <SemiBold>powerful analytics</SemiBold>!
             </p>
