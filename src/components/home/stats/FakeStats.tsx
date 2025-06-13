@@ -52,9 +52,35 @@ const FakeStats: React.FC = () => {
     const today = dayjs().format('YYYY-MM-DD');
     const [startDate, setStartDate] = useState<string>(today);
     const [endDate, setEndDate] = useState<string>(today);
+    const [isDarkMode, setIsDarkMode] = useState<boolean>(false);
 
     const [lineChartData, setLineChartData] = useState<ChartDataPoint[]>([]);
     const [pieChartData, setPieChartData] = useState<PieChartDataPoint[]>([]);
+
+    // Check for dark mode
+    useEffect(() => {
+        const checkDarkMode = () => {
+            const isDark = document.documentElement.classList.contains('dark') || 
+                          window.matchMedia('(prefers-color-scheme: dark)').matches;
+            setIsDarkMode(isDark);
+        };
+        
+        checkDarkMode();
+        const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+        mediaQuery.addListener(checkDarkMode);
+        
+        // Also check for manual theme changes
+        const observer = new MutationObserver(checkDarkMode);
+        observer.observe(document.documentElement, {
+            attributes: true,
+            attributeFilter: ['class']
+        });
+        
+        return () => {
+            mediaQuery.removeListener(checkDarkMode);
+            observer.disconnect();
+        };
+    }, []);
 
     // Animation variants for both entering and exiting
     const variants = {
@@ -142,15 +168,20 @@ const FakeStats: React.FC = () => {
         }
         
         return dataPoints;
-    };
-
-    const generateFakePieData = (): PieChartDataPoint[] => {
+    };    const generateFakePieData = (): PieChartDataPoint[] => {
         return [
             { id: 1, value: 35, label: 'Coffee' },
             { id: 2, value: 28, label: 'Sandwiches' },
             { id: 3, value: 22, label: 'Pastries' },
             { id: 4, value: 15, label: 'Beverages' }
         ];
+    };
+
+    // Chart theme configuration
+    const chartTheme = {
+        textColor: isDarkMode ? '#ffffff' : '#000000',
+        gridColor: isDarkMode ? '#374151' : '#e5e7eb',
+        backgroundColor: isDarkMode ? '#1f2937' : '#ffffff'
     };
 
     // Simulate loading and data fetching
@@ -163,7 +194,26 @@ const FakeStats: React.FC = () => {
     useEffect(() => {
         const fakeData = generateFakePieData();
         setPieChartData(fakeData);
-    }, [startDate, endDate]);
+    }, [startDate, endDate]);    // Apply theme to chart legends after render
+    useEffect(() => {
+        const applyLegendStyles = () => {
+            // Apply to PieChart legends
+            const pieChartTexts = document.querySelectorAll('.pie-chart-container text');
+            pieChartTexts.forEach((text) => {
+                (text as SVGElement).style.fill = chartTheme.textColor;
+            });
+            
+            // Apply to LineChart legends
+            const lineChartTexts = document.querySelectorAll('.line-chart-container text');
+            lineChartTexts.forEach((text) => {
+                (text as SVGElement).style.fill = chartTheme.textColor;
+            });
+        };
+        
+        // Apply styles after component mounts and when theme changes
+        const timer = setTimeout(applyLegendStyles, 100);
+        return () => clearTimeout(timer);
+    }, [chartTheme.textColor, pieChartData, lineChartData]);
 
     return (
         <>
@@ -174,21 +224,33 @@ const FakeStats: React.FC = () => {
                     animate="enter"
                     exit="exit"
                     variants={variants}
-                >
-                    <h1 className="text-3xl font-bold mt-4">📊 {t("stats")}</h1>
+                >                    <h1 className="text-3xl font-bold mt-4 text-black dark:text-white">📊 {t("stats")}</h1>
 
-                    <h2 className="text-2xl font-bold mt-10">📈 {t("evolution")}</h2>
-                    <div
-                        className="w-full p-4 mt-4 border border-gray-200 dark:border-gray-600 rounded-lg min-h-[25rem]">
+                    <h2 className="text-2xl font-bold mt-10 text-black dark:text-white">📈 {t("evolution")}</h2>                    <div
+                        className="w-full p-4 mt-4 border border-gray-200 dark:border-gray-600 rounded-lg min-h-[25rem] line-chart-container">
                         {lineChartData.length === 0 ? (
-                            <div className="flex justify-center items-center h-[300px] text-gray-500">
+                            <div className="flex justify-center items-center h-[300px] text-gray-500 dark:text-gray-400">
                                 {t("noData")}
                             </div>
-                        ) : (
-                            <LineChart
-                                xAxis={[{
+                        ) : (                            <LineChart                                xAxis={[{
                                     data: lineChartData.map(point => point.x),
-                                    scaleType: 'point'
+                                    scaleType: 'point',
+                                    tickLabelStyle: {
+                                        fill: chartTheme.textColor,
+                                        fontSize: 12
+                                    },
+                                    labelStyle: {
+                                        fill: chartTheme.textColor
+                                    }
+                                }]}
+                                yAxis={[{
+                                    tickLabelStyle: {
+                                        fill: chartTheme.textColor,
+                                        fontSize: 12
+                                    },
+                                    labelStyle: {
+                                        fill: chartTheme.textColor
+                                    }
                                 }]}
                                 series={[
                                     {
@@ -198,54 +260,123 @@ const FakeStats: React.FC = () => {
                                     },
                                 ]}
                                 height={300}
+                                sx={{
+                                    '& .MuiChartsAxis-tickLabel': {
+                                        fill: `${chartTheme.textColor} !important`
+                                    },
+                                    '& .MuiChartsAxis-line': {
+                                        stroke: `${chartTheme.textColor} !important`
+                                    },
+                                    '& .MuiChartsAxis-tick': {
+                                        stroke: `${chartTheme.textColor} !important`
+                                    },                                    '& .MuiLineElement-root': {
+                                        '& circle': {
+                                            fill: `${isDarkMode ? '#1f2937' : '#ffffff'} !important`,
+                                            stroke: '#006dea !important'
+                                        }
+                                    },
+                                    '& .MuiMarkElement-root': {
+                                        fill: `${isDarkMode ? '#1f2937' : '#ffffff'} !important`,
+                                        stroke: '#006dea !important'
+                                    },
+                                    '& .MuiChartsLegend-label': {
+                                        fill: `${chartTheme.textColor} !important`,
+                                        color: `${chartTheme.textColor} !important`
+                                    },
+                                    '& .MuiChartsLegend-root': {
+                                        '& text': {
+                                            fill: `${chartTheme.textColor} !important`,
+                                            color: `${chartTheme.textColor} !important`
+                                        }
+                                    },
+                                    '& text': {
+                                        fill: `${chartTheme.textColor} !important`,
+                                        color: `${chartTheme.textColor} !important`
+                                    },
+                                    '& .MuiChartsLegend-series text': {
+                                        fill: `${chartTheme.textColor} !important`,
+                                        color: `${chartTheme.textColor} !important`
+                                    }
+                                }}
                             />
-                        )}
-                        <div className="flex gap-4 mb-4 w-full">
-                            <FormControl className="flex-1">
-                                <InputLabel id="curve-type-label">{t("selectCurveType")}</InputLabel>
+                        )}                        <div className="flex gap-4 mb-4 w-full">
+                            <FormControl className="flex-1" sx={{ 
+                                '& .MuiInputLabel-root': { color: 'inherit' },                                '& .MuiOutlinedInput-root': { 
+                                    color: 'inherit',
+                                    '& fieldset': {
+                                        borderColor: isDarkMode ? '#4b5563' : 'rgba(0, 0, 0, 0.23)'
+                                    },
+                                    '&:hover fieldset': {
+                                        borderColor: isDarkMode ? '#9ca3af' : 'rgba(0, 0, 0, 0.87)'
+                                    },
+                                    '&.Mui-focused fieldset': {
+                                        borderColor: isDarkMode ? '#ffffff' : '#1976d2'
+                                    }
+                                },
+                                '& .MuiSelect-icon': {
+                                    color: isDarkMode ? '#ffffff' : 'rgba(0, 0, 0, 0.54)'
+                                }
+                            }}>
+                                <InputLabel id="curve-type-label" className="text-black dark:text-white">{t("selectCurveType")}</InputLabel>
                                 <Select
                                     labelId="curve-type-label"
                                     value={selectedCurve}
                                     label={t("selectCurveType")}
                                     onChange={(e) => setSelectedCurve(e.target.value as 'revenue' | 'orders')}
+                                    className="text-black dark:text-white"
+                                    sx={{ '& .MuiSelect-select': { color: 'inherit' } }}
                                 >
-                                    <MenuItem value="revenue">{t("revenue")} (€)</MenuItem>
-                                    <MenuItem value="orders">{t("orderCount")}</MenuItem>
+                                    <MenuItem value="revenue" className="text-black dark:text-white">{t("revenue")} (€)</MenuItem>
+                                    <MenuItem value="orders" className="text-black dark:text-white">{t("orderCount")}</MenuItem>
                                 </Select>
-                            </FormControl>
-                            <FormControl className="flex-1">
-                                <InputLabel id="timeframe-label">{t("timeframe")}</InputLabel>
+                            </FormControl>                            <FormControl className="flex-1" sx={{ 
+                                '& .MuiInputLabel-root': { color: 'inherit' },                                '& .MuiOutlinedInput-root': { 
+                                    color: 'inherit',
+                                    '& fieldset': {
+                                        borderColor: isDarkMode ? '#4b5563' : 'rgba(0, 0, 0, 0.23)'
+                                    },
+                                    '&:hover fieldset': {
+                                        borderColor: isDarkMode ? '#9ca3af' : 'rgba(0, 0, 0, 0.87)'
+                                    },
+                                    '&.Mui-focused fieldset': {
+                                        borderColor: isDarkMode ? '#ffffff' : '#1976d2'
+                                    }
+                                },
+                                '& .MuiSelect-icon': {
+                                    color: isDarkMode ? '#ffffff' : 'rgba(0, 0, 0, 0.54)'
+                                }
+                            }}>
+                                <InputLabel id="timeframe-label" className="text-black dark:text-white">{t("timeframe")}</InputLabel>
                                 <Select
                                     labelId="timeframe-label"
                                     value={timeframe}
                                     label={t("timeframe")}
                                     onChange={(e) => setTimeframe(e.target.value as TimeFrame)}
+                                    className="text-black dark:text-white"
+                                    sx={{ '& .MuiSelect-select': { color: 'inherit' } }}
                                 >
-                                    <MenuItem value={TimeFrame.DAY}>{t("day")}</MenuItem>
-                                    <MenuItem value={TimeFrame.WEEK}>{t("week")}</MenuItem>
-                                    <MenuItem value={TimeFrame.MONTH}>{t("month")}</MenuItem>
-                                    <MenuItem value={TimeFrame.YEAR}>{t("year")}</MenuItem>
+                                    <MenuItem value={TimeFrame.DAY} className="text-black dark:text-white">{t("day")}</MenuItem>
+                                    <MenuItem value={TimeFrame.WEEK} className="text-black dark:text-white">{t("week")}</MenuItem>
+                                    <MenuItem value={TimeFrame.MONTH} className="text-black dark:text-white">{t("month")}</MenuItem>
+                                    <MenuItem value={TimeFrame.YEAR} className="text-black dark:text-white">{t("year")}</MenuItem>
                                 </Select>
                             </FormControl>
                         </div>
                     </div>
 
-                    <h2 className="text-2xl font-bold mt-10">📦 {t("products")}</h2>
-                    <div
-                        className="w-full p-4 mt-4 mb-8 border border-gray-200 dark:border-gray-600 rounded-lg overflow-hidden min-h-[26rem] cursor-pointer">
-                        {pieChartData.length === 0 ? (
-                            <div className="flex justify-center items-center h-[300px] text-gray-500">
+                    <h2 className="text-2xl font-bold mt-10 text-black dark:text-white">📦 {t("products")}</h2>                    <div
+                        className="w-full p-4 mt-4 mb-8 border border-gray-200 dark:border-gray-600 rounded-lg overflow-hidden min-h-[26rem] cursor-pointer pie-chart-container">{pieChartData.length === 0 ? (
+                            <div className="flex justify-center items-center h-[300px] text-gray-500 dark:text-gray-400">
                                 {t("noData")}
                             </div>
-                        ) : (
-                            <PieChart
+                        ) : (                            <PieChart
                                 margin={{right: 250}}
                                 series={[{
                                     data: pieChartData,
                                     innerRadius: 1,
                                     paddingAngle: 2,
                                     cornerRadius: 4,
-                                    valueFormatter: (item) => `${item.value}%`,
+                                    valueFormatter: (item) => `${item.value}`,
                                     arcLabelMinAngle: 45,
                                     highlightScope: {
                                         fade: 'global',
@@ -253,11 +384,55 @@ const FakeStats: React.FC = () => {
                                     }
                                 }]}
                                 height={300}
-                                colors={rainbowColors}
+                                colors={rainbowColors}                                sx={{
+                                    '& .MuiChartsLegend-label': {
+                                        fill: `${chartTheme.textColor} !important`,
+                                        color: `${chartTheme.textColor} !important`
+                                    },
+                                    '& .MuiChartsLegend-root': {
+                                        '& text': {
+                                            fill: `${chartTheme.textColor} !important`,
+                                            color: `${chartTheme.textColor} !important`
+                                        }
+                                    },
+                                    '& .MuiChartsPieArc-arc': {
+                                        stroke: 'none !important',
+                                        strokeWidth: '0 !important',
+                                        '& text': {
+                                            fill: `${chartTheme.textColor} !important`,
+                                            fontWeight: 'bold'
+                                        }
+                                    },
+                                    '& path': {
+                                        stroke: 'none !important',
+                                        strokeWidth: '0 !important'
+                                    },
+                                    '& path[stroke]': {
+                                        stroke: 'none !important'
+                                    },
+                                    '& g path': {
+                                        stroke: 'none !important',
+                                        strokeWidth: '0 !important'
+                                    },
+                                    '& .MuiChartsSector-root': {
+                                        stroke: 'none !important',
+                                        strokeWidth: '0 !important'
+                                    },
+                                    '& text': {
+                                        fill: `${chartTheme.textColor} !important`,
+                                        color: `${chartTheme.textColor} !important`
+                                    },
+                                    '& .MuiChartsLegend-series text': {
+                                        fill: `${chartTheme.textColor} !important`,
+                                        color: `${chartTheme.textColor} !important`
+                                    },
+                                    '& .MuiChartsLegend-mark + text': {
+                                        fill: `${chartTheme.textColor} !important`,
+                                        color: `${chartTheme.textColor} !important`
+                                    }
+                                }}
                             />
-                        )}
-                        <div className="mt-4 flex gap-2">
-                            <TextField
+                        )}                        <div className="mt-4 flex gap-2">                            <TextField
                                 label={t("startDate")}
                                 type="date"
                                 value={startDate}
@@ -265,7 +440,25 @@ const FakeStats: React.FC = () => {
                                 InputLabelProps={{
                                     shrink: true,
                                 }}
-                                className="flex-1"
+                                className="flex-1 text-black dark:text-white"                                sx={{ 
+                                    '& .MuiInputLabel-root': { color: 'inherit' }, 
+                                    '& .MuiOutlinedInput-root': { 
+                                        color: 'inherit',
+                                        '& fieldset': {
+                                            borderColor: isDarkMode ? '#4b5563' : 'rgba(0, 0, 0, 0.23)'
+                                        },
+                                        '&:hover fieldset': {
+                                            borderColor: isDarkMode ? '#9ca3af' : 'rgba(0, 0, 0, 0.87)'
+                                        },
+                                        '&.Mui-focused fieldset': {
+                                            borderColor: isDarkMode ? '#ffffff' : '#1976d2'
+                                        }
+                                    },
+                                    '& .MuiOutlinedInput-input': { color: 'inherit' },
+                                    '& input[type="date"]::-webkit-calendar-picker-indicator': {
+                                        filter: isDarkMode ? 'invert(1)' : 'none'
+                                    }
+                                }}
                             />
                             <TextField
                                 label={t("endDate")}
@@ -275,7 +468,24 @@ const FakeStats: React.FC = () => {
                                 InputLabelProps={{
                                     shrink: true,
                                 }}
-                                className="flex-1"
+                                className="flex-1 text-black dark:text-white"                                sx={{ 
+                                    '& .MuiInputLabel-root': { color: 'inherit' }, 
+                                    '& .MuiOutlinedInput-root': { 
+                                        color: 'inherit',
+                                        '& fieldset': {
+                                            borderColor: isDarkMode ? '#4b5563' : 'rgba(0, 0, 0, 0.23)'
+                                        },
+                                        '&:hover fieldset': {
+                                            borderColor: isDarkMode ? '#9ca3af' : 'rgba(0, 0, 0, 0.87)'
+                                        },
+                                        '&.Mui-focused fieldset': {
+                                            borderColor: isDarkMode ? '#ffffff' : '#1976d2'
+                                        }
+                                    },                                    '& .MuiOutlinedInput-input': { color: 'inherit' },
+                                    '& input[type="date"]::-webkit-calendar-picker-indicator': {
+                                        filter: isDarkMode ? 'invert(1)' : 'none'
+                                    }
+                                }}
                             />
                         </div>
                     </div>
