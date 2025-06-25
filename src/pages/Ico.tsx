@@ -1,13 +1,14 @@
 "use client";
 
-import NavBar from "../components/home/nav/NavBar";
+import NavBar from "@/components/generic/nav/NavBar";
 import Image from "next/image";
-import LineChartDivider from "@/components/home/line-chart-divider/LineChartDivider";
+import LineChartDivider from "@/components/generic/line-chart-divider/LineChartDivider";
 import {Direction} from "@/types/home/Direction";
-import DownloadButton from "../components/home/download/DownloadButton";
-import BlurText from "@/components/home/text/BlurText";
-import Footer from "@/components/home/footer/Footer";
-import SemiBold from "@/components/style/SemiBold";
+import DownloadButton from "@/components/projects/DownloadButton";
+import BlurText from "@/components/generic/BlurText";
+import Footer from "@/components/generic/footer/Footer";
+import SemiBold from "@/components/generic/SemiBold";
+import LineChart from "@/components/projects/ico/LineChart";
 
 const FutureComponent = () => {
     return (
@@ -70,7 +71,7 @@ const Ico = () => {
                 coloredWords={{ 'clear': 'text-purple-500' }}
             />
 
-            <FutureComponent />
+            <LineChart />
 
             <p className="text-center text-xl font-light mt-28 mb-28">
                 When you open Ico, you instantly see <SemiBold>what matters</SemiBold>

@@ -1,4 +1,4 @@
-import SemiBold from "@/components/style/SemiBold";
+import SemiBold from "@/components/generic/SemiBold";
 
 const Footer = () => {
     return (

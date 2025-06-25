@@ -1,10 +1,10 @@
 "use client";
 
-import NavBar from "../components/home/nav/NavBar";
-import DownloadButton from "../components/home/download/DownloadButton";
+import NavBar from "@/components/generic/nav/NavBar";
+import DownloadButton from "@/components/projects/DownloadButton";
 import Image from "next/image";
 import {Direction} from "@/types/home/Direction";
-import LineChartDivider from "@/components/home/line-chart-divider/LineChartDivider";
+import LineChartDivider from "@/components/generic/line-chart-divider/LineChartDivider";
 
 const Specto = () => {
     return (
