@@ -9,6 +9,7 @@ import BlurText from "@/components/generic/BlurText";
 import Footer from "@/components/generic/footer/Footer";
 import SemiBold from "@/components/generic/SemiBold";
 import LineChart from "@/components/projects/ico/LineChart";
+import PieCharts from "@/components/projects/ico/PieCharts";
 
 const FutureComponent = () => {
     return (
@@ -77,7 +78,7 @@ const Ico = () => {
                 When you open Ico, you instantly see <SemiBold>what matters</SemiBold>
             </p>
 
-            <FutureComponent />
+            <PieCharts />
 
             <p className="text-center text-xl font-light mt-28">
                 See your <SemiBold>debits</SemiBold> and <SemiBold>credits</SemiBold> with a category approach and even your <SemiBold>profits</SemiBold> in an
