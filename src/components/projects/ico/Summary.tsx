@@ -89,15 +89,14 @@ const Summary = () => {
     // Inline helper components
     const propertyEmojis = ["📅", "🏷️", "💰", "📑"];
     const SummaryTH = ({ label, emoji }: { label: string; emoji: string }) => (
-        <th className="w-1/4 border-gray-300 border text-center p-4 text-sm font-normal text-gray-500 bg-white hover:bg-gray-100 transition-all">
+        <th className="w-1/4 border-gray-300 dark:border-gray-700 border text-center p-4 text-sm font-normal text-gray-500 dark:text-gray-300 bg-white dark:bg-gray-900 hover:bg-gray-100 dark:hover:bg-gray-800 transition-all">
             {emoji} {label}
         </th>
     );
     const SummaryTR = ({ content, isSelected, onClick }: { content: string; isSelected?: boolean; onClick?: (e: React.MouseEvent<HTMLTableCellElement>) => void }) => (
         <td
             onClick={onClick}
-            className={`w-1/4 border-gray-300 border text-center p-1.5 text-sm transition-all duration-200 ring-inset hover:ring-1 ring-blue-500 cursor-copy select-none transition-all ${isSelected ? "bg-blue-500 text-white" : "bg-white"}`}
-
+            className={`w-1/4 border-gray-300 dark:border-gray-700 border text-center p-1.5 text-sm duration-200 ring-inset hover:ring-1 ring-blue-500 cursor-copy select-none transition-all ${isSelected ? "bg-blue-500 text-white" : "bg-white dark:bg-gray-900 dark:text-gray-100"}`}
         >
             {content}
         </td>
@@ -170,29 +169,92 @@ const Summary = () => {
         }
         return (
             <div
-                className={`absolute left-0 right-0 bottom-2 rounded-lg bg-white p-4 shadow-md border border-gray-400 transition-opacity duration-300 mx-4 ${
+                className={`absolute left-0 right-0 bottom-2 rounded-lg bg-white dark:bg-gray-900 p-4 shadow-md border border-gray-400 dark:border-gray-600 transition-opacity duration-300 mx-4 ${
                     isVisible ? "opacity-100" : "opacity-0 pointer-events-none"
                 }`}
             >
                 <div className="flex flex-row items-center justify-center space-x-4">
-                    <div className="px-3"><strong>🔢 Selected:</strong> {values.length}</div>
+                    <div className="px-3 text-gray-900 dark:text-gray-100"><strong>🔢 Selected:</strong> {values.length}</div>
                     {additionalElement}
                 </div>
             </div>
         );
     };
 
+    // --- Inline FilterSelection and its dependencies for the fake demo ---
+    const FilterLabel = ({ filter, onRemove }: { filter: any; onRemove: (filter: any) => void }) => (
+        <div className="w-fit h-6 m-0 mx-1 py-1 pl-3 pr-2.5 text-sm border text-blue-500 dark:text-blue-300 rounded-full border-blue-500 hover:border-blue-500 dark:border-blue-600 dark:hover:border-blue-600 bg-blue-100 dark:bg-blue-950 transition-all flex items-center justify-center">
+            <span className="mr-1 select-none">
+                {filter.property} {filter.operator} {filter.value}
+            </span>
+            <button
+                onClick={() => onRemove(filter)}
+                className="p-0 m-0 bg-transparent ring-0 border-none focus:outline-none cursor-pointer"
+            >
+                &#x2715;
+            </button>
+        </div>
+    );
+    const FilterPlusButton = () => (
+        <button
+            className="w-6 h-6 m-0 mx-1 p-0 text-black dark:text-white rounded-full border-gray-400 transition-all flex items-center justify-center ring-1 ring-gray-400 dark:ring-gray-600 hover:ring-blue-500 bg-gray-100 dark:bg-gray-900 cursor-pointer"
+            tabIndex={0}
+            type="button"
+            onClick={e => e.preventDefault()}
+            aria-label="Add filter (disabled in demo)"
+        >
+            +
+        </button>
+    );
+    const FilterSelection = ({ filters, sorts, onAddedFilter, onRemovedFilter, onAddedSort, onRemovedSort }: any) => (
+        <div className="w-full h-6 my-4 inline-flex items-center">
+            <img src="/generic/filter.svg" alt="Filter" className="w-6 h-6 mr-2" />
+            {sorts.map((sort: any, index: number) => (
+                <div key={index} className="w-fit h-6 m-0 mx-1 py-1 pl-3 pr-2.5 text-sm border text-orange-500 dark:text-orange-300 rounded-full border-orange-500 hover:border-orange-500 dark:border-orange-600 dark:hover:border-orange-600 bg-orange-100 dark:bg-orange-950 transition-all flex items-center justify-center">
+                    <span className="mr-1 select-none">
+                        {sort.orientation} {sort.property.charAt(0).toUpperCase() + sort.property.slice(1)}
+                    </span>
+                    <button
+                        onClick={() => onRemovedSort(sort)}
+                        className="p-0 m-0 bg-transparent ring-0 border-none focus:outline-none cursor-pointer"
+                    >
+                        &#x2715;
+                    </button>
+                </div>
+            ))}
+            {filters.map((filter: any, index: number) => (
+                <FilterLabel key={index} filter={filter} onRemove={onRemovedFilter} />
+            ))}
+            <FilterPlusButton />
+        </div>
+    );
+    // Fake filter and sort (for demo)
+    const fakeFilters = [
+        { property: "Amount", operator: "<", value: "200" }
+    ];
+    const fakeSorts = [
+        { property: "Date", orientation: "↓" }
+    ];
+
     return (
-        <div className="rounded-2xl border border-gray-300 bg-white shadow-lg p-6 py-12 max-w-5xl mx-auto my-10 relative overflow-x-auto">
-            <h1 className="text-3xl mb-4 font-bold cursor-default">📉 Debit</h1>
-            <table className="w-full table-auto border-white border-2 border-t-0 border-b-gray-300 border-b-2 cursor-pointer">
+        <div className="rounded-2xl border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900 shadow-lg p-6 py-12 max-w-5xl mx-auto my-10 relative overflow-x-auto">
+            <h1 className="text-3xl mb-4 font-bold cursor-default text-gray-900 dark:text-gray-100">📉 Debit</h1>
+            <FilterSelection
+                filters={fakeFilters}
+                sorts={fakeSorts}
+                onAddedFilter={() => {}}
+                onRemovedFilter={() => {}}
+                onAddedSort={() => {}}
+                onRemovedSort={() => {}}
+            />
+            <table className="w-full table-auto border-white dark:border-gray-800 border-2 border-t-0 border-b-gray-300 dark:border-b-gray-700 border-b-2 cursor-pointer">
                 <thead>
                     <tr>
                         {propertyLabels.map((label, idx) => <SummaryTH key={idx} label={label} emoji={propertyEmojis[idx]} />)}
                     </tr>
                 </thead>
             </table>
-            <table className="w-full table-auto border-white border-2 border-y-0 cursor-copy mt-0">
+            <table className="w-full table-auto border-white dark:border-gray-800 border-2 border-y-0 cursor-copy mt-0">
                 <tbody>
                     {fakeObjects.map((obj, index) => (
                         <tr key={obj.id}>
