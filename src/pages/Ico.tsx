@@ -10,6 +10,7 @@ import Footer from "@/components/generic/footer/Footer";
 import SemiBold from "@/components/generic/SemiBold";
 import LineChart from "@/components/projects/ico/LineChart";
 import PieCharts from "@/components/projects/ico/PieCharts";
+import Summary from "@/components/projects/ico/Summary";
 
 const FutureComponent = () => {
     return (
@@ -104,7 +105,7 @@ const Ico = () => {
                 coloredWords={{ 'summaries': 'text-purple-500' }}
             />
 
-            <FutureComponent />
+            <Summary />
 
             <p className="text-center text-xl font-light mt-28 mb-28">
                 Use <SemiBold>filters</SemiBold> and <SemiBold>sorts</SemiBold>, then click on cells of the same column
