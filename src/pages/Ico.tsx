@@ -106,6 +106,9 @@ const Ico = () => {
             />
 
             <Summary />
+            <p className="text-xs text-center text-gray-400 mb-20">
+                * filters and sorts aren&#39;t available in this demo, but they are in the real app.
+            </p>
 
             <p className="text-center text-xl font-light mt-28 mb-28">
                 Use <SemiBold>filters</SemiBold> and <SemiBold>sorts</SemiBold>, then click on cells of the same column
