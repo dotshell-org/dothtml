@@ -11,6 +11,7 @@ import SemiBold from "@/components/generic/SemiBold";
 import LineChart from "@/components/projects/ico/LineChart";
 import PieCharts from "@/components/projects/ico/PieCharts";
 import Summary from "@/components/projects/ico/Summary";
+import SynthesisTable from "@/components/projects/ico/SynthesisTable";
 
 const FutureComponent = () => {
     return (
@@ -92,7 +93,7 @@ const Ico = () => {
                 coloredWords={{ 'synthesis': 'text-purple-500' }}
             />
 
-            <FutureComponent />
+            <SynthesisTable />
 
             <p className="text-center text-xl font-light mt-28">
                 But Ico is also a <SemiBold>deep analytics tool</SemiBold>. And it&#39;s never been as simple as with
