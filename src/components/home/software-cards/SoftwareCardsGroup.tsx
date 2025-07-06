@@ -5,7 +5,6 @@ const SoftwareCardsGroup = () => {
     const cards: SoftwareCardType[] = [
         {imageSrc: "cafeteria-manager.svg", title: "Cafeteria Manager", description: "Your companion to manage your cafeteria business"},
         {imageSrc: "ico.svg", title: "Ico", description: "Your powerful space to manage accounting, stocks and sales"},
-        {imageSrc: "specto.svg", title: "Specto", description: "Your centralized server for your logging and monitoring needs"},
     ]
 
     return (

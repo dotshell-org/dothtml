@@ -11,7 +11,10 @@ const ProjectsDropdown: React.FC<ProjectsDropdownProps> = ({ isVisible }) => {
     const projects: SoftwareCardType[] = [
         {imageSrc: "cafeteria-manager.svg", title: "Cafeteria Manager", description: "Companion to manage your cafeteria business"},
         {imageSrc: "ico.svg", title: "Ico", description: "Powerful space to manage accounting, stocks etc"},
-        {imageSrc: "specto.svg", title: "Specto", description: "Centralized server, logging and monitoring"},    ];    return (        <div className={`absolute top-full left-1/2 -translate-x-1/2 mt-4 w-64 bg-white dark:bg-gray-900 rounded-lg shadow-xl border border-gray-200 dark:border-gray-700 transition-all duration-300 backdrop-blur-sm z-50 ${
+    ];
+
+    return (
+        <div className={`absolute top-full left-1/2 -translate-x-1/2 mt-4 w-64 bg-white dark:bg-gray-900 rounded-lg shadow-xl border border-gray-200 dark:border-gray-700 transition-all duration-300 backdrop-blur-sm z-50 ${
             isVisible ? 'opacity-100 translate-y-0 pointer-events-auto' : 'opacity-0 -translate-y-2 pointer-events-none'
         }`}>
             {/* Petite flèche pointant vers le haut */}

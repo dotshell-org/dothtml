@@ -27,7 +27,8 @@ const appConfig = {
             linux_deb: "Ico-V.1-Setup.deb",
             linux_appimage: "Ico-V.1-Setup.AppImage"
         }
-    },    "Specto": {
+    },
+    "Specto": {
         repo: "dotshell-org/specto",
         version: "V1",
         releases: {
