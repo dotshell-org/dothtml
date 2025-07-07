@@ -11,7 +11,7 @@ const BarChart = () => {
 
     return (
         <div className="flex justify-center mt-20 sm:mt-40 px-2">
-            <div className="flex flex-col sm:flex-row items-end gap-4 border-b px-2 sm:px-8 md:px-16 border-black dark:border-white w-full max-w-5xl">
+            <div className="flex flex-col sm:flex-row items-end gap-4 w-full max-w-5xl">
                 {features.map((feature, index) => (
                     <div
                         className="bg-red-500 w-full sm:w-48 px-4 sm:px-6 pt-8 sm:pt-12 pb-8 sm:pb-14 h-fit rounded-lg flex-1 min-w-[180px] max-w-xs mx-auto"

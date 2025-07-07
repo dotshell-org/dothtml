@@ -102,12 +102,12 @@ const PieCharts = () => {
 
     return (
         <ThemeProvider theme={currentTheme}>
-            <div className="w-full grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 md:gap-8">
-                <div className="w-full h-72 sm:h-96 bg-white dark:bg-gray-900 rounded-2xl p-2 sm:p-4 md:p-6 lg:p-8">
+            <div className="w-full grid grid-cols-1gap-4 sm:gap-6 md:gap-8">
+                <div className="w-full h-72 sm:h-96 bg-white dark:bg-gray-900 rounded-2xl p-2 sm:p-4 md:p-6 lg:p-8 flex flex-col items-center justify-center">
                     <h3 className="text-center text-base sm:text-lg font-light mb-2 sm:mb-4">📈 <SemiBold>Credit</SemiBold></h3>
                     <MuiPieChart
                         series={series}
-                        height={250}
+                        height={400}
                         colors={redColors}
                         sx={{ 
                             '& .MuiChartsLegend-root': { display: 'none' },
