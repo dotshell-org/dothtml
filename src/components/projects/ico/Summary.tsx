@@ -46,15 +46,15 @@ const formatDate = (dateString: string): string => {
 
 // Components
 const SummaryTH = ({ label, emoji }: { label: string; emoji: string }) => (
-    <th className="w-1/4 border-gray-300 dark:border-gray-700 border text-center p-4 text-sm font-normal text-gray-500 dark:text-gray-300 bg-white dark:bg-gray-900 hover:bg-gray-100 dark:hover:bg-gray-800 transition-all">
-        {emoji} {label}
+    <th className="w-1/4 border-gray-300 dark:border-gray-700 border text-center p-2 sm:p-4 text-xs sm:text-sm font-normal text-gray-500 dark:text-gray-300 bg-white dark:bg-gray-900 hover:bg-gray-100 dark:hover:bg-gray-800 transition-all">
+        <span className="hidden sm:inline">{emoji} </span>{label}
     </th>
 );
 
 const SummaryTR = ({ content, isSelected, onClick }: { content: string; isSelected?: boolean; onClick?: (e: React.MouseEvent<HTMLTableCellElement>) => void }) => (
     <td
         onClick={onClick}
-        className={`w-1/4 border-gray-300 dark:border-gray-700 border text-center p-1.5 text-sm duration-200 ring-inset hover:ring-1 ring-blue-500 cursor-copy select-none transition-all ${
+        className={`w-1/4 border-gray-300 dark:border-gray-700 border text-center p-1 sm:p-1.5 text-xs sm:text-sm duration-200 ring-inset hover:ring-1 ring-blue-500 cursor-copy select-none transition-all ${
             isSelected ? "bg-blue-500 text-white" : "bg-white dark:bg-gray-900 dark:text-gray-100"
         }`}
     >
@@ -63,7 +63,7 @@ const SummaryTR = ({ content, isSelected, onClick }: { content: string; isSelect
 );
 
 const FilterLabel = ({ filter }: { filter: Filter }) => (
-    <div className="w-fit h-6 m-0 mx-1 py-1 pl-3 pr-2.5 text-sm border text-blue-500 dark:text-blue-300 rounded-full border-blue-500 hover:border-blue-500 dark:border-blue-600 dark:hover:border-blue-600 bg-blue-100 dark:bg-blue-950 transition-all flex items-center justify-center">
+    <div className="w-fit h-6 m-0 mx-1 py-1 pl-2 sm:pl-3 pr-1.5 sm:pr-2.5 text-xs sm:text-sm border text-blue-500 dark:text-blue-300 rounded-full border-blue-500 hover:border-blue-500 dark:border-blue-600 dark:hover:border-blue-600 bg-blue-100 dark:bg-blue-950 transition-all flex items-center justify-center">
     <span className="mr-1 select-none">
       {filter.property} {filter.operator} {filter.value}
     </span>
@@ -89,7 +89,7 @@ const FilterSelection = ({ filters, sorts }: { filters: Filter[]; sorts: Sort[] 
     <div className="w-full h-6 my-4 inline-flex items-center">
         <Image src="/generic/filter.svg" alt="Filter" className="w-6 h-6 mr-2" width="10" height="10" />
         {sorts.map((sort: Sort, index: number) => (
-            <div key={index} className="w-fit h-6 m-0 mx-1 py-1 pl-3 pr-2.5 text-sm border text-orange-500 dark:text-orange-300 rounded-full border-orange-500 hover:border-orange-500 dark:border-orange-600 dark:hover:border-orange-600 bg-orange-100 dark:bg-orange-950 transition-all flex items-center justify-center">
+            <div key={index} className="w-fit h-6 m-0 mx-1 py-1 pl-2 sm:pl-3 pr-1.5 sm:pr-2.5 text-xs sm:text-sm border text-orange-500 dark:text-orange-300 rounded-full border-orange-500 hover:border-orange-500 dark:border-orange-600 dark:hover:border-orange-600 bg-orange-100 dark:bg-orange-950 transition-all flex items-center justify-center">
         <span className="mr-1 select-none">
           {sort.orientation} {sort.property.charAt(0).toUpperCase() + sort.property.slice(1)}
         </span>
@@ -248,8 +248,8 @@ const Summary = () => {
     const fakeSorts: Sort[] = [{ property: "Date", orientation: "↓" }];
 
     return (
-        <div className="rounded-2xl border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900 shadow-lg p-6 py-12 max-w-5xl mx-auto my-10 relative overflow-x-auto">
-            <h1 className="text-3xl mb-4 font-bold cursor-default text-gray-900 dark:text-gray-100">📉 Debit</h1>
+        <div className="rounded-2xl border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900 shadow-lg p-3 sm:p-6 py-6 sm:py-12 max-w-5xl mx-auto my-6 sm:my-10 relative overflow-x-auto">
+            <h1 className="text-xl sm:text-3xl mb-4 font-bold cursor-default text-gray-900 dark:text-gray-100">📉 Debit</h1>
             <FilterSelection filters={fakeFilters} sorts={fakeSorts} />
             <table className="w-full table-auto border-white dark:border-gray-800 border-2 border-t-0 border-b-gray-300 dark:border-b-gray-700 border-b-2 cursor-pointer">
                 <thead>

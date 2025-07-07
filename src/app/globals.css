@@ -455,15 +455,15 @@ input:focus, textarea:focus, button:focus {
 /* Responsive liquid container */
 @media (max-width: 640px) {
     .liquid-container {
-        width: 3rem;
-        height: 3rem;
+        width: 15rem;
+        height: 15rem;
     }
 }
 
 @media (min-width: 641px) and (max-width: 768px) {
     .liquid-container {
-        width: 4rem;
-        height: 4rem;
+        width: 15rem;
+        height: 15rem;
     }
 }
 

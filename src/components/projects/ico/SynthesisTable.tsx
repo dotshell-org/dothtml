@@ -43,7 +43,7 @@ const DashboardTR: React.FC<CreditSummaryTRProps> = ({ property, content, border
 
     return (
         <td
-            className={`w-1/4 border-gray-300 dark:border-gray-700 border text-center p-1.5 text-sm transition-all ${color} ${property === null && "cursor-default select-none"} ${property != null && "cursor-text"} ${!border && "border-0"} select-text`}
+            className={`w-1/4 border-gray-300 dark:border-gray-700 border text-center p-1 sm:p-1.5 text-xs sm:text-sm transition-all ${color} ${property === null && "cursor-default select-none"} ${property != null && "cursor-text"} ${!border && "border-0"} select-text`}
         >
             {content}
         </td>
@@ -63,7 +63,7 @@ const DashboardTH: React.FC<SummaryTHProps> = ({ property }) => {
                 ? "⚖\uFE0F " + "Profit"
                 : "";
     return (
-        <th className="w-1/4 border-gray-300 dark:border-gray-700 border text-center p-4 text-sm font-normal text-gray-500 dark:text-gray-400 bg-white dark:bg-gray-950 transition-all">{textProperty}</th>
+        <th className="w-1/4 border-gray-300 dark:border-gray-700 border text-center p-2 sm:p-4 text-xs sm:text-sm font-normal text-gray-500 dark:text-gray-400 bg-white dark:bg-gray-950 transition-all">{textProperty}</th>
     );
 };
 
@@ -77,7 +77,7 @@ const SynthesisTable = () => {
     };
 
     return (
-        <div className="w-2/3 mx-auto">
+        <div className="w-full sm:w-2/3 mx-auto px-2 sm:px-0">
             <table className="w-full mt-5 table-auto border-white dark:border-gray-950 border-2 border-t-0 border-b-gray-300 dark:border-b-gray-700 border-b-2">
                 <thead className="cursor-default select-none">
                 <tr className="border-b-gray-300 dark:border-b-gray-700 border-b-2">

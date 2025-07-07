@@ -50,7 +50,10 @@ const StyledText = styled("text")(({ theme }) => ({
     fill: theme.palette.text.primary,
     textAnchor: "middle",
     dominantBaseline: "central",
-    fontSize: 64,
+    fontSize: 48,
+    '@media (min-width: 640px)': {
+        fontSize: 64,
+    },
 }));
 
 function PieCenterLabel({ children }: { children: React.ReactNode }) {
@@ -100,13 +103,18 @@ const PieCharts = () => {
     return (
         <ThemeProvider theme={currentTheme}>
             <div className="w-full grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 md:gap-8">
-                <div className="w-full h-96 bg-white dark:bg-gray-900 rounded-2xl p-4 sm:p-6 md:p-8">
-                    <h3 className="text-center text-lg font-light mb-4">📈 <SemiBold>Credit</SemiBold></h3>
+                <div className="w-full h-72 sm:h-96 bg-white dark:bg-gray-900 rounded-2xl p-2 sm:p-4 md:p-6 lg:p-8">
+                    <h3 className="text-center text-base sm:text-lg font-light mb-2 sm:mb-4">📈 <SemiBold>Credit</SemiBold></h3>
                     <MuiPieChart
                         series={series}
-                        height={350}
+                        height={250}
                         colors={redColors}
-                        sx={{ '& .MuiChartsLegend-root': { display: 'none' } }}
+                        sx={{ 
+                            '& .MuiChartsLegend-root': { display: 'none' },
+                            '@media (min-width: 640px)': {
+                                height: 350
+                            }
+                        }}
                     >
                         <PieCenterLabel>€{formatNumber(totalValue)}</PieCenterLabel>
                     </MuiPieChart>

@@ -63,7 +63,7 @@ const EmojiContainer = () => {
                 <AnimatePresence initial={false}>
                     <motion.div
                         key={currentEmoji}
-                        className="text-6xl sm:text-9xl cursor-default absolute"
+                        className="text-[7rem] sm:text-9xl cursor-default absolute"
                         initial="initial"
                         animate="animate"
                         exit="exit"

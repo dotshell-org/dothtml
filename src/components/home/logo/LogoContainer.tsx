@@ -5,7 +5,7 @@ const LogoContainer = () => {
     return (
         <div className="absolute w-full top-1/2 -translate-y-1/2 flex flex-col items-center justify-center px-4">
             <Image
-                className="dark:invert w-32 sm:w-48 md:w-64 lg:w-80 xl:w-[350px] h-auto"
+                className="dark:invert w-64 lg:w-80 xl:w-[350px] h-auto"
                 src="/dotshell-logo.svg"
                 alt="Dotshell Logo"
                 width={350}
@@ -15,10 +15,10 @@ const LogoContainer = () => {
 
             {/* <MetallicLogo /> */}
 
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black text-gray-900 dark:text-white text-center">
+            <h1 className="text-6xl xl:text-7xl font-black text-gray-900 dark:text-white text-center">
                 Dotshell
             </h1>
-            <h2 className="mt-2 text-sm sm:text-base md:text-lg lg:text-xl font-light text-center">
+            <h2 className="mt-2 text-base md:text-lg lg:text-xl font-light text-center">
                 Believe in the open
             </h2>
         </div>
