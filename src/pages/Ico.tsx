@@ -14,6 +14,7 @@ import Summary from "@/components/projects/ico/Summary";
 import SynthesisTable from "@/components/projects/ico/SynthesisTable";
 import Carousel from "@/components/projects/ico/Carousel";
 import BarChart from "@/components/projects/ico/BarChart";
+import StockLineChart from "@/components/projects/ico/StockLineChart";
 
 const FutureComponent = () => {
     return (
@@ -165,7 +166,7 @@ const Ico = () => {
                 a <SemiBold>specific date</SemiBold> in the form of a summary table.
             </p>
 
-            <FutureComponent />
+            <StockLineChart />
 
             <p className="text-center text-xl font-light mt-18">
                 In the Stock tab, take advantage of a specially designed
