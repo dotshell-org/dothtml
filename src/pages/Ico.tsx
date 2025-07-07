@@ -12,6 +12,8 @@ import LineChart from "@/components/projects/ico/LineChart";
 import PieCharts from "@/components/projects/ico/PieCharts";
 import Summary from "@/components/projects/ico/Summary";
 import SynthesisTable from "@/components/projects/ico/SynthesisTable";
+import Carousel from "@/components/projects/ico/Carousel";
+import BarChart from "@/components/projects/ico/BarChart";
 
 const FutureComponent = () => {
     return (
@@ -130,8 +132,8 @@ const Ico = () => {
                 coloredWords={{ 'detail': 'text-red-500' }}
             />
 
-            <FutureComponent />
-            <div className="mb-28"></div>
+            <Carousel />
+            <div className="h-40"></div>
 
             <LineChartDivider color="#22c55e" direction={Direction.Right} />
 
@@ -153,7 +155,7 @@ const Ico = () => {
                 Exactly as for the accounting tab, everything starts with <SemiBold>charts</SemiBold>
             </p>
 
-            <FutureComponent />
+            <BarChart />
 
             <p className="text-center text-xl font-light mt-28 mb-28">
                 Trace the <SemiBold>evolution</SemiBold> of a certain object
