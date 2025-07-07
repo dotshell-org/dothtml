@@ -1,292 +1,296 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+    --background: #ffffff;
+    --foreground: #171717;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+    --color-background: var(--background);
+    --color-foreground: var(--foreground);
+    --font-sans: var(--font-geist-sans);
+    --font-mono: var(--font-geist-mono);
 }
 
 @media (prefers-color-scheme: dark) {
-  :root {
-    --background: #101828;
-    --foreground: #ededed;
-  }
+    :root {
+        --background: #101828;
+        --foreground: #ededed;
+    }
 }
 
 @font-face {
-  font-family: "Aileron";
-  src: url("/fonts/Aileron-Thin.otf") format("woff2");
-  font-weight: 100;
-  font-style: normal;
+    font-family: "Aileron";
+    src: url("/fonts/Aileron-Thin.otf") format("woff2");
+    font-weight: 100;
+    font-style: normal;
 }
 
 @font-face {
-  font-family: "Aileron";
-  src: url("/fonts/Aileron-ThinItalic.otf") format("woff2");
-  font-weight: 100;
-  font-style: italic;
+    font-family: "Aileron";
+    src: url("/fonts/Aileron-ThinItalic.otf") format("woff2");
+    font-weight: 100;
+    font-style: italic;
 }
 
 @font-face {
-  font-family: "Aileron";
-  src: url("/fonts/Aileron-UltraLight.otf") format("woff2");
-  font-weight: 200;
-  font-style: normal;
+    font-family: "Aileron";
+    src: url("/fonts/Aileron-UltraLight.otf") format("woff2");
+    font-weight: 200;
+    font-style: normal;
 }
 
 @font-face {
-  font-family: "Aileron";
-  src: url("/fonts/Aileron-UltraLightItalic.otf") format("woff2");
-  font-weight: 200;
-  font-style: italic;
+    font-family: "Aileron";
+    src: url("/fonts/Aileron-UltraLightItalic.otf") format("woff2");
+    font-weight: 200;
+    font-style: italic;
 }
 
 @font-face {
-  font-family: "Aileron";
-  src: url("/fonts/Aileron-Light.otf") format("woff2");
-  font-weight: 300;
-  font-style: normal;
+    font-family: "Aileron";
+    src: url("/fonts/Aileron-Light.otf") format("woff2");
+    font-weight: 300;
+    font-style: normal;
 }
 
 @font-face {
-  font-family: "Aileron";
-  src: url("/fonts/Aileron-LightItalic.otf") format("woff2");
-  font-weight: 300;
-  font-style: italic;
+    font-family: "Aileron";
+    src: url("/fonts/Aileron-LightItalic.otf") format("woff2");
+    font-weight: 300;
+    font-style: italic;
 }
 
 @font-face {
-  font-family: "Aileron";
-  src: url("/fonts/Aileron-Regular.otf") format("woff2");
-  font-weight: 400;
-  font-style: normal;
+    font-family: "Aileron";
+    src: url("/fonts/Aileron-Regular.otf") format("woff2");
+    font-weight: 400;
+    font-style: normal;
 }
 
 @font-face {
-  font-family: "Aileron";
-  src: url("/fonts/Aileron-Italic.otf") format("woff2");
-  font-weight: 400;
-  font-style: italic;
+    font-family: "Aileron";
+    src: url("/fonts/Aileron-Italic.otf") format("woff2");
+    font-weight: 400;
+    font-style: italic;
 }
 
 @font-face {
-  font-family: "Aileron";
-  src: url("/fonts/Aileron-SemiBold.otf") format("woff2");
-  font-weight: 600;
-  font-style: normal;
+    font-family: "Aileron";
+    src: url("/fonts/Aileron-SemiBold.otf") format("woff2");
+    font-weight: 600;
+    font-style: normal;
 }
 
 @font-face {
-  font-family: "Aileron";
-  src: url("/fonts/Aileron-SemiBoldItalic.otf") format("woff2");
-  font-weight: 600;
-  font-style: italic;
+    font-family: "Aileron";
+    src: url("/fonts/Aileron-SemiBoldItalic.otf") format("woff2");
+    font-weight: 600;
+    font-style: italic;
 }
 
 @font-face {
-  font-family: "Aileron";
-  src: url("/fonts/Aileron-Bold.otf") format("woff2");
-  font-weight: 700;
-  font-style: normal;
+    font-family: "Aileron";
+    src: url("/fonts/Aileron-Bold.otf") format("woff2");
+    font-weight: 700;
+    font-style: normal;
 }
 
 @font-face {
-  font-family: "Aileron";
-  src: url("/fonts/Aileron-BoldItalic.otf") format("woff2");
-  font-weight: 700;
-  font-style: italic;
+    font-family: "Aileron";
+    src: url("/fonts/Aileron-BoldItalic.otf") format("woff2");
+    font-weight: 700;
+    font-style: italic;
 }
 
 @font-face {
-  font-family: "Aileron";
-  src: url("/fonts/Aileron-Heavy.otf") format("woff2");
-  font-weight: 800;
-  font-style: normal;
+    font-family: "Aileron";
+    src: url("/fonts/Aileron-Heavy.otf") format("woff2");
+    font-weight: 800;
+    font-style: normal;
 }
 
 @font-face {
-  font-family: "Aileron";
-  src: url("/fonts/Aileron-HeavyItalic.otf") format("woff2");
-  font-weight: 800;
-  font-style: italic;
+    font-family: "Aileron";
+    src: url("/fonts/Aileron-HeavyItalic.otf") format("woff2");
+    font-weight: 800;
+    font-style: italic;
 }
 
 @font-face {
-  font-family: "Aileron";
-  src: url("/fonts/Aileron-Black.otf") format("woff2");
-  font-weight: 900;
-  font-style: normal;
+    font-family: "Aileron";
+    src: url("/fonts/Aileron-Black.otf") format("woff2");
+    font-weight: 900;
+    font-style: normal;
 }
 
 @font-face {
-  font-family: "Aileron";
-  src: url("/fonts/Aileron-BlackItalic.otf") format("woff2");
-  font-weight: 900;
-  font-style: italic;
+    font-family: "Aileron";
+    src: url("/fonts/Aileron-BlackItalic.otf") format("woff2");
+    font-weight: 900;
+    font-style: italic;
 }
 
 * {
-  font-family: "Aileron", sans-serif;
+    font-family: "Aileron", sans-serif;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
+    background: var(--background);
+    color: var(--foreground);
 }
 
 .scroller {
-  overflow: hidden;
-  width: 100%;
-  height: 100px;
-  position: relative;
-  background: transparent;
+    overflow: hidden;
+    width: 100%;
+    height: 100px;
+    position: relative;
+    background: transparent;
 }
 
 .track-left {
-  display: flex;
-  width: max-content;
-  animation: scroll-left 20s linear infinite;
-  align-items: center;
+    display: flex;
+    width: max-content;
+    animation: scroll-left 20s linear infinite;
+    align-items: center;
 }
 
 .track-right{
-  display: flex;
-  width: max-content;
-  animation: scroll-right 20s linear infinite;
-  align-items: center;
+    display: flex;
+    width: max-content;
+    animation: scroll-right 20s linear infinite;
+    align-items: center;
 }
 
 @keyframes scroll-left {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(-400px);
-  }
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-400px);
+    }
 }
 
 @keyframes scroll-right {
-  0% {
-    transform: translateX(-400px);
-  }
-  100% {
-    transform: translateX(0);
-  }
+    0% {
+        transform: translateX(-400px);
+    }
+    100% {
+        transform: translateX(0);
+    }
 }
 
 /* Fade-in animation for error messages */
 @keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
+    from { opacity: 0; }
+    to { opacity: 1; }
 }
 .animate-fade-in {
-  animation: fadeIn 0.4s ease;
+    animation: fadeIn 0.4s ease;
 }
 
 /* Slide and fade-in animation for success box */
 @keyframes slideFadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(-30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+    from {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 .animate-slide-fade-in {
-  animation: slideFadeIn 0.5s cubic-bezier(0.4,0,0.2,1);
+    animation: slideFadeIn 0.5s cubic-bezier(0.4,0,0.2,1);
 }
 
 /* Slide and fade-in from bottom animation for success box */
 @keyframes slideFadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 .animate-slide-fade-in-up {
-  animation: slideFadeInUp 0.5s cubic-bezier(0.4,0,0.2,1);
+    animation: slideFadeInUp 0.5s cubic-bezier(0.4,0,0.2,1);
 }
 
 @keyframes slideFadeOutDown {
-  from {
-    opacity: 1;
-    transform: translateY(0);
-  }
-  to {
-    opacity: 0;
-    transform: translateY(30px);
-  }
+    from {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    to {
+        opacity: 0;
+        transform: translateY(30px);
+    }
 }
 .animate-slide-fade-out-down {
-  animation: slideFadeOutDown 0.5s cubic-bezier(0.4,0,0.2,1);
+    animation: slideFadeOutDown 0.5s cubic-bezier(0.4,0,0.2,1);
 }
 
 /* Liquid container animation for logo */
 .liquid-container {
-  position: relative;
-  overflow: hidden;
-  border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
-  animation: liquidBorder 8s ease-in-out infinite;
-  box-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
+    position: relative;
+    overflow: hidden;
+    border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+    animation: liquidBorder 8s ease-in-out infinite;
+    box-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
 }
 
 /* Purple variant for Ico */
 .liquid-container.bg-purple-500 {
-  box-shadow: 0 0 20px rgba(168, 85, 247, 0.3);
+    box-shadow: 0 0 20px rgba(168, 85, 247, 0.3);
 }
 
 /* Green variant for Specto */
 .liquid-container.bg-red-500 {
-  box-shadow: 0 0 20px rgba(251, 44, 54, 0.3);
+    box-shadow: 0 0 20px rgba(251, 44, 54, 0.3);
 }
 
 @keyframes liquidBorder {
-  0%, 100% {
-    border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
-  }
-  25% {
-    border-radius: 60% 40% 40% 60% / 50% 60% 40% 50%;
-  }
-  50% {
-    border-radius: 40% 60% 60% 40% / 40% 50% 50% 60%;
-  }
-  75% {
-    border-radius: 50% 50% 60% 40% / 60% 40% 50% 50%;
-  }
+    0%, 100% {
+        border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+    }
+    25% {
+        border-radius: 60% 40% 40% 60% / 50% 60% 40% 50%;
+    }
+    50% {
+        border-radius: 40% 60% 60% 40% / 40% 50% 50% 60%;
+    }
+    75% {
+        border-radius: 50% 50% 60% 40% / 60% 40% 50% 50%;
+    }
 }
 
 /* Liquid container animation for logo */
 .liquid-container {
-  position: relative;
-  overflow: hidden;
-  border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
-  animation: liquidBorder 8s ease-in-out infinite;
-  box-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
+    position: relative;
+    overflow: hidden;
+    border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+    animation: liquidBorder 8s ease-in-out infinite;
+    box-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
 }
 
 @keyframes liquidBorder {
-  0%, 100% {
-    border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
-  }
-  25% {
-    border-radius: 60% 40% 40% 60% / 50% 60% 40% 50%;
-  }
-  50% {
-    border-radius: 40% 60% 60% 40% / 40% 50% 50% 60%;
-  }
-  75% {
-    border-radius: 50% 50% 60% 40% / 60% 40% 50% 50%;
-  }
+    0%, 100% {
+        border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+    }
+    25% {
+        border-radius: 60% 40% 40% 60% / 50% 60% 40% 50%;
+    }
+    50% {
+        border-radius: 40% 60% 60% 40% / 40% 50% 50% 60%;
+    }
+    75% {
+        border-radius: 50% 50% 60% 40% / 60% 40% 50% 50%;
+    }
+}
+
+.custom-mark {
+  fill: #101828 !important;
 }

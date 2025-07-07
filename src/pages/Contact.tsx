@@ -1,8 +1,8 @@
 "use client";
 
-import NavBar from "@/components/home/nav/NavBar";
+import NavBar from "@/components/generic/nav/NavBar";
 import React, { useState } from "react";
-import Footer from "@/components/home/footer/Footer";
+import Footer from "@/components/generic/footer/Footer";
 
 const Contact = () => {
     const [form, setForm] = useState({

@@ -1,16 +1,16 @@
 "use client";
 
-import NavBar from "../components/home/nav/NavBar";
-import DownloadButton from "../components/home/download/DownloadButton";
+import NavBar from "@/components/generic/nav/NavBar";
+import DownloadButton from "@/components/projects/DownloadButton";
 import Image from "next/image";
 import {Direction} from "@/types/home/Direction";
-import LineChartDivider from "@/components/home/line-chart-divider/LineChartDivider";
-import FakeCalendar from "@/components/home/calendar/FakeCalendar";
-import BlurText from "@/components/home/text/BlurText";
-import SemiBold from "@/components/style/SemiBold";
-import FakeCashRegister from "@/components/home/cash-register/FakeCashRegister";
-import FakeStats from "@/components/home/stats/FakeStats";
-import Footer from "@/components/home/footer/Footer";
+import LineChartDivider from "@/components/generic/line-chart-divider/LineChartDivider";
+import FakeCalendar from "@/components/projects/cafeteria-manager/calendar/FakeCalendar";
+import BlurText from "@/components/generic/BlurText";
+import SemiBold from "@/components/generic/SemiBold";
+import FakeCashRegister from "@/components/projects/cafeteria-manager/cash-register/FakeCashRegister";
+import FakeStats from "@/components/projects/cafeteria-manager/stats/FakeStats";
+import Footer from "@/components/generic/footer/Footer";
 
 const CafeteriaManager = () => {
     return (

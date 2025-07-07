@@ -1,13 +1,13 @@
-import NavBar from "@/components/home/nav/NavBar";
+import NavBar from "@/components/generic/nav/NavBar";
 import LogoContainer from "@/components/home/logo/LogoContainer";
-import LineChartDivider from "@/components/home/line-chart-divider/LineChartDivider";
-import SemiBold from "@/components/style/SemiBold";
+import LineChartDivider from "@/components/generic/line-chart-divider/LineChartDivider";
+import SemiBold from "@/components/generic/SemiBold";
 import SoftwareCardsGroup from "@/components/home/software-cards/SoftwareCardsGroup";
 import {Direction} from "@/types/home/Direction";
 import BarChart from "@/components/home/bar-chart/BarChart";
 import EmojiContainer from "@/components/home/emoji/EmojiContainer";
-import BlurText from "@/components/home/text/BlurText";
-import Footer from "@/components/home/footer/Footer";
+import BlurText from "@/components/generic/BlurText";
+import Footer from "@/components/generic/footer/Footer";
 
 const Home = () => {
     return (

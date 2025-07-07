@@ -1,6 +1,6 @@
 "use client";
 
-import LineChartDividerPeriod from "@/components/home/line-chart-divider/LineChartDividerPeriod";
+import LineChartDividerPeriod from "@/components/generic/line-chart-divider/LineChartDividerPeriod";
 import React from "react";
 import {Direction} from "@/types/home/Direction";
 
