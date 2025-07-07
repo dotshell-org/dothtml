@@ -22,8 +22,6 @@ const appConfig = {
         version: "V1",
         releases: {
             windows: "Ico-V.1-Setup.exe",
-            mac_intel: "Cafeteria.Manager-V.1-Setup-Intel.dmg",
-            mac_silicon: "Cafeteria.Manager-V.1-Setup-Apple-Silicon.dmg",
             linux_deb: "Ico-V.1-Setup.deb",
             linux_appimage: "Ico-V.1-Setup.AppImage"
         }
@@ -38,13 +36,11 @@ const appConfig = {
     },
     "Cafeteria Manager": {
         repo: "dotshell-org/cafeteria-manager",
-        version: "V1",
+        version: "v25.0.0",
         releases: {
-            windows: "Cafeteria.Manager-V.1-Setup.exe",
-            mac_intel: "Cafeteria.Manager-V.1-Setup-Intel.dmg",
-            mac_silicon: "Cafeteria.Manager-V.1-Setup-Apple-Silicon.dmg",
-            linux_deb: "Cafeteria.Manager-V.1-Setup.deb",
-            linux_appimage: "Cafeteria.Manager-V.1-Setup.AppImage"
+            windows: "Cafeteria.Manager-25.0.0.exe",
+            mac_silicon: "Cafeteria.Manager-25.0.0-Apple.Silicon.dmg",
+            linux_deb: "Cafeteria.Manager-25.0.0.deb",
         }
     }
 };
@@ -113,6 +109,11 @@ const DownloadButton: React.FC<DownloadButtonProps> = ({ appName, colorScheme, a
                     } else {
                         return 2; // Mac Intel (par défaut pour les autres Mac)
                     }
+                }
+
+                // Pour Cafeteria Manager: Linux doit proposer l'option .deb (index 2)
+                if (appName === "Cafeteria Manager" && userAgent.includes('linux')) {
+                    return 2; // Ubuntu/Debian (.deb)
                 }
 
                 if (userAgent.includes('linux')) return 3; // Linux
@@ -202,7 +203,8 @@ const DownloadButton: React.FC<DownloadButtonProps> = ({ appName, colorScheme, a
                 downloadUrl: generateGitHubDownloadUrl(appName, "linux_appimage")
             }
         ]
-        : [
+        : appName === "Cafeteria Manager"
+                    ? [
             {
                 platform: "Windows",
                 icon: "🪟",
@@ -220,14 +222,9 @@ const DownloadButton: React.FC<DownloadButtonProps> = ({ appName, colorScheme, a
                 icon: "🐧",
                 format: ".deb",
                 downloadUrl: generateGitHubDownloadUrl(appName, "linux_deb")
-            },
-            {
-                platform: "Linux",
-                icon: "🐧",
-                format: ".AppImage",
-                downloadUrl: generateGitHubDownloadUrl(appName, "linux_appimage")
             }
-        ];const colorClasses = {
+        ] : [];
+        const colorClasses = {
         blue: {
             bg: "bg-blue-600",
             hoverBg: "hover:bg-blue-700",
