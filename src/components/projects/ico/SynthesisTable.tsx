@@ -63,7 +63,7 @@ const DashboardTH: React.FC<SummaryTHProps> = ({ property }) => {
                 ? "⚖\uFE0F " + "Profit"
                 : "";
     return (
-        <th className="w-1/4 border-gray-300 dark:border-gray-700 border text-center p-2 sm:p-4 text-xs sm:text-sm font-normal text-gray-500 dark:text-gray-400 bg-white dark:bg-gray-950 transition-all">{textProperty}</th>
+        <th className="w-1/4 border-gray-300 dark:border-gray-700 border text-center p-2 sm:p-4 text-xs sm:text-sm font-normal text-gray-500 dark:text-gray-400 bg-white dark:bg-gray-900 transition-all">{textProperty}</th>
     );
 };
 
@@ -78,7 +78,7 @@ const SynthesisTable = () => {
 
     return (
         <div className="w-full sm:w-2/3 mx-auto px-2 sm:px-0">
-            <table className="w-full mt-5 table-auto border-white dark:border-gray-950 border-2 border-t-0 border-b-gray-300 dark:border-b-gray-700 border-b-2">
+            <table className="w-full mt-5 table-auto border-white dark:border-gray-900 border-2 border-t-0 border-b-gray-300 dark:border-b-gray-700 border-b-2">
                 <thead className="cursor-default select-none">
                 <tr className="border-b-gray-300 dark:border-b-gray-700 border-b-2">
                     <DashboardTH property={null} />

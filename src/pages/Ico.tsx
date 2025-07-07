@@ -16,10 +16,12 @@ import Carousel from "@/components/projects/ico/Carousel";
 import BarChart from "@/components/projects/ico/BarChart";
 import StockLineChart from "@/components/projects/ico/StockLineChart";
 import StockSummary from "@/components/projects/ico/StockSummary";
+import ClientProviders from "@/app/ClientProviders";
 
 const Ico = () => {
     return (
-        <div className="min-h-screen bg-background text-foreground">
+        <ClientProviders>
+            <div className="min-h-screen bg-background text-foreground">
             <NavBar />
 
             <div className="container mt-16 md:mt-24 mb-8 md:mb-16 mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-16 max-w-7xl">
@@ -250,6 +252,7 @@ const Ico = () => {
             <Footer />
             
         </div>
+        </ClientProviders>
     );
 };
 
