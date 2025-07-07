@@ -17,16 +17,6 @@ import BarChart from "@/components/projects/ico/BarChart";
 import StockLineChart from "@/components/projects/ico/StockLineChart";
 import StockSummary from "@/components/projects/ico/StockSummary";
 
-const FutureComponent = () => {
-    return (
-       <div className="flex justify-center items-center w-full h-full">
-           <div className="flex flex-col items-center justify-center mt-2 mb-2 p-4 border rounded-xl">
-               Future Component
-           </div>
-       </div>
-    );
-}
-
 const Ico = () => {
     return (
         <div className="min-h-screen bg-background text-foreground">
