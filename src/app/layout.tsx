@@ -15,6 +15,7 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Dotshell",
   description: "The official Dotshell website.",
+  viewport: "width=device-width, initial-scale=1",
 };
 
 export default function RootLayout({

@@ -12,7 +12,7 @@ const sampleInventory = [
 
 const BarChart: React.FC = () => {
     return (
-        <div style={{ marginLeft: 120, marginRight: 120 }} className="mt-4">
+        <div className="w-full h-96 bg-white dark:bg-gray-900 p-4 sm:p-6 md:p-8">
             <VisxBarChart
                 xAxis={[
                     {

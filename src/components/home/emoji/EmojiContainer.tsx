@@ -34,15 +34,12 @@ const EmojiContainer = () => {
         initial: { opacity: 0, y: 30 },
         animate: { opacity: 1, y: 0, transition: { duration: 0.5 } },
         exit: { opacity: 0, y: -30, transition: { duration: 0.3 } },
-    };
-
-
-    return (
-        <div className="flex justify-center items-center w-full mt-20">
-            <div className="relative flex items-center justify-center w-80 h-80">
+    };    return (
+        <div className="flex justify-center items-center w-full mt-10 sm:mt-20 px-4">
+            <div className="relative flex items-center justify-center w-60 h-60 sm:w-80 sm:h-80">
                 {/* Text on the left (vertical) */}
                 <motion.div
-                    className="absolute left-4 top-1/2 -translate-y-1/2 rotate-270 text-lg font-light text-gray-700 dark:text-gray-200"
+                    className="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 rotate-270 text-sm sm:text-lg font-light text-gray-700 dark:text-gray-200"
                     initial="initial"
                     animate="animate"
                     exit="exit"
@@ -51,10 +48,9 @@ const EmojiContainer = () => {
                     Thought
                 </motion.div>
 
-
                 {/* Text on top (horizontal) */}
                 <motion.div
-                    className="absolute top-10 text-lg font-light text-gray-700 dark:text-gray-200"
+                    className="absolute top-6 sm:top-10 text-sm sm:text-lg font-light text-gray-700 dark:text-gray-200"
                     initial="initial"
                     animate="animate"
                     exit="exit"
@@ -63,12 +59,11 @@ const EmojiContainer = () => {
                     Around
                 </motion.div>
 
-
                 {/* Central emoji with transition */}
                 <AnimatePresence initial={false}>
                     <motion.div
                         key={currentEmoji}
-                        className="text-9xl cursor-default absolute"
+                        className="text-6xl sm:text-9xl cursor-default absolute"
                         initial="initial"
                         animate="animate"
                         exit="exit"
@@ -78,10 +73,9 @@ const EmojiContainer = () => {
                     </motion.div>
                 </AnimatePresence>
 
-
                 {/* Text on the right (vertical) */}
                 <motion.div
-                    className="absolute right-4 top-1/2 -translate-y-1/2 rotate-90 text-lg font-light text-gray-700 dark:text-gray-200"
+                    className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 rotate-90 text-sm sm:text-lg font-light text-gray-700 dark:text-gray-200"
                     initial="initial"
                     animate="animate"
                     exit="exit"

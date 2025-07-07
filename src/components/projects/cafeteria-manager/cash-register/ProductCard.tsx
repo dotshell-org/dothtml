@@ -33,12 +33,12 @@ const ProductCard: React.FC<ProductCardProps> = ({ item }) => {
                         }}
                     />
                 ) : null}
-                <span className={`text-gray-400 dark:text-gray-500 text-sm ${item.image ? 'hidden' : ''}`}>
+                <span className={`text-gray-400 dark:text-gray-500 text-xs sm:text-sm ${item.image ? 'hidden' : ''}`}>
                     No Image
                 </span>
             </div>
-            <h2 className="font-bold text-lg ml-2 mt-2 truncate text-black dark:text-white">{item.name}</h2>
-            <h3 className="ml-2 mb-2">€{item.price.toFixed(2)}</h3>
+            <h2 className="font-bold text-sm sm:text-base lg:text-lg ml-1 sm:ml-2 mt-1 sm:mt-2 truncate text-black dark:text-white">{item.name}</h2>
+            <h3 className="ml-1 sm:ml-2 mb-1 sm:mb-2 text-sm sm:text-base">€{item.price.toFixed(2)}</h3>
         </div>
     );
 };

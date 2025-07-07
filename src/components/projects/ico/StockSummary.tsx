@@ -202,7 +202,7 @@ const AggregationToolbar = ({ columnIndex, values }: { columnIndex: number | nul
     }
 
     return (
-        <div className={`absolute left-0 right-0 bottom-2 rounded-lg bg-white dark:bg-gray-900 p-4 shadow-md border border-gray-400 dark:border-gray-600 transition-opacity duration-300 mx-4 ${
+        <div className={`absolute left-0 right-0 bottom-2 rounded-lg bg-white dark:bg-gray-900 p-4 shadow-md border border-gray-400 dark:border-gray-600 transition-opacity duration-300 mx-4 hidden sm:block ${
             isVisible ? "opacity-100" : "opacity-0 pointer-events-none"
         }`}>
             <div className="flex flex-row items-center justify-center space-x-4 flex-wrap">

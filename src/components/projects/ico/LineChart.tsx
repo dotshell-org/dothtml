@@ -54,7 +54,7 @@ const LineChart = () => {
 
     return (
         <ThemeProvider theme={currentTheme}> {/* Always provide a valid theme object */}
-            <div style={{ marginLeft: 120, marginRight: 120 }}>
+            <div className="w-full h-96 bg-white dark:bg-gray-900 rounded-2xl p-4 sm:p-6 md:p-8">
                 <MuiLineChart
                     xAxis={[
                         {
