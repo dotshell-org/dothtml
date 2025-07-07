@@ -15,6 +15,7 @@ import SynthesisTable from "@/components/projects/ico/SynthesisTable";
 import Carousel from "@/components/projects/ico/Carousel";
 import BarChart from "@/components/projects/ico/BarChart";
 import StockLineChart from "@/components/projects/ico/StockLineChart";
+import StockSummary from "@/components/projects/ico/StockSummary";
 
 const FutureComponent = () => {
     return (
@@ -179,7 +180,10 @@ const Ico = () => {
                 coloredWords={{ 'summary': 'text-green-500' }}
             />
 
-            <FutureComponent />
+            <StockSummary />
+            <p className="text-xs text-center text-gray-400 mb-20">
+                * filters and sorts aren&#39;t available in this demo, but they are in the real app.
+            </p>
 
             <p className="text-center text-xl font-light mt-18">
                 Simply record your movements as you wish, or take advantage of the
