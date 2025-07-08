@@ -1,5 +1,5 @@
 import { LineChart as MuiLineChart } from "@mui/x-charts";
-import { useMemo } from "react";
+import { useMemo, useState, useEffect } from "react";
 // Import createTheme and ThemeProvider, useMediaQuery from '@mui/material'
 import { createTheme, ThemeProvider, useMediaQuery } from '@mui/material';
 
@@ -36,7 +36,14 @@ const LineChart = () => {
     // Memoize the default light theme creation to avoid re-creating it on every render
     const lightTheme = useMemo(() => createTheme(), []); // <--- NEW: Create a default light theme
 
-    // useMemo is used to calculate the dates and data only once on the component mount.
+    // Generate random data on client side only to avoid hydration mismatch
+    const [seriesData, setSeriesData] = useState<number[][]>([[], []]);
+
+    useEffect(() => {
+        setSeriesData(generateFakeSeriesData());
+    }, []);
+
+    // useMemo is used to calculate the dates only once on the component mount.
     const chartData = useMemo(() => {
         const labels = [];
         const now = new Date();
@@ -50,9 +57,9 @@ const LineChart = () => {
 
         return {
             xAxisData: labels,
-            seriesData: generateFakeSeriesData(),
+            seriesData: seriesData,
         };
-    }, []);
+    }, [seriesData]);
 
     // Choose the theme to apply: your custom darkTheme if preferred, otherwise the default lightTheme
     const currentTheme = prefersDarkMode ? darkTheme : lightTheme; // <--- CHANGED: Use lightTheme instead of null

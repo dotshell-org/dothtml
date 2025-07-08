@@ -23,10 +23,15 @@ export default function ClientProviders({ children }: { children: React.ReactNod
         return () => mediaQuery.removeEventListener('change', handleChange);
     }, []);
 
+    // Prevent hydration mismatch by not rendering theme-dependent content until mounted
+    if (!mounted) {
+        return <>{children}</>;
+    }
+
     const theme = createTheme({ 
         palette: { 
-            mode: mounted && isDark ? 'dark' : 'light',
-            ...(mounted && isDark ? {
+            mode: isDark ? 'dark' : 'light',
+            ...(isDark ? {
                 // Configuration du mode sombre
                 background: {
                     default: '#101828',
