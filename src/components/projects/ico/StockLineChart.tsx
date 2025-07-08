@@ -33,8 +33,9 @@ const StockLineChart: React.FC = () => {
                     },
                 ]}
                 height={300}
-                margin={{ left: 50, right: 50 }}
+                margin={{ left: 0, right: 20 }}
                 disableAxisListener={isMobile}
+                sx={isMobile ? { pointerEvents: 'none' } : undefined}
             />
         </div>
     );

@@ -84,6 +84,7 @@ const LineChart = () => {
                     ]}
                     height={chartHeight}
                     disableAxisListener={isMobile}
+                    sx={isMobile ? { pointerEvents: 'none' } : undefined}
                 />
                 </div>
             </div>

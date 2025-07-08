@@ -84,7 +84,7 @@ const Ico = () => {
             </p>
             <BlurText
                 text="Hyper-Compact Synthesis"
-                className="text-center text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl mb-12 sm:mb-16 md:mb-24 font-black px-4"
+                className="text-center text-4xl md:text-5xl lg:text-6xl xl:text-7xl mb-12 sm:mb-16 md:mb-24 font-black px-4"
                 delay={150}
                 animateBy="words"
                 coloredWords={{ 'synthesis': 'text-purple-500' }}
@@ -97,7 +97,7 @@ const Ico = () => {
             </p>
             <BlurText
                 text="Credit & Debit Summaries"
-                className="text-center text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl mb-12 sm:mb-16 md:mb-24 font-black px-4"
+                className="text-center text-4xl md:text-5xl lg:text-6xl xl:text-7xl mb-12 sm:mb-16 md:mb-24 font-black px-4"
                 delay={150}
                 animateBy="words"
                 coloredWords={{ 'summaries': 'text-purple-500' }}

@@ -116,7 +116,8 @@ const PieCharts = () => {
                             '& .MuiChartsLegend-root': { display: 'none' },
                             '@media (min-width: 640px)': {
                                 height: 350
-                            }
+                            },
+                            ...(isMobile && { pointerEvents: 'none' })
                         }}
                     >
                         <PieCenterLabel>€{formatNumber(totalValue)}</PieCenterLabel>

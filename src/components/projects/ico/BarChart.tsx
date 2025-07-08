@@ -3,12 +3,12 @@ import { BarChart as VisxBarChart } from '@mui/x-charts';
 import { useMediaQuery } from '@mui/material';
 
 const sampleInventory = [
-    { name: 'Coca', quantity: 50 },
+    { name: 'Soda', quantity: 50 },
     { name: 'Water', quantity: 75 },
-    { name: 'Kinder bueno', quantity: 30 },
-    { name: 'Chips', quantity: 45 },
-    { name: 'Kit Kat', quantity: 60 },
-    { name: 'Fanta', quantity: 25 },
+    { name: 'Chocolat', quantity: 30 },
+    { name: 'Crisps', quantity: 45 },
+    { name: 'Juice', quantity: 60 },
+    { name: 'Muffin', quantity: 25 },
 ];
 
 const BarChart: React.FC = () => {
@@ -42,8 +42,9 @@ const BarChart: React.FC = () => {
                     },
                 ]}
                 height={400}
-                margin={{ left: 50, right: 50 }}
+                margin={{ left: 0, right: 20 }}
                 disableAxisListener={isMobile}
+                sx={isMobile ? { pointerEvents: 'none' } : undefined}
             />
         </div>
     );

@@ -63,7 +63,7 @@ const Carousel = () => {
           spaceBetween={0}
           slidesPerView={1}
           pagination={{ 
-            clickable: !isMobile,
+            clickable: true,
             bulletActiveClass: 'swiper-pagination-bullet-active',
             bulletClass: 'swiper-pagination-bullet',
           }}
@@ -74,7 +74,7 @@ const Carousel = () => {
           effect="fade"
           fadeEffect={{ crossFade: true }}
           loop={true}
-          allowTouchMove={!isMobile}
+          allowTouchMove={true}
           style={{
               width: '100%',
               '--swiper-pagination-color': theme.palette.mode == "light" ? '#000000' : '#ffffff',
