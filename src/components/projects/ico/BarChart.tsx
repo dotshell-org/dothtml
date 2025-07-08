@@ -1,5 +1,6 @@
 import React from 'react';
 import { BarChart as VisxBarChart } from '@mui/x-charts';
+import { useMediaQuery } from '@mui/material';
 
 const sampleInventory = [
     { name: 'Coca', quantity: 50 },
@@ -11,6 +12,9 @@ const sampleInventory = [
 ];
 
 const BarChart: React.FC = () => {
+    // Detect mobile for disabling interactions
+    const isMobile = useMediaQuery('(max-width: 768px)');
+    
     return (
         <div className="w-full h-96 bg-white dark:bg-gray-900 p-4 sm:p-6 md:p-8">
             <VisxBarChart
@@ -39,6 +43,7 @@ const BarChart: React.FC = () => {
                 ]}
                 height={400}
                 margin={{ left: 50, right: 50 }}
+                disableAxisListener={isMobile}
             />
         </div>
     );

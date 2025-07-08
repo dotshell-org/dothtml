@@ -28,9 +28,10 @@ const LineChart = () => {
     // Determine if the user prefers dark mode
     const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
 
-    // Detect screen width for responsive height calculation
+    // Detect screen width for responsive height calculation and mobile interaction
     const isSmallScreen = useMediaQuery('(max-width: 640px)');
     const isMediumScreen = useMediaQuery('(max-width: 768px)');
+    const isMobile = useMediaQuery('(max-width: 768px)');
 
     // Memoize the default light theme creation to avoid re-creating it on every render
     const lightTheme = useMemo(() => createTheme(), []); // <--- NEW: Create a default light theme
@@ -82,6 +83,7 @@ const LineChart = () => {
                         { label: "Credit", data: chartData.seriesData[0], color: "#ef4444" },
                     ]}
                     height={chartHeight}
+                    disableAxisListener={isMobile}
                 />
                 </div>
             </div>

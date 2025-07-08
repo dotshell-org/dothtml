@@ -1,8 +1,12 @@
 import React from 'react';
 import { LineChart } from '@mui/x-charts';
+import { useMediaQuery } from '@mui/material';
 import dayjs from 'dayjs';
 
 const StockLineChart: React.FC = () => {
+    // Detect mobile for disabling interactions
+    const isMobile = useMediaQuery('(max-width: 768px)');
+    
     const xAxisData = Array.from({ length: 12 }, (_, i) =>
         dayjs().subtract(11 - i, 'month').toDate()
     );
@@ -30,6 +34,7 @@ const StockLineChart: React.FC = () => {
                 ]}
                 height={300}
                 margin={{ left: 50, right: 50 }}
+                disableAxisListener={isMobile}
             />
         </div>
     );

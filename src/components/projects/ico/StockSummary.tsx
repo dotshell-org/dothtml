@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Image from 'next/image';
+import { useMediaQuery } from '@mui/material';
 
 // Types and Interfaces
 interface Filter {
@@ -52,16 +53,19 @@ const SummaryTH = ({ label, emoji }: { label: string; emoji: string }) => (
     </th>
 );
 
-const SummaryTR = ({ content, isSelected, onClick, movement }: {
+const SummaryTR = ({ content, isSelected, onClick, movement, disabled }: {
     content: string;
     isSelected?: boolean;
     onClick?: (e: React.MouseEvent<HTMLTableCellElement>) => void;
     movement?: number;
+    disabled?: boolean;
 }) => {
     const isPositive = movement !== undefined && movement > 0;
     const isNegative = movement !== undefined && movement < 0;
 
-    const baseClasses = "w-1/5 border-gray-300 dark:border-gray-700 border text-center p-1 sm:p-1.5 text-xs sm:text-sm duration-200 ring-inset hover:ring-1 ring-blue-500 cursor-copy select-none transition-all";
+    const baseClasses = `w-1/5 border-gray-300 dark:border-gray-700 border text-center p-1 sm:p-1.5 text-xs sm:text-sm duration-200 ring-inset hover:ring-1 ring-blue-500 select-none transition-all ${
+        disabled ? "cursor-default" : "cursor-copy"
+    }`;
 
     let colorClasses = "";
     if (isSelected) {
@@ -84,7 +88,7 @@ const SummaryTR = ({ content, isSelected, onClick, movement }: {
 
     return (
         <td
-            onClick={onClick}
+            onClick={disabled ? undefined : onClick}
             className={`${baseClasses} ${colorClasses}`}
         >
             {content}
@@ -215,6 +219,9 @@ const AggregationToolbar = ({ columnIndex, values }: { columnIndex: number | nul
 
 // Main Component
 const StockSummary = () => {
+    // Detect mobile for disabling interactions
+    const isMobile = useMediaQuery('(max-width: 768px)');
+    
     const [selectedColumn, setSelectedColumn] = useState<number | null>(null);
     const [selectedRows, setSelectedRows] = useState<number[]>([]);
     const [lastSelectedIndex, setLastSelectedIndex] = useState<number | null>(null);
@@ -297,32 +304,37 @@ const StockSummary = () => {
                             <SummaryTR
                                 content={movement.stock}
                                 isSelected={selectedColumn === 0 && selectedRows.includes(movement.id)}
-                                onClick={e => handleCellClick(e, 0, index, movement.id)}
+                                onClick={isMobile ? undefined : e => handleCellClick(e, 0, index, movement.id)}
                                 movement={movement.movement}
+                                disabled={isMobile}
                             />
                             <SummaryTR
                                 content={formatDate(movement.date)}
                                 isSelected={selectedColumn === 1 && selectedRows.includes(movement.id)}
-                                onClick={e => handleCellClick(e, 1, index, movement.id)}
+                                onClick={isMobile ? undefined : e => handleCellClick(e, 1, index, movement.id)}
                                 movement={movement.movement}
+                                disabled={isMobile}
                             />
                             <SummaryTR
                                 content={movement.object}
                                 isSelected={selectedColumn === 2 && selectedRows.includes(movement.id)}
-                                onClick={e => handleCellClick(e, 2, index, movement.id)}
+                                onClick={isMobile ? undefined : e => handleCellClick(e, 2, index, movement.id)}
                                 movement={movement.movement}
+                                disabled={isMobile}
                             />
                             <SummaryTR
                                 content={movement.quantity.toString()}
                                 isSelected={selectedColumn === 3 && selectedRows.includes(movement.id)}
-                                onClick={e => handleCellClick(e, 3, index, movement.id)}
+                                onClick={isMobile ? undefined : e => handleCellClick(e, 3, index, movement.id)}
                                 movement={movement.movement}
+                                disabled={isMobile}
                             />
                             <SummaryTR
                                 content={movement.movement > 0 ? `+${movement.movement}` : movement.movement.toString()}
                                 isSelected={selectedColumn === 4 && selectedRows.includes(movement.id)}
-                                onClick={e => handleCellClick(e, 4, index, movement.id)}
+                                onClick={isMobile ? undefined : e => handleCellClick(e, 4, index, movement.id)}
                                 movement={movement.movement}
+                                disabled={isMobile}
                             />
                         </tr>
                     ))}

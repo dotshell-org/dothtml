@@ -68,6 +68,9 @@ function PieCenterLabel({ children }: { children: React.ReactNode }) {
 const PieCharts = () => {
     // Determine if the user prefers dark mode
     const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
+    
+    // Detect mobile for disabling interactions
+    const isMobile = useMediaQuery('(max-width: 768px)');
 
     // Memoize the default light theme creation
     const lightTheme = useMemo(() => createTheme(), []);

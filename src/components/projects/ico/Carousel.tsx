@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, Pagination, EffectFade } from 'swiper/modules';
-import { Box, Typography, Paper, useTheme } from '@mui/material';
+import { Box, Typography, Paper, useTheme, useMediaQuery } from '@mui/material';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/effect-fade';
@@ -15,6 +15,9 @@ interface CarouselSlide {
 const Carousel = () => {
   const theme = useTheme();
   const [mounted, setMounted] = useState(false);
+  
+  // Detect mobile for disabling interactions
+  const isMobile = useMediaQuery('(max-width: 768px)');
 
   useEffect(() => {
     setMounted(true);
@@ -60,7 +63,7 @@ const Carousel = () => {
           spaceBetween={0}
           slidesPerView={1}
           pagination={{ 
-            clickable: true,
+            clickable: !isMobile,
             bulletActiveClass: 'swiper-pagination-bullet-active',
             bulletClass: 'swiper-pagination-bullet',
           }}
@@ -71,6 +74,7 @@ const Carousel = () => {
           effect="fade"
           fadeEffect={{ crossFade: true }}
           loop={true}
+          allowTouchMove={!isMobile}
           style={{
               width: '100%',
               '--swiper-pagination-color': theme.palette.mode == "light" ? '#000000' : '#ffffff',

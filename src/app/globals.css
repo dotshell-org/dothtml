@@ -425,3 +425,27 @@ img {
         transform: translateX(-50%);
     }
 }
+
+/* Mobile touch interaction prevention for charts */
+@media (max-width: 768px) {
+    /* Disable touch interactions on MUI Charts */
+    .MuiChartsLegend-root,
+    .MuiChartsTooltip-root,
+    .MuiChartsAxis-root,
+    svg[class*="MuiChart"] {
+        pointer-events: none !important;
+        touch-action: pan-y !important;
+    }
+    
+    /* Allow scrolling over chart containers */
+    .MuiChart-root,
+    .recharts-wrapper,
+    [class*="chart"] {
+        touch-action: pan-y !important;
+    }
+    
+    /* Disable interactions on Swiper pagination on mobile */
+    .swiper-pagination {
+        pointer-events: none !important;
+    }
+}

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Image from 'next/image';
+import { useMediaQuery } from '@mui/material';
 
 // Types and Interfaces
 interface Filter {
@@ -51,10 +52,12 @@ const SummaryTH = ({ label, emoji }: { label: string; emoji: string }) => (
     </th>
 );
 
-const SummaryTR = ({ content, isSelected, onClick }: { content: string; isSelected?: boolean; onClick?: (e: React.MouseEvent<HTMLTableCellElement>) => void }) => (
+const SummaryTR = ({ content, isSelected, onClick, disabled }: { content: string; isSelected?: boolean; onClick?: (e: React.MouseEvent<HTMLTableCellElement>) => void; disabled?: boolean }) => (
     <td
-        onClick={onClick}
-        className={`w-1/4 border-gray-300 dark:border-gray-700 border text-center p-1 sm:p-1.5 text-[0.7rem]  sm:text-xs duration-200 ring-inset hover:ring-1 ring-blue-500 cursor-copy select-none transition-all ${
+        onClick={disabled ? undefined : onClick}
+        className={`w-1/4 border-gray-300 dark:border-gray-700 border text-center p-1 sm:p-1.5 text-[0.7rem]  sm:text-xs duration-200 ring-inset hover:ring-1 ring-blue-500 select-none transition-all ${
+            disabled ? "cursor-default" : "cursor-copy"
+        } ${
             isSelected ? "bg-blue-500 text-white" : "bg-white dark:bg-gray-900 dark:text-gray-100"
         }`}
     >
@@ -183,6 +186,9 @@ const AggregationToolbar = ({ columnIndex, values }: { columnIndex: number | nul
 
 // Main Component
 const Summary = () => {
+    // Detect mobile for disabling interactions
+    const isMobile = useMediaQuery('(max-width: 768px)');
+    
     const [selectedColumn, setSelectedColumn] = useState<number | null>(null);
     const [selectedRows, setSelectedRows] = useState<number[]>([]);
     const [lastSelectedIndex, setLastSelectedIndex] = useState<number | null>(null);
@@ -264,22 +270,26 @@ const Summary = () => {
                                 <SummaryTR
                                     content={formatDate(obj.date)}
                                     isSelected={selectedColumn === 0 && selectedRows.includes(obj.id)}
-                                    onClick={e => handleCellClick(e, 0, index, obj.id)}
+                                    onClick={isMobile ? undefined : e => handleCellClick(e, 0, index, obj.id)}
+                                    disabled={isMobile}
                                 />
                                 <SummaryTR
                                     content={obj.title}
                                     isSelected={selectedColumn === 1 && selectedRows.includes(obj.id)}
-                                    onClick={e => handleCellClick(e, 1, index, obj.id)}
+                                    onClick={isMobile ? undefined : e => handleCellClick(e, 1, index, obj.id)}
+                                    disabled={isMobile}
                                 />
                                 <SummaryTR
                                     content={"€" + obj.totalAmount.toFixed(2)}
                                     isSelected={selectedColumn === 2 && selectedRows.includes(obj.id)}
-                                    onClick={e => handleCellClick(e, 2, index, obj.id)}
+                                    onClick={isMobile ? undefined : e => handleCellClick(e, 2, index, obj.id)}
+                                    disabled={isMobile}
                                 />
                                 <SummaryTR
                                     content={obj.category === "" ? "Other" : obj.category}
                                     isSelected={selectedColumn === 3 && selectedRows.includes(obj.id)}
-                                    onClick={e => handleCellClick(e, 3, index, obj.id)}
+                                    onClick={isMobile ? undefined : e => handleCellClick(e, 3, index, obj.id)}
+                                    disabled={isMobile}
                                 />
                             </tr>
                         ))}
