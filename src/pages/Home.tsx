@@ -16,7 +16,7 @@ const Home = () => {
                 <NavBar />
                 <LogoContainer />
             </div>
-            <div className="h-[calc(100vh-10rem)] sm:h-[calc(100vh-10rem)]"></div>
+            <div className="h-[33rem] lg:h-[48rem]"></div>
             <LineChartDivider color="#3B82F6" direction={Direction.Left} />
 
             <p className="mt-20 sm:mt-32 md:mt-50 text-center text-lg sm:text-xl font-light px-4">
@@ -30,7 +30,7 @@ const Home = () => {
                 By giving you
             </p>            <BlurText
                 text="What You Need"
-                className="text-center text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-black px-4"
+                className="text-center text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-black px-4"
                 delay={150}
                 animateBy="words"
                 coloredWords={{ 'need': 'text-blue-500' }}
@@ -53,7 +53,7 @@ const Home = () => {
             </p>
             <BlurText 
                 text="Powerful Tools"
-                className="text-center text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-black px-4"
+                className="text-center text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-black px-4"
                 delay={150}
                 animateBy="words"
                 coloredWords={{ 'powerful': 'text-red-500' }}
@@ -77,7 +77,7 @@ const Home = () => {
             </p>
             <BlurText 
                 text="Modern Design"
-                className="text-center text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-black px-4"
+                className="text-center text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-black px-4"
                 delay={150}
                 animateBy="words"
                 coloredWords={{ 'modern': 'text-green-500' }}
@@ -100,7 +100,7 @@ const Home = () => {
             </p>
             <BlurText 
                 text="Your Data Is Safe"
-                className="text-center text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-black px-4"
+                className="text-center text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-black px-4"
                 delay={150}
                 animateBy="words"
                 coloredWords={{ 'safe': 'text-yellow-500' }}

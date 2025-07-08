@@ -328,14 +328,6 @@ img {
     height: auto;
 }
 
-/* Better touch targets for mobile */
-@media (max-width: 768px) {
-    button, a {
-        min-height: 44px;
-        min-width: 44px;
-    }
-}
-
 /* Fix for horizontal scrolling on mobile */
 * {
     box-sizing: border-box;
@@ -382,12 +374,6 @@ img {
     }
 }
 
-/* Improved focus states */
-input:focus, textarea:focus, button:focus {
-    outline: 2px solid #3b82f6;
-    outline-offset: 2px;
-}
-
 /* Better dark mode support */
 @media (prefers-color-scheme: dark) {
     input, textarea {
@@ -395,20 +381,12 @@ input:focus, textarea:focus, button:focus {
         color: #f9fafb;
         border-color: #4b5563;
     }
-    
-    input:focus, textarea:focus {
-        border-color: #3b82f6;
-    }
 }
 
 /* Responsive adjustments for mobile */
 @media (max-width: 640px) {
     .scroller {
         height: 60px;
-    }
-    
-    .track-left, .track-right {
-        gap: 8px;
     }
     
     @keyframes scroll-left {
@@ -430,40 +408,11 @@ input:focus, textarea:focus, button:focus {
     }
 }
 
-/* Responsive text sizes */
-@media (max-width: 640px) {
-    .text-4xl { font-size: 2rem; }
-    .text-5xl { font-size: 2.5rem; }
-    .text-6xl { font-size: 3rem; }
-    .text-7xl { font-size: 3.5rem; }
-    .text-8xl { font-size: 4rem; }
-}
-
-/* Responsive spacing adjustments */
-@media (max-width: 640px) {
-    .mt-20 { margin-top: 3rem; }
-    .mt-32 { margin-top: 5rem; }
-    .mt-40 { margin-top: 6rem; }
-    .mb-20 { margin-bottom: 3rem; }
-    .mb-32 { margin-bottom: 5rem; }
-    .mb-40 { margin-bottom: 6rem; }
-    .my-20 { margin-top: 3rem; margin-bottom: 3rem; }
-    .my-32 { margin-top: 5rem; margin-bottom: 5rem; }
-    .my-40 { margin-top: 6rem; margin-bottom: 6rem; }
-}
-
 /* Responsive liquid container */
-@media (max-width: 640px) {
+@media (max-width: 768px) {
     .liquid-container {
-        width: 15rem;
-        height: 15rem;
-    }
-}
-
-@media (min-width: 641px) and (max-width: 768px) {
-    .liquid-container {
-        width: 15rem;
-        height: 15rem;
+        width: 12rem;
+        height: 12rem;
     }
 }
 

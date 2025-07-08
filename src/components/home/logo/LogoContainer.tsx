@@ -3,7 +3,7 @@ import Image from 'next/image';
 
 const LogoContainer = () => {
     return (
-        <div className="absolute w-full top-1/2 -translate-y-1/2 flex flex-col items-center justify-center px-4">
+        <div className="w-full mt-10 lg:mt-24 flex flex-col items-center justify-center px-4">
             <Image
                 className="dark:invert w-64 lg:w-80 xl:w-[350px] h-auto"
                 src="/dotshell-logo.svg"

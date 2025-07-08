@@ -17,7 +17,7 @@ const CafeteriaManager = () => {
         <div className="min-h-screen bg-background text-foreground">
             <NavBar />
 
-            <div className="container mt-16 md:mt-24 mb-8 md:mb-16 mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-16 max-w-7xl">
+            <div className="container mt-10 md:mt-24 mb-8 md:mb-16 mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-16 max-w-7xl">
                 <div className="flex flex-col md:flex-row items-center md:items-start gap-8 mb-8 md:mb-16">
                     <div className="flex-1 relative order-1 md:order-1">
                         <div className="liquid-container w-64 h-64 sm:w-80 sm:h-80 bg-blue-500 flex mx-auto md:ml-auto md:mr-20 items-center justify-center">
@@ -26,17 +26,17 @@ const CafeteriaManager = () => {
                                 alt="Cafeteria Manager"
                                 width={140}
                                 height={140}
-                                className="dark:invert filter brightness-0 invert"
+                                className="dark:invert filter brightness-0 invert scale-70 md:scale-100"
                             />
                         </div>
                     </div>
 
                     <div className="flex-1 order-2 md:order-2">
                         <div className="flex flex-col text-center md:text-left">
-                            <h1 className="text-3xl sm:text-4xl md:text-5xl font-black mb-4 mt-4 md:mt-20">
+                            <h1 className="text-4xl md:text-5xl font-black mb-4 mt-4 md:mt-20 px-4 sm:px-0">
                                 Cafeteria <span className="text-blue-500">Manager</span>
                             </h1>
-                            <p className="text-lg sm:text-xl font-light text-gray-600 dark:text-white mb-6">
+                            <p className="text-md md:text-lg font-light text-black dark:text-white mb-6 px-8 sm:px-0">
                                 Your companion to manage your cafeteria business with ease and efficiency
                             </p>
                             <DownloadButton appName="Cafeteria Manager" colorScheme="blue" />

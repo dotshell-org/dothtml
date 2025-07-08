@@ -8,8 +8,8 @@ const NavBar = () => {    const elements = [
         {href: "/projects", text: "Projects"},
         {href: "/contact", text: "Contact"}
     ];    return (
-        <div className="w-full mt-8 sm:mt-16 mb-4 sm:mb-8 flex relative z-30 px-2">
-            <div className="mx-auto flex flex-row items-center gap-4 sm:gap-8">
+        <div className="w-full mt-16 mb-4 sm:mb-8 flex relative z-30 px-2">
+            <div className="mx-auto flex flex-row items-center gap-12 sm:gap-24">
                 {
                     elements.map(element => {
                         if (element.text === "Projects") {

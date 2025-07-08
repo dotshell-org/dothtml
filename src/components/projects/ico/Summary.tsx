@@ -46,7 +46,7 @@ const formatDate = (dateString: string): string => {
 
 // Components
 const SummaryTH = ({ label, emoji }: { label: string; emoji: string }) => (
-    <th className="w-1/4 border-gray-300 dark:border-gray-700 border text-center p-2 sm:p-4 text-xs sm:text-sm font-normal text-gray-500 dark:text-gray-300 bg-white dark:bg-gray-900 hover:bg-gray-100 dark:hover:bg-gray-800 transition-all">
+    <th className="w-1/4 border-gray-300 dark:border-gray-700 border text-center p-2 sm:p-4 text-[0.7rem] sm:text-xs font-normal text-gray-500 dark:text-gray-300 bg-white dark:bg-gray-900 hover:bg-gray-100 dark:hover:bg-gray-800 transition-all">
         <span className="hidden sm:inline">{emoji} </span>{label}
     </th>
 );
@@ -54,7 +54,7 @@ const SummaryTH = ({ label, emoji }: { label: string; emoji: string }) => (
 const SummaryTR = ({ content, isSelected, onClick }: { content: string; isSelected?: boolean; onClick?: (e: React.MouseEvent<HTMLTableCellElement>) => void }) => (
     <td
         onClick={onClick}
-        className={`w-1/4 border-gray-300 dark:border-gray-700 border text-center p-1 sm:p-1.5 text-xs sm:text-sm duration-200 ring-inset hover:ring-1 ring-blue-500 cursor-copy select-none transition-all ${
+        className={`w-1/4 border-gray-300 dark:border-gray-700 border text-center p-1 sm:p-1.5 text-[0.7rem]  sm:text-xs duration-200 ring-inset hover:ring-1 ring-blue-500 cursor-copy select-none transition-all ${
             isSelected ? "bg-blue-500 text-white" : "bg-white dark:bg-gray-900 dark:text-gray-100"
         }`}
     >
@@ -63,7 +63,7 @@ const SummaryTR = ({ content, isSelected, onClick }: { content: string; isSelect
 );
 
 const FilterLabel = ({ filter }: { filter: Filter }) => (
-    <div className="w-fit h-6 m-0 mx-1 py-1 pl-2 sm:pl-3 pr-1.5 sm:pr-2.5 text-xs sm:text-sm border text-blue-500 dark:text-blue-300 rounded-full border-blue-500 hover:border-blue-500 dark:border-blue-600 dark:hover:border-blue-600 bg-blue-100 dark:bg-blue-950 transition-all flex items-center justify-center">
+    <div className="w-fit h-6 m-0 mx-1 py-1 pl-2 sm:pl-3 pr-1.5 sm:pr-2.5 text-[0.7rem] sm:text-xs border text-blue-500 dark:text-blue-300 rounded-full border-blue-500 hover:border-blue-500 dark:border-blue-600 dark:hover:border-blue-600 bg-blue-100 dark:bg-blue-950 transition-all flex items-center justify-center">
     <span className="mr-1 select-none">
       {filter.property} {filter.operator} {filter.value}
     </span>
@@ -249,16 +249,16 @@ const Summary = () => {
 
     return (
         <div className="rounded-2xl border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900 shadow-lg p-3 sm:p-6 py-6 sm:py-12 max-w-5xl mx-auto my-6 sm:my-10 relative overflow-x-auto">
-            <h1 className="text-xl sm:text-3xl mb-4 font-bold cursor-default text-gray-900 dark:text-gray-100">📉 Debit</h1>
+            <h1 className="text-lg xs:text-xl sm:text-3xl mb-4 font-bold cursor-default text-gray-900 dark:text-gray-100">📉 Debit</h1>
             <FilterSelection filters={fakeFilters} sorts={fakeSorts} />
-            <table className="w-full table-auto border-white dark:border-gray-800 border-2 border-t-0 border-b-gray-300 dark:border-b-gray-700 border-b-2 cursor-pointer">
+            <table className="w-full table-auto border-white dark:border-gray-900 border-2 border-t-0 border-b-gray-300 dark:border-b-gray-700 border-b-2 cursor-pointer">
                 <thead>
                 <tr>
                     {propertyLabels.map((label, idx) => <SummaryTH key={idx} label={label} emoji={propertyEmojis[idx]} />)}
                 </tr>
                 </thead>
             </table>
-            <table className="w-full table-auto border-white dark:border-gray-800 border-2 border-y-0 cursor-copy mt-0">
+            <table className="w-full table-auto border-white dark:border-gray-900 border-2 border-y-0 cursor-copy mt-0">
                 <tbody>
                 {fakeObjects.map((obj, index) => (
                     <tr key={obj.id}>

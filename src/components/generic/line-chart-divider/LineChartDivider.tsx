@@ -20,7 +20,7 @@ const LineChartDivider: React.FC<LineChartDividerProps> = ({ color, direction })
                            width={200}
                            height={60}
                            style={{ color: color }}
-                           className="w-48 h-15 sm:w-60 sm:h-20 md:w-96 md:h-24"
+                           className="w-50 h-15 sm:w-75 sm:h-20 md:w-96 md:h-24"
                        />
                    })
                 }
