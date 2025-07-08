@@ -6,8 +6,10 @@ import React, { useState, useEffect } from "react";
 
 export default function ClientProviders({ children }: { children: React.ReactNode }) {
     const [isDark, setIsDark] = useState(false);
+    const [mounted, setMounted] = useState(false);
 
     useEffect(() => {
+        setMounted(true);
         // Détecter la préférence système
         const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
         setIsDark(mediaQuery.matches);
@@ -23,8 +25,8 @@ export default function ClientProviders({ children }: { children: React.ReactNod
 
     const theme = createTheme({ 
         palette: { 
-            mode: isDark ? 'dark' : 'light',
-            ...(isDark ? {
+            mode: mounted && isDark ? 'dark' : 'light',
+            ...(mounted && isDark ? {
                 // Configuration du mode sombre
                 background: {
                     default: '#101828',
