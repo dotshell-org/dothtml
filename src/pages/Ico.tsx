@@ -78,7 +78,8 @@ const Ico = () => {
 
             <PieCharts />
 
-            <p className="text-center text-lg sm:text-xl font-light mt-16 sm:mt-20 md:mt-28 px-4">
+            <div className="h-1 sm:h-0"></div>
+            <p className="text-center text-lg sm:text-xl font-light mt-28 px-4">
                 See your <SemiBold>debits</SemiBold> and <SemiBold>credits</SemiBold> with a category approach and even your <SemiBold>profits</SemiBold> in an
             </p>
             <BlurText
@@ -103,7 +104,7 @@ const Ico = () => {
             />
 
             <Summary />
-            <p className="text-xs text-center text-gray-400 mb-20">
+            <p className="text-xs text-center text-gray-400 mb-20 px-4">
                 * filters and sorts aren&#39;t available in this demo, but they are in the real app.
             </p>
 
@@ -173,7 +174,7 @@ const Ico = () => {
             />
 
             <StockSummary />
-            <p className="text-xs text-center text-gray-400 mb-20">
+            <p className="text-xs text-center text-gray-400 mb-20 px-4">
                 * filters and sorts aren&#39;t available in this demo, but they are in the real app.
             </p>
 

@@ -47,7 +47,7 @@ const formatDate = (dateString: string): string => {
 
 // Components
 const SummaryTH = ({ label, emoji }: { label: string; emoji: string }) => (
-    <th className="w-1/5 border-gray-300 dark:border-gray-700 border text-center p-2 sm:p-4 text-xs sm:text-sm font-normal text-gray-500 dark:text-gray-300 bg-white dark:bg-gray-900 hover:bg-gray-100 dark:hover:bg-gray-800 transition-all">
+    <th className="w-1/5 border-gray-300 dark:border-gray-700 border text-center p-2 sm:p-4 text-[0.7rem] sm:text-xs font-normal text-gray-500 dark:text-gray-300 bg-white dark:bg-gray-900 hover:bg-gray-100 dark:hover:bg-gray-800 transition-all">
         <span className="hidden sm:inline">{emoji} </span>{label}
     </th>
 );
@@ -281,56 +281,56 @@ const StockSummary = () => {
     const fakeSorts: Sort[] = [{ property: "Date", orientation: "↓" }];
 
     return (
-        <div className="rounded-2xl border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900 shadow-lg p-3 sm:p-6 py-6 sm:py-12 max-w-6xl mx-auto my-6 sm:my-10 relative overflow-x-auto">
-            <h1 className="text-xl sm:text-3xl mb-4 font-bold cursor-default text-gray-900 dark:text-gray-100">🔄 Movements</h1>
-            <FilterSelection filters={fakeFilters} sorts={fakeSorts} />
-            <table className="w-full table-auto border-white dark:border-gray-800 border-2 border-t-0 border-b-gray-300 dark:border-b-gray-700 border-b-2 cursor-pointer">
-                <thead>
-                <tr>
-                    {propertyLabels.map((label, idx) => <SummaryTH key={idx} label={label} emoji={propertyEmojis[idx]} />)}
-                </tr>
-                </thead>
-            </table>
-            <table className="w-full table-auto border-white dark:border-gray-800 border-2 border-y-0 cursor-copy mt-0">
-                <tbody>
-                {fakeMovements.map((movement, index) => (
-                    <tr key={movement.id}>
-                        <SummaryTR
-                            content={movement.stock}
-                            isSelected={selectedColumn === 0 && selectedRows.includes(movement.id)}
-                            onClick={e => handleCellClick(e, 0, index, movement.id)}
-                            movement={movement.movement}
-                        />
-                        <SummaryTR
-                            content={formatDate(movement.date)}
-                            isSelected={selectedColumn === 1 && selectedRows.includes(movement.id)}
-                            onClick={e => handleCellClick(e, 1, index, movement.id)}
-                            movement={movement.movement}
-                        />
-                        <SummaryTR
-                            content={movement.object}
-                            isSelected={selectedColumn === 2 && selectedRows.includes(movement.id)}
-                            onClick={e => handleCellClick(e, 2, index, movement.id)}
-                            movement={movement.movement}
-                        />
-                        <SummaryTR
-                            content={movement.quantity.toString()}
-                            isSelected={selectedColumn === 3 && selectedRows.includes(movement.id)}
-                            onClick={e => handleCellClick(e, 3, index, movement.id)}
-                            movement={movement.movement}
-                        />
-                        <SummaryTR
-                            content={movement.movement > 0 ? `+${movement.movement}` : movement.movement.toString()}
-                            isSelected={selectedColumn === 4 && selectedRows.includes(movement.id)}
-                            onClick={e => handleCellClick(e, 4, index, movement.id)}
-                            movement={movement.movement}
-                        />
+        <div className="px-4">
+            <div className="rounded-2xl border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900 shadow-lg p-3 sm:p-6 py-6 sm:py-12 max-w-6xl mx-auto my-6 sm:my-10 relative overflow-x-auto">
+                <h1 className="text-xl sm:text-3xl mb-4 font-bold cursor-default text-gray-900 dark:text-gray-100">🔄 Movements</h1>
+                <FilterSelection filters={fakeFilters} sorts={fakeSorts} />
+                <table className="w-full table-auto border-white dark:border-gray-800 border-2 border-t-0 border-b-gray-300 dark:border-b-gray-700 border-b-2">
+                    <thead>
+                    <tr>
+                        {propertyLabels.map((label, idx) => <SummaryTH key={idx} label={label} emoji={propertyEmojis[idx]} />)}
                     </tr>
-                ))}
-                </tbody>
-            </table>
-            <AggregationToolbar columnIndex={selectedColumn} values={selectedValues} />
-            <div className="h-20"></div>
+                    </thead>
+                    <tbody>
+                    {fakeMovements.map((movement, index) => (
+                        <tr key={movement.id}>
+                            <SummaryTR
+                                content={movement.stock}
+                                isSelected={selectedColumn === 0 && selectedRows.includes(movement.id)}
+                                onClick={e => handleCellClick(e, 0, index, movement.id)}
+                                movement={movement.movement}
+                            />
+                            <SummaryTR
+                                content={formatDate(movement.date)}
+                                isSelected={selectedColumn === 1 && selectedRows.includes(movement.id)}
+                                onClick={e => handleCellClick(e, 1, index, movement.id)}
+                                movement={movement.movement}
+                            />
+                            <SummaryTR
+                                content={movement.object}
+                                isSelected={selectedColumn === 2 && selectedRows.includes(movement.id)}
+                                onClick={e => handleCellClick(e, 2, index, movement.id)}
+                                movement={movement.movement}
+                            />
+                            <SummaryTR
+                                content={movement.quantity.toString()}
+                                isSelected={selectedColumn === 3 && selectedRows.includes(movement.id)}
+                                onClick={e => handleCellClick(e, 3, index, movement.id)}
+                                movement={movement.movement}
+                            />
+                            <SummaryTR
+                                content={movement.movement > 0 ? `+${movement.movement}` : movement.movement.toString()}
+                                isSelected={selectedColumn === 4 && selectedRows.includes(movement.id)}
+                                onClick={e => handleCellClick(e, 4, index, movement.id)}
+                                movement={movement.movement}
+                            />
+                        </tr>
+                    ))}
+                    </tbody>
+                </table>
+                <AggregationToolbar columnIndex={selectedColumn} values={selectedValues} />
+                <div className="h-20"></div>
+            </div>
         </div>
     );
 };

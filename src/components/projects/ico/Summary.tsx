@@ -248,46 +248,46 @@ const Summary = () => {
     const fakeSorts: Sort[] = [{ property: "Date", orientation: "↓" }];
 
     return (
-        <div className="rounded-2xl border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900 shadow-lg p-3 sm:p-6 py-6 sm:py-12 max-w-5xl mx-auto my-6 sm:my-10 relative overflow-x-auto">
-            <h1 className="text-lg xs:text-xl sm:text-3xl mb-4 font-bold cursor-default text-gray-900 dark:text-gray-100">📉 Debit</h1>
-            <FilterSelection filters={fakeFilters} sorts={fakeSorts} />
-            <table className="w-full table-auto border-white dark:border-gray-900 border-2 border-t-0 border-b-gray-300 dark:border-b-gray-700 border-b-2 cursor-pointer">
-                <thead>
-                <tr>
-                    {propertyLabels.map((label, idx) => <SummaryTH key={idx} label={label} emoji={propertyEmojis[idx]} />)}
-                </tr>
-                </thead>
-            </table>
-            <table className="w-full table-auto border-white dark:border-gray-900 border-2 border-y-0 cursor-copy mt-0">
-                <tbody>
-                {fakeObjects.map((obj, index) => (
-                    <tr key={obj.id}>
-                        <SummaryTR
-                            content={formatDate(obj.date)}
-                            isSelected={selectedColumn === 0 && selectedRows.includes(obj.id)}
-                            onClick={e => handleCellClick(e, 0, index, obj.id)}
-                        />
-                        <SummaryTR
-                            content={obj.title}
-                            isSelected={selectedColumn === 1 && selectedRows.includes(obj.id)}
-                            onClick={e => handleCellClick(e, 1, index, obj.id)}
-                        />
-                        <SummaryTR
-                            content={"€" + obj.totalAmount.toFixed(2)}
-                            isSelected={selectedColumn === 2 && selectedRows.includes(obj.id)}
-                            onClick={e => handleCellClick(e, 2, index, obj.id)}
-                        />
-                        <SummaryTR
-                            content={obj.category === "" ? "Other" : obj.category}
-                            isSelected={selectedColumn === 3 && selectedRows.includes(obj.id)}
-                            onClick={e => handleCellClick(e, 3, index, obj.id)}
-                        />
-                    </tr>
-                ))}
-                </tbody>
-            </table>
-            <AggregationToolbar columnIndex={selectedColumn} values={selectedValues} />
-            <div className="h-20"></div>
+        <div className="px-4">
+            <div className="rounded-2xl border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900 shadow-lg p-3 sm:p-6 py-6 sm:py-12 max-w-5xl mx-auto my-6 sm:my-10 relative overflow-x-auto">
+                <h1 className="text-lg xs:text-xl sm:text-3xl mb-4 font-bold cursor-default text-gray-900 dark:text-gray-100">📉 Debit</h1>
+                <FilterSelection filters={fakeFilters} sorts={fakeSorts} />
+                <table className="w-full table-auto border-white dark:border-gray-900 border-2 border-t-0 border-b-gray-300 dark:border-b-gray-700 border-b-2 cursor-pointer mt-0 mb-0">
+                    <thead>
+                        <tr>
+                            {propertyLabels.map((label, idx) => <SummaryTH key={idx} label={label} emoji={propertyEmojis[idx]} />)}
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {fakeObjects.map((obj, index) => (
+                            <tr key={obj.id}>
+                                <SummaryTR
+                                    content={formatDate(obj.date)}
+                                    isSelected={selectedColumn === 0 && selectedRows.includes(obj.id)}
+                                    onClick={e => handleCellClick(e, 0, index, obj.id)}
+                                />
+                                <SummaryTR
+                                    content={obj.title}
+                                    isSelected={selectedColumn === 1 && selectedRows.includes(obj.id)}
+                                    onClick={e => handleCellClick(e, 1, index, obj.id)}
+                                />
+                                <SummaryTR
+                                    content={"€" + obj.totalAmount.toFixed(2)}
+                                    isSelected={selectedColumn === 2 && selectedRows.includes(obj.id)}
+                                    onClick={e => handleCellClick(e, 2, index, obj.id)}
+                                />
+                                <SummaryTR
+                                    content={obj.category === "" ? "Other" : obj.category}
+                                    isSelected={selectedColumn === 3 && selectedRows.includes(obj.id)}
+                                    onClick={e => handleCellClick(e, 3, index, obj.id)}
+                                />
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+                <AggregationToolbar columnIndex={selectedColumn} values={selectedValues} />
+                <div className="h-20"></div>
+            </div>
         </div>
     );
 };
