@@ -219,7 +219,7 @@ const FakeStats: React.FC = () => {
         <>
             <div className="h-full flex flex-col">
                 <motion.div
-                    className="h-full flex flex-col p-8 pb-0 overflow-y-scroll"
+                    className="h-full flex flex-col p-8 pb-0 overflow-y-hidden"
                     initial={{opacity: 0, y: 40}}
                     animate="enter"
                     exit="exit"
@@ -232,7 +232,9 @@ const FakeStats: React.FC = () => {
                             <div className="flex justify-center items-center h-[300px] text-gray-500 dark:text-gray-400">
                                 {t("noData")}
                             </div>
-                        ) : (                            <LineChart                                xAxis={[{
+                        ) : (
+                            <LineChart                                
+                                xAxis={[{
                                     data: lineChartData.map(point => point.x),
                                     scaleType: 'point',
                                     tickLabelStyle: {
@@ -252,6 +254,7 @@ const FakeStats: React.FC = () => {
                                         fill: chartTheme.textColor
                                     }
                                 }]}
+                                margin={{ left: 0 }}
                                 series={[
                                     {
                                         data: lineChartData.map(point => point.y),
@@ -299,7 +302,8 @@ const FakeStats: React.FC = () => {
                                     }
                                 }}
                             />
-                        )}                        <div className="flex gap-4 mb-4 w-full">
+                        )}
+                        <div className="flex gap-4 mb-4 w-full">
                             <FormControl className="flex-1" sx={{ 
                                 '& .MuiInputLabel-root': { color: 'inherit' },                                '& .MuiOutlinedInput-root': { 
                                     color: 'inherit',
@@ -370,7 +374,6 @@ const FakeStats: React.FC = () => {
                                 {t("noData")}
                             </div>
                         ) : (                            <PieChart
-                                margin={{right: 250}}
                                 series={[{
                                     data: pieChartData,
                                     innerRadius: 1,
@@ -384,7 +387,8 @@ const FakeStats: React.FC = () => {
                                     }
                                 }]}
                                 height={300}
-                                colors={rainbowColors}                                sx={{
+                                colors={rainbowColors}
+                                sx={{
                                     '& .MuiChartsLegend-label': {
                                         fill: `${chartTheme.textColor} !important`,
                                         color: `${chartTheme.textColor} !important`

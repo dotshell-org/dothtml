@@ -91,9 +91,9 @@ const CafeteriaManager = () => {
                 coloredWords={{ 'data': 'text-blue-500', 'analytics': 'text-blue-500' }}
             />
 
-            <div className="w-full mx-auto mt-6 sm:mt-8 md:mt-10 mb-12 sm:mb-16 md:mb-20 px-0 sm:px-2 md:px-4 max-w-none sm:max-w-6xl">
-                <div className="rounded-none sm:rounded-2xl bg-white dark:bg-gray-800 shadow-lg p-2 sm:p-3 md:p-4 dark:border dark:border-gray-700">
-                    {/*<FakeStats />*/}
+            <div className="w-full mx-auto mt-6 sm:mt-8 md:mt-10 mb-12 sm:mb-16 md:mb-20 px-2 max-w-none sm:max-w-6xl">
+                <div className="rounded-2xl bg-white dark:bg-gray-800 shadow-lg p-2 sm:p-3 md:p-4 dark:border dark:border-gray-700">
+                    <FakeStats />
                 </div>
             </div>
 
