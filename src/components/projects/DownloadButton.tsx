@@ -262,7 +262,7 @@ const DownloadButton: React.FC<DownloadButtonProps> = ({ appName, colorScheme, a
         setSelectedPlatform(index);
         setIsExpanded(false);
     };return (
-        <div className="relative inline-block z-[60]">
+                <div className="relative flex justify-center md:justify-start w-full z-[60]">
             <div className="flex gap-0.5 scale-80 sm:scale-100">                {/* Bouton principal Télécharger */}
                 <button
                     onClick={() => handleDownload(currentOption?.downloadUrl || '')}

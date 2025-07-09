@@ -5,7 +5,7 @@ import { useMediaQuery } from '@mui/material';
 const sampleInventory = [
     { name: 'Soda', quantity: 50 },
     { name: 'Water', quantity: 75 },
-    { name: 'Chocolat', quantity: 30 },
+    { name: 'Chocolate', quantity: 30 },
     { name: 'Crisps', quantity: 45 },
     { name: 'Juice', quantity: 60 },
     { name: 'Muffin', quantity: 25 },
