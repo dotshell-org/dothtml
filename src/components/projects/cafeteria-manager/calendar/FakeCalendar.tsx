@@ -136,13 +136,13 @@ const FakeCalendar: React.FC = () => {
 
     return (
         <motion.div
-            className="h-[40rem] flex flex-col p-2"
+            className="h-[21rem] sm:h-[31rem] md:h-[40rem] flex flex-col p-2"
             initial="hidden"
             animate="visible"
             variants={slideUpVariants}
         >
             <motion.div
-                className="flex justify-between items-center mt-5 mb-2"
+                className="flex justify-between items-center mt-5"
                 initial="hidden"
                 animate="visible"
                 variants={containerVariants}
@@ -196,7 +196,7 @@ const FakeCalendar: React.FC = () => {
                 </motion.button>
             </motion.div>
 
-            <div className="mt-14 h-6 grid grid-cols-7 text-center">
+            <div className="mt-8 sm:mt-14 mb-2 sm:mb-0 h-6 grid grid-cols-7 text-center">
                 <AnimatePresence mode="wait">
                     <motion.div
                         key={currentDate.format('YYYY-MM-DD') + '-header'}
@@ -210,9 +210,12 @@ const FakeCalendar: React.FC = () => {
                             <motion.div
                                 key={`header-${day.format('YYYY-MM-DD')}`}
                                 className={
-                                    day.isSame(dayjs(), 'day')
+                                    `text-[0.8rem] sm:text-sm md:text-base
+                                    ${
+                                        day.isSame(dayjs(), 'day')
                                         ? 'font-bold text-blue-600 dark:text-blue-400'
                                         : 'dark:text-gray-300'
+                                    }`
                                 }
                                 variants={itemVariants}
                             >
@@ -230,7 +233,7 @@ const FakeCalendar: React.FC = () => {
                 <AnimatePresence mode="wait">
                     <motion.div
                         key={currentDate.format('YYYY-MM-DD') + '-content'}
-                        className="grid grid-cols-7 text-center h-[calc(100%-2rem)] pt-1"
+                        className="grid grid-cols-7 text-center h-[11rem] sm:h-[20rem] md:h-[29rem] pt-1 overflow-x-hidden"
                         variants={containerVariants}
                         initial="hidden"
                         animate="visible"
@@ -250,8 +253,10 @@ const FakeCalendar: React.FC = () => {
                                     style={{ transition: 'margin-top 0.2s ease-out' }}
                                 >
                                     <h1
-                                        className="flex items-center justify-center h-full opacity-80"
-                                        style={{fontSize: `calc(2rem + 0.8vw)`}}
+                                        className="
+                                            flex items-center justify-center h-full opacity-80
+                                            text-lg sm:text-3xl md:text-4xl
+                                        "
                                     >
                                         €0.0
                                     </h1>

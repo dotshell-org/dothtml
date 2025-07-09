@@ -8,7 +8,7 @@ const SoftwareCardsGroup = () => {
     ]
 
     return (
-        <div className="mt-20 flex flex-wrap justify-center">
+        <div className="mt-10 sm:mt-20 flex flex-wrap justify-center gap-y-8">
             {
                 cards.map(({imageSrc, title, description}) => (
                     <SoftwareCard imageSrc={imageSrc} title={title} description={description} key={title} />

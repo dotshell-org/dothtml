@@ -14,29 +14,29 @@ import Footer from "@/components/generic/footer/Footer";
 
 const CafeteriaManager = () => {
     return (
-        <div className="min-h-screen bg-background text-foreground">
+        <div className="min-h-screen bg-background text-foreground overflow-x-hidden">
             <NavBar />
 
-            <div className="container mt-24 mb-16 mx-auto pl-6 pr-14 py-16 w-[70rem]">
-                <div className="flex flex-col md:flex-row items-center md:items-start gap-8 mb-16">
-                    <div className="flex-1 relative">
-                        <div className="liquid-container w-80 h-80 bg-blue-500 flex ml-auto mr-20 items-center justify-center">
+            <div className="container mt-10 md:mt-24 mb-8 md:mb-16 mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-16 max-w-7xl">
+                <div className="flex flex-col md:flex-row items-center md:items-start gap-8 mb-8 md:mb-16">
+                    <div className="flex-1 relative order-1 md:order-1">
+                        <div className="liquid-container w-64 h-64 sm:w-80 sm:h-80 bg-blue-500 flex mx-auto md:ml-auto md:mr-20 items-center justify-center">
                             <Image
                                 src="/softwares/cafeteria-manager.svg"
                                 alt="Cafeteria Manager"
                                 width={140}
                                 height={140}
-                                className="dark:invert filter brightness-0 invert"
+                                className="dark:invert filter brightness-0 invert scale-70 md:scale-100"
                             />
                         </div>
                     </div>
 
-                    <div className="flex-1">
-                        <div className="flex flex-col md:text-left">
-                            <h1 className="text-5xl font-black mb-4 mt-20">
+                    <div className="flex-1 order-2 md:order-2">
+                        <div className="flex flex-col text-center md:text-left">
+                            <h1 className="text-4xl md:text-5xl font-black mb-4 mt-4 md:mt-20 px-4 sm:px-0">
                                 Cafeteria <span className="text-blue-500">Manager</span>
                             </h1>
-                            <p className="text-xl font-light text-gray-600 dark:text-white mb-6">
+                            <p className="text-md md:text-lg font-light text-black dark:text-white mb-6 px-8 sm:px-0">
                                 Your companion to manage your cafeteria business with ease and efficiency
                             </p>
                             <DownloadButton appName="Cafeteria Manager" colorScheme="blue" />
@@ -47,67 +47,67 @@ const CafeteriaManager = () => {
 
             <LineChartDivider color="#2b7fff" direction={Direction.Right} />
 
-            <p className="text-center text-xl font-light mt-28">
+            <p className="text-center text-lg sm:text-xl font-light mt-16 sm:mt-20 md:mt-28 px-4">
                 Everything starts
             </p>
             <BlurText 
                 text="With a Calendar"
-                className="text-center text-7xl mb-24 font-black"
+                className="text-center text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl mb-12 sm:mb-16 md:mb-24 font-black px-4"
                 delay={150}
                 animateBy="words"
                 coloredWords={{ 'calendar': 'text-blue-500' }}
             />
-            
-            <div className="w-full max-w-5xl mx-auto mt-10 mb-20">
-                <div className="rounded-2xl bg-white dark:bg-gray-800 shadow-lg p-4 dark:border dark:border-gray-700">
+
+            <div className="w-full mx-auto mt-6 sm:mt-8 md:mt-10 mb-12 sm:mb-16 md:mb-20 px-2 max-w-none sm:max-w-5xl">
+                <div className="rounded-2xl bg-white dark:bg-gray-800 shadow-lg p-2 sm:p-3 md:p-4 dark:border dark:border-gray-700">
                     <FakeCalendar />
                 </div>
             </div>
 
-            <p className="text-center text-xl font-light mt-28 mb-20">
+            <p className="text-center text-lg sm:text-xl font-light mt-16 sm:mt-20 md:mt-28 mb-12 sm:mb-16 md:mb-20 px-4">
                 Pick a Day
                 <br />
                 And <SemiBold>Take Action</SemiBold>!
             </p>
 
-            <div className="w-full max-w-6xl mx-auto mt-10 mb-5 relative h-[45rem]">
-                <div className="rounded-2xl bg-blue-500 shadow-lg p-6 h-full">
+            <div className="w-full mx-auto mt-6 sm:mt-8 md:mt-10 mb-5 relative px-2 max-w-none sm:max-w-6xl">
+                <div className="rounded-2xl bg-blue-500 shadow-lg p-2 sm:p-3 md:p-4 lg:p-6 min-h-[30rem] sm:min-h-[35rem] md:min-h-[40rem] lg:min-h-[45rem]">
                     <FakeCashRegister />
                 </div>
             </div>
 
-            <p className="text-xs text-center text-gray-400 mb-20">
+            <p className="text-xs text-center text-gray-400 mb-20 px-4">
                 * example images are generated by Imagen 3, a text-to-image AI model by Google Research.
             </p>
 
-            <p className="text-center text-xl font-light mt-28">
+            <p className="text-center text-lg sm:text-xl font-light mt-16 sm:mt-20 md:mt-28 px-4">
                 Then, adapt your strategy
             </p>
             <BlurText 
                 text="With Data & Analytics"
-                className="text-center text-7xl mb-24 font-black"
+                className="text-center text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl mb-12 sm:mb-16 md:mb-24 font-black px-4"
                 delay={150}
                 animateBy="words"
                 coloredWords={{ 'data': 'text-blue-500', 'analytics': 'text-blue-500' }}
             />
-            
-            <div className="w-full max-w-6xl mx-auto mt-10 mb-20">
-                <div className="rounded-2xl bg-white dark:bg-gray-800 shadow-lg p-4 dark:border dark:border-gray-700">
+
+            <div className="w-full mx-auto mt-6 sm:mt-8 md:mt-10 mb-12 sm:mb-16 md:mb-20 px-2 max-w-none sm:max-w-6xl">
+                <div className="rounded-2xl bg-white dark:bg-gray-800 shadow-lg p-2 sm:p-3 md:p-4 dark:border dark:border-gray-700">
                     <FakeStats />
                 </div>
             </div>
 
-            <p className="text-center text-xl font-light mt-28 mb-20">
+            <p className="text-center text-lg sm:text-xl font-light mt-16 sm:mt-20 md:mt-28 mb-12 sm:mb-16 md:mb-20 px-4">
                 Monitor, measure, and improve your cafeteria&#39;s
-                <br />
-                performance with <SemiBold>powerful analytics</SemiBold>!
+                <br className="hidden sm:block" />
+                <span className="sm:hidden"> </span>performance with <SemiBold>powerful analytics</SemiBold>!
             </p>
 
-            <div className="text-center mt-32 mb-32">
-                <h2 className="text-4xl font-black mb-4">
+            <div className="text-center mt-16 sm:mt-24 md:mt-32 mb-16 sm:mb-24 md:mb-32 px-4">
+                <h2 className="text-2xl sm:text-3xl md:text-4xl font-black mb-4">
                     Ready to streamline your cafeteria management?
                 </h2>
-                <p className="text-xl font-light text-gray-600 dark:text-white mb-8">
+                <p className="text-lg sm:text-xl font-light text-gray-600 dark:text-white mb-8">
                     Download Cafeteria Manager today and experience the difference!
                 </p>
                 <a

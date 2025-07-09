@@ -50,7 +50,10 @@ const StyledText = styled("text")(({ theme }) => ({
     fill: theme.palette.text.primary,
     textAnchor: "middle",
     dominantBaseline: "central",
-    fontSize: 64,
+    fontSize: 48,
+    '@media (min-width: 640px)': {
+        fontSize: 64,
+    },
 }));
 
 function PieCenterLabel({ children }: { children: React.ReactNode }) {
@@ -65,6 +68,9 @@ function PieCenterLabel({ children }: { children: React.ReactNode }) {
 const PieCharts = () => {
     // Determine if the user prefers dark mode
     const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
+    
+    // Detect mobile for disabling interactions
+    const isMobile = useMediaQuery('(max-width: 768px)');
 
     // Memoize the default light theme creation
     const lightTheme = useMemo(() => createTheme(), []);
@@ -99,16 +105,22 @@ const PieCharts = () => {
 
     return (
         <ThemeProvider theme={currentTheme}>
-            <div style={{ marginLeft: 120, marginRight: 120 }}>
-                <h3 className="text-center text-lg font-light mb-4">📈 <SemiBold>Credit</SemiBold></h3>
-                <MuiPieChart
-                    series={series}
-                    height={350}
-                    colors={redColors}
-                    sx={{ '& .MuiChartsLegend-root': { display: 'none' } }}
-                >
-                    <PieCenterLabel>€{formatNumber(totalValue)}</PieCenterLabel>
-                </MuiPieChart>
+            <div className="w-full grid grid-cols-1 gap-4 sm:gap-6 md:gap-8 mb-[8rem] sm:mb-0">
+                <div className="w-full h-72 sm:h-96 bg-white dark:bg-gray-900 rounded-2xl p-2 sm:p-4 md:p-6 lg:p-8 flex flex-col items-center justify-center">
+                    <h3 className="text-center text-base sm:text-lg font-light sm:mb-4 mt-40 sm:mt-0">📈 <SemiBold>Credit</SemiBold></h3>
+                    <MuiPieChart
+                        series={series}
+                        height={400}
+                        colors={redColors}
+                        sx={{ 
+                            '& .MuiChartsLegend-root': { display: 'none' },
+                            ...(isMobile && { pointerEvents: 'none' }),
+                            innerRadius: 500
+                        }}
+                    >
+                        <PieCenterLabel>€{formatNumber(totalValue)}</PieCenterLabel>
+                    </MuiPieChart>
+                </div>
             </div>
         </ThemeProvider>
     );

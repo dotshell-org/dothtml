@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, Pagination, EffectFade } from 'swiper/modules';
 import { Box, Typography, Paper, useTheme } from '@mui/material';
@@ -71,14 +71,16 @@ const Carousel = () => {
           effect="fade"
           fadeEffect={{ crossFade: true }}
           loop={true}
-          style={{ 
-            width: '100%',
-            '--swiper-pagination-color': '#000000',
-            '--swiper-pagination-bullet-inactive-color': '#202020',
-            '--swiper-pagination-bullet-inactive-opacity': '0.5',
-            '--swiper-pagination-bullet-size': '10px',
-            '--swiper-pagination-bullet-horizontal-gap': '6px'
+          allowTouchMove={true}
+          style={{
+              width: '100%',
+              '--swiper-pagination-color': theme.palette.mode == "light" ? '#000000' : '#ffffff',
+              '--swiper-pagination-bullet-inactive-color': theme.palette.mode == "light" ? '#202020' : '#f0f0f0',
+              '--swiper-pagination-bullet-inactive-opacity': '0.5',
+              '--swiper-pagination-bullet-size': '10px',
+              '--swiper-pagination-bullet-horizontal-gap': '6px'
           } as React.CSSProperties}
+
         >
           {carouselItems.map((item, index) => (
             <SwiperSlide key={index}>
@@ -134,13 +136,10 @@ const Carousel = () => {
                   <Typography
                     variant="body1"
                     sx={{
-                      color:
-                        theme.palette.mode === 'dark'
-                          ? theme.palette.common.white
-                          : theme.palette.common.black,
+                      color: theme.palette.text.primary,
                       maxWidth: '600px',
                       lineHeight: 1.7,
-                      fontFamily: '"Aileron", Arial, Helvetica, sans-serif',
+                      fontFamily: '"Aileron", Arial, Helvetica, sans-seriCf',
                       fontSize: { xs: '1.03rem', sm: '1.07rem', md: '1.13rem' },
                       fontWeight: 300
                     }}

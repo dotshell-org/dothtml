@@ -10,16 +10,16 @@ const BarChart = () => {
     ];
 
     return (
-        <div className="flex justify-center mt-40">
-            <div className="flex flex-row items-end gap-4 border-b px-16 border-black dark:border-white">
+        <div className="flex justify-center mt-20 sm:mt-40 px-2">
+            <div className="flex flex-col sm:flex-row items-end gap-4 w-full max-w-5xl">
                 {features.map((feature, index) => (
                     <div
-                        className="bg-red-500 w-48 px-6 pt-12 pb-14 h-fit"
+                        className="bg-red-500 w-full sm:w-48 px-4 sm:px-6 pt-8 sm:pt-12 pb-8 sm:pb-14 h-fit rounded-lg flex-1 min-w-[180px] max-w-xs mx-auto"
                         key={index}
                     >
-                        <h1 className="text-white text-xl font-semibold text-center">{feature.title}</h1>
-                        <p className="mt-4 text-white text-md font-light text-center">{feature.description}</p>
-                        <p className="mt-4 text-white text-md font-semibold text-center">In {feature.software}</p>
+                        <h1 className="text-white text-base sm:text-xl font-semibold text-center">{feature.title}</h1>
+                        <p className="mt-2 sm:mt-4 text-white text-xs sm:text-md font-light text-center">{feature.description}</p>
+                        <p className="mt-2 sm:mt-4 text-white text-xs sm:text-md font-semibold text-center">In {feature.software}</p>
                     </div>
                 ))}
             </div>

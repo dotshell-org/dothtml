@@ -5,13 +5,6 @@
     --foreground: #171717;
 }
 
-@theme inline {
-    --color-background: var(--background);
-    --color-foreground: var(--foreground);
-    --font-sans: var(--font-geist-sans);
-    --font-mono: var(--font-geist-mono);
-}
-
 @media (prefers-color-scheme: dark) {
     :root {
         --background: #101828;
@@ -138,14 +131,27 @@
 body {
     background: var(--background);
     color: var(--foreground);
+    overflow-x: hidden;
 }
 
 .scroller {
     overflow: hidden;
     width: 100%;
-    height: 100px;
+    height: 60px;
     position: relative;
     background: transparent;
+}
+
+@media (min-width: 640px) {
+    .scroller {
+        height: 80px;
+    }
+}
+
+@media (min-width: 768px) {
+    .scroller {
+        height: 100px;
+    }
 }
 
 .track-left {
@@ -167,16 +173,56 @@ body {
         transform: translateX(0);
     }
     100% {
-        transform: translateX(-400px);
+        transform: translateX(-200px);
     }
 }
 
 @keyframes scroll-right {
     0% {
-        transform: translateX(-400px);
+        transform: translateX(-200px);
     }
     100% {
         transform: translateX(0);
+    }
+}
+
+@media (min-width: 640px) {
+    @keyframes scroll-left {
+        0% {
+            transform: translateX(0);
+        }
+        100% {
+            transform: translateX(-300px);
+        }
+    }
+
+    @keyframes scroll-right {
+        0% {
+            transform: translateX(-300px);
+        }
+        100% {
+            transform: translateX(0);
+        }
+    }
+}
+
+@media (min-width: 768px) {
+    @keyframes scroll-left {
+        0% {
+            transform: translateX(0);
+        }
+        100% {
+            transform: translateX(-400px);
+        }
+    }
+
+    @keyframes scroll-right {
+        0% {
+            transform: translateX(-400px);
+        }
+        100% {
+            transform: translateX(0);
+        }
     }
 }
 
@@ -267,30 +313,132 @@ body {
     }
 }
 
-/* Liquid container animation for logo */
-.liquid-container {
-    position: relative;
-    overflow: hidden;
-    border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
-    animation: liquidBorder 8s ease-in-out infinite;
-    box-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
-}
-
-@keyframes liquidBorder {
-    0%, 100% {
-        border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
-    }
-    25% {
-        border-radius: 60% 40% 40% 60% / 50% 60% 40% 50%;
-    }
-    50% {
-        border-radius: 40% 60% 60% 40% / 40% 50% 50% 60%;
-    }
-    75% {
-        border-radius: 50% 50% 60% 40% / 60% 40% 50% 50%;
-    }
-}
-
 .custom-mark {
   fill: #101828 !important;
+}
+
+/* Global responsive improvements */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Ensure images are responsive */
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Fix for horizontal scrolling on mobile */
+* {
+    box-sizing: border-box;
+}
+
+/* Responsive container classes */
+.container-responsive {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+@media (min-width: 640px) {
+    .container-responsive {
+        padding: 0 2rem;
+    }
+}
+
+@media (min-width: 1024px) {
+    .container-responsive {
+        padding: 0 3rem;
+    }
+}
+
+/* Improved mobile navigation */
+@media (max-width: 640px) {
+    .nav-mobile {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 1000;
+        background: var(--background);
+        border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        backdrop-filter: blur(10px);
+    }
+}
+
+/* Better dark mode support */
+@media (prefers-color-scheme: dark) {
+    input, textarea {
+        background-color: #374151;
+        color: #f9fafb;
+        border-color: #4b5563;
+    }
+}
+
+/* Responsive adjustments for mobile */
+@media (max-width: 640px) {
+    .scroller {
+        height: 60px;
+    }
+    
+    @keyframes scroll-left {
+        0% {
+            transform: translateX(0);
+        }
+        100% {
+            transform: translateX(-200px);
+        }
+    }
+
+    @keyframes scroll-right {
+        0% {
+            transform: translateX(-200px);
+        }
+        100% {
+            transform: translateX(0);
+        }
+    }
+}
+
+/* Responsive liquid container */
+@media (max-width: 768px) {
+    .liquid-container {
+        width: 12rem;
+        height: 12rem;
+    }
+}
+
+/* Responsive dropdown */
+@media (max-width: 640px) {
+    .projects-dropdown {
+        width: 90vw;
+        max-width: 300px;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+}
+
+/* Mobile touch interaction prevention for charts */
+@media (max-width: 768px) {
+    /* Disable touch interactions on MUI Charts */
+    .MuiChartsLegend-root,
+    .MuiChartsTooltip-root,
+    .MuiChartsAxis-root,
+    svg[class*="MuiChart"] {
+        pointer-events: none !important;
+        touch-action: pan-y !important;
+    }
+    
+    /* Allow scrolling over chart containers */
+    .MuiChart-root,
+    .recharts-wrapper,
+    [class*="chart"] {
+        touch-action: pan-y !important;
+    }
+    
+    /* Disable interactions on Swiper pagination on mobile */
+    .swiper-pagination {
+        pointer-events: none !important;
+    }
 }

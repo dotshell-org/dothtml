@@ -261,8 +261,9 @@ const DownloadButton: React.FC<DownloadButtonProps> = ({ appName, colorScheme, a
     const handlePlatformSelect = (index: number): void => {
         setSelectedPlatform(index);
         setIsExpanded(false);
-    };return (        <div className="relative inline-block">
-            <div className="flex gap-0.5">                {/* Bouton principal Télécharger */}
+    };return (
+                <div className="relative flex justify-center md:justify-start w-full z-[60]">
+            <div className="flex gap-0.5 scale-80 sm:scale-100">                {/* Bouton principal Télécharger */}
                 <button
                     onClick={() => handleDownload(currentOption?.downloadUrl || '')}
                     disabled={isDownloading}
@@ -298,11 +299,12 @@ const DownloadButton: React.FC<DownloadButtonProps> = ({ appName, colorScheme, a
                         className={`absolute top-full right-0 mt-1 ${colors.containerBg} rounded-lg shadow-xl border ${colors.containerBorder} transition-all duration-200 z-50 ${
                             isExpanded ? 'opacity-100 translate-y-0 pointer-events-auto' : 'opacity-0 -translate-y-2 pointer-events-none'
                         }`}
-                    >                        {downloadOptions.map((option, index) => (
+                    >
+                        {downloadOptions.map((option, index) => (
                             <button
                                 key={`${option.platform}-${option.format}`}
                                 onClick={() => handlePlatformSelect(index)}
-                                className={`w-full flex items-center gap-3 px-4 py-3 text-left transition-colors duration-200 cursor-pointer ${colors.optionHover} ${colors.optionText} ${
+                                className={`w-full flex items-center gap-3 px-4 py-3 text-left transition-colors duration-200 cursor-pointer outline-0 ${colors.optionHover} ${colors.optionText} ${
                                     index === 0 ? 'rounded-t-lg' : ''
                                 } ${
                                     index === downloadOptions.length - 1 ? 'rounded-b-lg' : ''

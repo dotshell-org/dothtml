@@ -71,11 +71,11 @@ const ProjectsNavLink: React.FC<ProjectsNavLinkProps> = ({ children }) => {
             onMouseLeave={handleMouseLeave}
         >
             <a
-                className="relative inline-block text-center text-lg font-light mx-15 group"
+                className="relative inline-block text-center text-base sm:text-lg font-light group"
             >
                 <span className="">{children}</span>
                 <span
-                    className={`absolute left-0 bottom-0 h-0.5 bg-black dark:bg-white transition-all duration-300 ${
+                    className={`absolute left-0 bottom-[-2px] sm:bottom-0 h-0.5 bg-black dark:bg-white transition-all duration-300 ${
                         isDropdownVisible ? 'w-full' : 'w-0 group-hover:w-full'
                     }`}
                 ></span>

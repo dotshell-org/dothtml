@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Image from 'next/image';
+import { useMediaQuery } from '@mui/material';
 
 // Types and Interfaces
 interface Filter {
@@ -46,15 +47,17 @@ const formatDate = (dateString: string): string => {
 
 // Components
 const SummaryTH = ({ label, emoji }: { label: string; emoji: string }) => (
-    <th className="w-1/4 border-gray-300 dark:border-gray-700 border text-center p-4 text-sm font-normal text-gray-500 dark:text-gray-300 bg-white dark:bg-gray-900 hover:bg-gray-100 dark:hover:bg-gray-800 transition-all">
-        {emoji} {label}
+    <th className="w-1/4 border-gray-300 dark:border-gray-700 border text-center p-2 sm:p-4 text-[0.7rem] sm:text-xs font-normal text-gray-500 dark:text-gray-300 bg-white dark:bg-gray-900 hover:bg-gray-100 dark:hover:bg-gray-800 transition-all">
+        <span className="hidden sm:inline">{emoji} </span>{label}
     </th>
 );
 
-const SummaryTR = ({ content, isSelected, onClick }: { content: string; isSelected?: boolean; onClick?: (e: React.MouseEvent<HTMLTableCellElement>) => void }) => (
+const SummaryTR = ({ content, isSelected, onClick, disabled }: { content: string; isSelected?: boolean; onClick?: (e: React.MouseEvent<HTMLTableCellElement>) => void; disabled?: boolean }) => (
     <td
-        onClick={onClick}
-        className={`w-1/4 border-gray-300 dark:border-gray-700 border text-center p-1.5 text-sm duration-200 ring-inset hover:ring-1 ring-blue-500 cursor-copy select-none transition-all ${
+        onClick={disabled ? undefined : onClick}
+        className={`w-1/4 border-gray-300 dark:border-gray-700 border text-center p-1 sm:p-1.5 text-[0.7rem]  sm:text-xs duration-200 ring-inset hover:ring-1 ring-blue-500 select-none transition-all ${
+            disabled ? "cursor-default" : "cursor-copy"
+        } ${
             isSelected ? "bg-blue-500 text-white" : "bg-white dark:bg-gray-900 dark:text-gray-100"
         }`}
     >
@@ -63,7 +66,7 @@ const SummaryTR = ({ content, isSelected, onClick }: { content: string; isSelect
 );
 
 const FilterLabel = ({ filter }: { filter: Filter }) => (
-    <div className="w-fit h-6 m-0 mx-1 py-1 pl-3 pr-2.5 text-sm border text-blue-500 dark:text-blue-300 rounded-full border-blue-500 hover:border-blue-500 dark:border-blue-600 dark:hover:border-blue-600 bg-blue-100 dark:bg-blue-950 transition-all flex items-center justify-center">
+    <div className="w-fit h-6 m-0 mx-1 py-1 pl-2 sm:pl-3 pr-1.5 sm:pr-2.5 text-[0.7rem] sm:text-xs border text-blue-500 dark:text-blue-300 rounded-full border-blue-500 hover:border-blue-500 dark:border-blue-600 dark:hover:border-blue-600 bg-blue-100 dark:bg-blue-950 transition-all flex items-center justify-center">
     <span className="mr-1 select-none">
       {filter.property} {filter.operator} {filter.value}
     </span>
@@ -89,7 +92,7 @@ const FilterSelection = ({ filters, sorts }: { filters: Filter[]; sorts: Sort[] 
     <div className="w-full h-6 my-4 inline-flex items-center">
         <Image src="/generic/filter.svg" alt="Filter" className="w-6 h-6 mr-2" width="10" height="10" />
         {sorts.map((sort: Sort, index: number) => (
-            <div key={index} className="w-fit h-6 m-0 mx-1 py-1 pl-3 pr-2.5 text-sm border text-orange-500 dark:text-orange-300 rounded-full border-orange-500 hover:border-orange-500 dark:border-orange-600 dark:hover:border-orange-600 bg-orange-100 dark:bg-orange-950 transition-all flex items-center justify-center">
+            <div key={index} className="w-fit h-6 m-0 mx-1 py-1 pl-2 sm:pl-3 pr-1.5 sm:pr-2.5 text-xs sm:text-sm border text-orange-500 dark:text-orange-300 rounded-full border-orange-500 hover:border-orange-500 dark:border-orange-600 dark:hover:border-orange-600 bg-orange-100 dark:bg-orange-950 transition-all flex items-center justify-center">
         <span className="mr-1 select-none">
           {sort.orientation} {sort.property.charAt(0).toUpperCase() + sort.property.slice(1)}
         </span>
@@ -170,10 +173,10 @@ const AggregationToolbar = ({ columnIndex, values }: { columnIndex: number | nul
     }
 
     return (
-        <div className={`absolute left-0 right-0 bottom-2 rounded-lg bg-white dark:bg-gray-900 p-4 shadow-md border border-gray-400 dark:border-gray-600 transition-opacity duration-300 mx-4 ${
+        <div className={`absolute left-0 right-0 bottom-2 rounded-lg bg-white dark:bg-gray-900 p-4 shadow-md border border-gray-400 dark:border-gray-600 transition-opacity duration-300 mx-4 hidden sm:block ${
             isVisible ? "opacity-100" : "opacity-0 pointer-events-none"
         }`}>
-            <div className="flex flex-row items-center justify-center space-x-4">
+            <div className="flex flex-row items-center justify-center space-x-4 flex-wrap">
                 <div className="px-3 text-gray-900 dark:text-gray-100"><strong>🔢 Selected:</strong> {values.length}</div>
                 {additionalElement}
             </div>
@@ -183,6 +186,9 @@ const AggregationToolbar = ({ columnIndex, values }: { columnIndex: number | nul
 
 // Main Component
 const Summary = () => {
+    // Detect mobile for disabling interactions
+    const isMobile = useMediaQuery('(max-width: 768px)');
+    
     const [selectedColumn, setSelectedColumn] = useState<number | null>(null);
     const [selectedRows, setSelectedRows] = useState<number[]>([]);
     const [lastSelectedIndex, setLastSelectedIndex] = useState<number | null>(null);
@@ -248,46 +254,50 @@ const Summary = () => {
     const fakeSorts: Sort[] = [{ property: "Date", orientation: "↓" }];
 
     return (
-        <div className="rounded-2xl border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900 shadow-lg p-6 py-12 max-w-5xl mx-auto my-10 relative overflow-x-auto">
-            <h1 className="text-3xl mb-4 font-bold cursor-default text-gray-900 dark:text-gray-100">📉 Debit</h1>
-            <FilterSelection filters={fakeFilters} sorts={fakeSorts} />
-            <table className="w-full table-auto border-white dark:border-gray-800 border-2 border-t-0 border-b-gray-300 dark:border-b-gray-700 border-b-2 cursor-pointer">
-                <thead>
-                <tr>
-                    {propertyLabels.map((label, idx) => <SummaryTH key={idx} label={label} emoji={propertyEmojis[idx]} />)}
-                </tr>
-                </thead>
-            </table>
-            <table className="w-full table-auto border-white dark:border-gray-800 border-2 border-y-0 cursor-copy mt-0">
-                <tbody>
-                {fakeObjects.map((obj, index) => (
-                    <tr key={obj.id}>
-                        <SummaryTR
-                            content={formatDate(obj.date)}
-                            isSelected={selectedColumn === 0 && selectedRows.includes(obj.id)}
-                            onClick={e => handleCellClick(e, 0, index, obj.id)}
-                        />
-                        <SummaryTR
-                            content={obj.title}
-                            isSelected={selectedColumn === 1 && selectedRows.includes(obj.id)}
-                            onClick={e => handleCellClick(e, 1, index, obj.id)}
-                        />
-                        <SummaryTR
-                            content={"€" + obj.totalAmount.toFixed(2)}
-                            isSelected={selectedColumn === 2 && selectedRows.includes(obj.id)}
-                            onClick={e => handleCellClick(e, 2, index, obj.id)}
-                        />
-                        <SummaryTR
-                            content={obj.category === "" ? "Other" : obj.category}
-                            isSelected={selectedColumn === 3 && selectedRows.includes(obj.id)}
-                            onClick={e => handleCellClick(e, 3, index, obj.id)}
-                        />
-                    </tr>
-                ))}
-                </tbody>
-            </table>
-            <AggregationToolbar columnIndex={selectedColumn} values={selectedValues} />
-            <div className="h-20"></div>
+        <div className="px-4">
+            <div className="rounded-2xl border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900 shadow-lg p-3 sm:p-6 py-6 sm:py-12 max-w-5xl mx-auto my-6 sm:my-10 relative overflow-x-auto">
+                <h1 className="text-lg xs:text-xl sm:text-3xl mb-4 font-bold cursor-default text-gray-900 dark:text-gray-100">📉 Debit</h1>
+                <FilterSelection filters={fakeFilters} sorts={fakeSorts} />
+                <table className="w-full table-auto border-white dark:border-gray-900 border-2 border-t-0 border-b-gray-300 dark:border-b-gray-700 border-b-2 cursor-pointer mt-0 mb-0">
+                    <thead>
+                        <tr>
+                            {propertyLabels.map((label, idx) => <SummaryTH key={idx} label={label} emoji={propertyEmojis[idx]} />)}
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {fakeObjects.map((obj, index) => (
+                            <tr key={obj.id}>
+                                <SummaryTR
+                                    content={formatDate(obj.date)}
+                                    isSelected={selectedColumn === 0 && selectedRows.includes(obj.id)}
+                                    onClick={isMobile ? undefined : e => handleCellClick(e, 0, index, obj.id)}
+                                    disabled={isMobile}
+                                />
+                                <SummaryTR
+                                    content={obj.title}
+                                    isSelected={selectedColumn === 1 && selectedRows.includes(obj.id)}
+                                    onClick={isMobile ? undefined : e => handleCellClick(e, 1, index, obj.id)}
+                                    disabled={isMobile}
+                                />
+                                <SummaryTR
+                                    content={"€" + obj.totalAmount.toFixed(2)}
+                                    isSelected={selectedColumn === 2 && selectedRows.includes(obj.id)}
+                                    onClick={isMobile ? undefined : e => handleCellClick(e, 2, index, obj.id)}
+                                    disabled={isMobile}
+                                />
+                                <SummaryTR
+                                    content={obj.category === "" ? "Other" : obj.category}
+                                    isSelected={selectedColumn === 3 && selectedRows.includes(obj.id)}
+                                    onClick={isMobile ? undefined : e => handleCellClick(e, 3, index, obj.id)}
+                                    disabled={isMobile}
+                                />
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+                <AggregationToolbar columnIndex={selectedColumn} values={selectedValues} />
+                <div className="h-20"></div>
+            </div>
         </div>
     );
 };

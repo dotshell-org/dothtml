@@ -75,57 +75,93 @@ const Contact = () => {
     };
 
     return (
-        <div className="h-screen relative">
+        <div className="min-h-screen relative">
             <NavBar />
-            <h1 className="my-20 text-center text-7xl font-black">
+            <h1 className="my-10 sm:my-20 text-center text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black px-4">
                 Contact <span className="text-blue-500">Us</span>
             </h1>
-            <form onSubmit={handleSubmit}>
-                <div>
-                    <p className="text-center text-xl font-light">Name</p>
-                    <input name="name" value={form.name} onChange={handleChange} onBlur={handleBlur} className={`relative left-1/2 -translate-x-1/2 text-light w-80 pl-2 py-1 mt-2 mb-1.5 rounded-lg border ${fieldErrors.name && touched.name ? 'border-red-500' : 'border-gray-300 dark:border-gray-700'}`} type="text" />
-                    {fieldErrors.name && touched.name && <p className="text-red-500 text-sm text-center mb-4 animate-fade-in">{fieldErrors.name}</p>}
-                </div>
-                <div>
-                    <p className="text-center text-xl font-light">Email</p>
-                    <input name="email" value={form.email} onChange={handleChange} onBlur={handleBlur} className={`relative left-1/2 -translate-x-1/2 text-light w-80 pl-2 py-1 mt-2 mb-1.5 rounded-lg border ${fieldErrors.email && touched.email ? 'border-red-500' : 'border-gray-300 dark:border-gray-700'}`} type="text" placeholder="email@example.com" />
-                    {fieldErrors.email && touched.email && <p className="text-red-500 text-sm text-center mb-4 animate-fade-in">{fieldErrors.email}</p>}
-                </div>
-                <div>
-                    <p className="text-center text-xl font-light">Country/Region</p>
-                    <input name="country" value={form.country} onChange={handleChange} onBlur={handleBlur} className={`relative left-1/2 -translate-x-1/2 text-light w-80 pl-2 py-1 mt-2 mb-1.5 rounded-lg border ${fieldErrors.country && touched.country ? 'border-red-500' : 'border-gray-300 dark:border-gray-700'}`} type="text" />
-                    {fieldErrors.country && touched.country && <p className="text-red-500 text-sm text-center mb-4 animate-fade-in">{fieldErrors.country}</p>}
-                </div>
-                <div>
-                    <p className="text-center text-xl font-light">Phone number (optional)</p>
-                    <input name="phone" value={form.phone} onChange={handleChange} className="relative left-1/2 -translate-x-1/2 text-light w-80 pl-2 py-1 mt-2 mb-5.5 rounded-lg border border-gray-300 dark:border-gray-700" type="text" />
-                </div>
-                <div>
-                    <p className="text-center text-xl font-light">Company (optional)</p>
-                    <input name="company" value={form.company} onChange={handleChange} className="relative left-1/2 -translate-x-1/2 text-light w-80 pl-2 py-1 mt-2 mb-5.5 rounded-lg border border-gray-300 dark:border-gray-700" type="text" />
-                </div>
-                <p className="text-center text-xl font-light">Message</p>
-                <textarea
-                    name="message"
-                    value={form.message}
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                    className={`relative left-1/2 -translate-x-1/2 text-light w-80 min-h-50 px-2 py-1 mt-2 mb-1.5 rounded-lg border ${fieldErrors.message && touched.message ? 'border-red-500' : 'border-gray-300 dark:border-gray-700'} resize-none overflow-y-auto`}
-                ></textarea>
-                {fieldErrors.message && touched.message && <p className="text-red-500 text-sm text-center mb-4 animate-fade-in">{fieldErrors.message}</p>}
-                <p/>
-                <button
-                    type="submit"
-                    className={`relative left-1/2 -translate-x-1/2 rounded-lg ${status === "success" ? "bg-blue-300" : "bg-blue-500 hover:bg-blue-400"} text-white text-center mt-7 mb-10 p-2 w-80 cursor-pointer transition-all ${isSubmitting ? 'opacity-70' : ''}`}
-                    disabled={isSubmitting || status === "success"}
-                >
-                    {status === "success" ? "Sent" : isSubmitting ? "Sending..." : "Submit"}
-                </button>
-            </form>
-            {status === "error" && <p className="text-center text-red-600">{errorMsg}</p>}
+            <div className="max-w-md mx-auto px-4">
+                <form onSubmit={handleSubmit}>
+                    <div className="mb-6">
+                        <p className="text-center text-base sm:text-lg md:text-xl font-light">Name</p>
+                        <input 
+                            name="name" 
+                            value={form.name} 
+                            onChange={handleChange} 
+                            onBlur={handleBlur} 
+                            className={`w-full pl-3 py-2 mt-2 mb-1.5 rounded-lg border ${fieldErrors.name && touched.name ? 'border-red-500' : 'border-gray-300 dark:border-gray-700'} bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100`} 
+                            type="text" 
+                        />
+                        {fieldErrors.name && touched.name && <p className="text-red-500 text-sm text-center mb-4 animate-fade-in">{fieldErrors.name}</p>}
+                    </div>
+                    <div className="mb-6">
+                        <p className="text-center text-base sm:text-lg md:text-xl font-light">Email</p>
+                        <input 
+                            name="email" 
+                            value={form.email} 
+                            onChange={handleChange} 
+                            onBlur={handleBlur} 
+                            className={`w-full pl-3 py-2 mt-2 mb-1.5 rounded-lg border ${fieldErrors.email && touched.email ? 'border-red-500' : 'border-gray-300 dark:border-gray-700'} bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100`} 
+                            type="text" 
+                            placeholder="email@example.com" 
+                        />
+                        {fieldErrors.email && touched.email && <p className="text-red-500 text-sm text-center mb-4 animate-fade-in">{fieldErrors.email}</p>}
+                    </div>
+                    <div className="mb-6">
+                        <p className="text-center text-base sm:text-lg md:text-xl font-light">Country/Region</p>
+                        <input 
+                            name="country" 
+                            value={form.country} 
+                            onChange={handleChange} 
+                            onBlur={handleBlur} 
+                            className={`w-full pl-3 py-2 mt-2 mb-1.5 rounded-lg border ${fieldErrors.country && touched.country ? 'border-red-500' : 'border-gray-300 dark:border-gray-700'} bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100`} 
+                            type="text" 
+                        />
+                        {fieldErrors.country && touched.country && <p className="text-red-500 text-sm text-center mb-4 animate-fade-in">{fieldErrors.country}</p>}
+                    </div>
+                    <div className="mb-6">
+                        <p className="text-center text-base sm:text-lg md:text-xl font-light">Phone number (optional)</p>
+                        <input 
+                            name="phone" 
+                            value={form.phone} 
+                            onChange={handleChange} 
+                            className="w-full pl-3 py-2 mt-2 mb-1.5 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100" 
+                            type="text" 
+                        />
+                    </div>
+                    <div className="mb-6">
+                        <p className="text-center text-base sm:text-lg md:text-xl font-light">Company (optional)</p>
+                        <input 
+                            name="company" 
+                            value={form.company} 
+                            onChange={handleChange} 
+                            className="w-full pl-3 py-2 mt-2 mb-1.5 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100" 
+                            type="text" 
+                        />
+                    </div>
+                    <div className="mb-6">
+                        <p className="text-center text-base sm:text-lg md:text-xl font-light">Message</p>
+                        <textarea
+                            name="message"
+                            value={form.message}
+                            onChange={handleChange}
+                            onBlur={handleBlur}
+                            className={`w-full min-h-32 px-3 py-2 mt-2 mb-1.5 rounded-lg border ${fieldErrors.message && touched.message ? 'border-red-500' : 'border-gray-300 dark:border-gray-700'} resize-none overflow-y-auto bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100`}
+                        ></textarea>
+                        {fieldErrors.message && touched.message && <p className="text-red-500 text-sm text-center mb-4 animate-fade-in">{fieldErrors.message}</p>}
+                    </div>
+                    <button
+                        type="submit"
+                        className={`w-full rounded-lg ${status === "success" ? "bg-blue-300" : "bg-blue-500 hover:bg-blue-400"} text-white text-center mt-7 mb-10 py-3 px-4 cursor-pointer transition-all ${isSubmitting ? 'opacity-70' : ''}`}
+                        disabled={isSubmitting || status === "success"}
+                    >
+                        {status === "success" ? "Sent" : isSubmitting ? "Sending..." : "Submit"}
+                    </button>
+                </form>
+                {status === "error" && <p className="text-center text-red-600 mb-8">{errorMsg}</p>}
+            </div>
             
             <Footer />
-
         </div>
     );
 }

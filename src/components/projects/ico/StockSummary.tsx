@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Image from 'next/image';
+import { useMediaQuery } from '@mui/material';
 
 // Types and Interfaces
 interface Filter {
@@ -47,21 +48,24 @@ const formatDate = (dateString: string): string => {
 
 // Components
 const SummaryTH = ({ label, emoji }: { label: string; emoji: string }) => (
-    <th className="w-1/5 border-gray-300 dark:border-gray-700 border text-center p-4 text-sm font-normal text-gray-500 dark:text-gray-300 bg-white dark:bg-gray-900 hover:bg-gray-100 dark:hover:bg-gray-800 transition-all">
-        {emoji} {label}
+    <th className="w-1/5 border-gray-300 dark:border-gray-700 border text-center p-2 sm:p-4 text-[0.7rem] sm:text-xs font-normal text-gray-500 dark:text-gray-300 bg-white dark:bg-gray-900 hover:bg-gray-100 dark:hover:bg-gray-800 transition-all">
+        <span className="hidden sm:inline">{emoji} </span>{label}
     </th>
 );
 
-const SummaryTR = ({ content, isSelected, onClick, movement }: {
+const SummaryTR = ({ content, isSelected, onClick, movement, disabled }: {
     content: string;
     isSelected?: boolean;
     onClick?: (e: React.MouseEvent<HTMLTableCellElement>) => void;
     movement?: number;
+    disabled?: boolean;
 }) => {
     const isPositive = movement !== undefined && movement > 0;
     const isNegative = movement !== undefined && movement < 0;
 
-    const baseClasses = "w-1/5 border-gray-300 dark:border-gray-700 border text-center p-1.5 text-sm duration-200 ring-inset hover:ring-1 ring-blue-500 cursor-copy select-none transition-all";
+    const baseClasses = `w-1/5 border-gray-300 dark:border-gray-700 border text-center p-1 sm:p-1.5 text-xs sm:text-sm duration-200 ring-inset hover:ring-1 ring-blue-500 select-none transition-all ${
+        disabled ? "cursor-default" : "cursor-copy"
+    }`;
 
     let colorClasses = "";
     if (isSelected) {
@@ -84,7 +88,7 @@ const SummaryTR = ({ content, isSelected, onClick, movement }: {
 
     return (
         <td
-            onClick={onClick}
+            onClick={disabled ? undefined : onClick}
             className={`${baseClasses} ${colorClasses}`}
         >
             {content}
@@ -93,7 +97,7 @@ const SummaryTR = ({ content, isSelected, onClick, movement }: {
 };
 
 const FilterLabel = ({ filter }: { filter: Filter }) => (
-    <div className="w-fit h-6 m-0 mx-1 py-1 pl-3 pr-2.5 text-sm border text-blue-500 dark:text-blue-300 rounded-full border-blue-500 hover:border-blue-500 dark:border-blue-600 dark:hover:border-blue-600 bg-blue-100 dark:bg-blue-950 transition-all flex items-center justify-center">
+    <div className="w-fit h-6 m-0 mx-1 py-1 pl-2 sm:pl-3 pr-1.5 sm:pr-2.5 text-xs sm:text-sm border text-blue-500 dark:text-blue-300 rounded-full border-blue-500 hover:border-blue-500 dark:border-blue-600 dark:hover:border-blue-600 bg-blue-100 dark:bg-blue-950 transition-all flex items-center justify-center">
         <span className="mr-1 select-none">
           {filter.property} {filter.operator} {filter.value}
         </span>
@@ -119,7 +123,7 @@ const FilterSelection = ({ filters, sorts }: { filters: Filter[]; sorts: Sort[] 
     <div className="w-full h-6 my-4 inline-flex items-center">
         <Image src="/generic/filter.svg" alt="Filter" className="w-6 h-6 mr-2" width="10" height="10" />
         {sorts.map((sort: Sort, index: number) => (
-            <div key={index} className="w-fit h-6 m-0 mx-1 py-1 pl-3 pr-2.5 text-sm border text-orange-500 dark:text-orange-300 rounded-full border-orange-500 hover:border-orange-500 dark:border-orange-600 dark:hover:border-orange-600 bg-orange-100 dark:bg-orange-950 transition-all flex items-center justify-center">
+            <div key={index} className="w-fit h-6 m-0 mx-1 py-1 pl-2 sm:pl-3 pr-1.5 sm:pr-2.5 text-xs sm:text-sm border text-orange-500 dark:text-orange-300 rounded-full border-orange-500 hover:border-orange-500 dark:border-orange-600 dark:hover:border-orange-600 bg-orange-100 dark:bg-orange-950 transition-all flex items-center justify-center">
                 <span className="mr-1 select-none">
                   {sort.orientation} {sort.property.charAt(0).toUpperCase() + sort.property.slice(1)}
                 </span>
@@ -202,7 +206,7 @@ const AggregationToolbar = ({ columnIndex, values }: { columnIndex: number | nul
     }
 
     return (
-        <div className={`absolute left-0 right-0 bottom-2 rounded-lg bg-white dark:bg-gray-900 p-4 shadow-md border border-gray-400 dark:border-gray-600 transition-opacity duration-300 mx-4 ${
+        <div className={`absolute left-0 right-0 bottom-2 rounded-lg bg-white dark:bg-gray-900 p-4 shadow-md border border-gray-400 dark:border-gray-600 transition-opacity duration-300 mx-4 hidden sm:block ${
             isVisible ? "opacity-100" : "opacity-0 pointer-events-none"
         }`}>
             <div className="flex flex-row items-center justify-center space-x-4 flex-wrap">
@@ -215,6 +219,9 @@ const AggregationToolbar = ({ columnIndex, values }: { columnIndex: number | nul
 
 // Main Component
 const StockSummary = () => {
+    // Detect mobile for disabling interactions
+    const isMobile = useMediaQuery('(max-width: 768px)');
+    
     const [selectedColumn, setSelectedColumn] = useState<number | null>(null);
     const [selectedRows, setSelectedRows] = useState<number[]>([]);
     const [lastSelectedIndex, setLastSelectedIndex] = useState<number | null>(null);
@@ -281,56 +288,61 @@ const StockSummary = () => {
     const fakeSorts: Sort[] = [{ property: "Date", orientation: "↓" }];
 
     return (
-        <div className="rounded-2xl border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900 shadow-lg p-6 py-12 max-w-6xl mx-auto my-10 relative overflow-x-auto">
-            <h1 className="text-3xl mb-4 font-bold cursor-default text-gray-900 dark:text-gray-100">🔄 Movements</h1>
-            <FilterSelection filters={fakeFilters} sorts={fakeSorts} />
-            <table className="w-full table-auto border-white dark:border-gray-800 border-2 border-t-0 border-b-gray-300 dark:border-b-gray-700 border-b-2 cursor-pointer">
-                <thead>
-                <tr>
-                    {propertyLabels.map((label, idx) => <SummaryTH key={idx} label={label} emoji={propertyEmojis[idx]} />)}
-                </tr>
-                </thead>
-            </table>
-            <table className="w-full table-auto border-white dark:border-gray-800 border-2 border-y-0 cursor-copy mt-0">
-                <tbody>
-                {fakeMovements.map((movement, index) => (
-                    <tr key={movement.id}>
-                        <SummaryTR
-                            content={movement.stock}
-                            isSelected={selectedColumn === 0 && selectedRows.includes(movement.id)}
-                            onClick={e => handleCellClick(e, 0, index, movement.id)}
-                            movement={movement.movement}
-                        />
-                        <SummaryTR
-                            content={formatDate(movement.date)}
-                            isSelected={selectedColumn === 1 && selectedRows.includes(movement.id)}
-                            onClick={e => handleCellClick(e, 1, index, movement.id)}
-                            movement={movement.movement}
-                        />
-                        <SummaryTR
-                            content={movement.object}
-                            isSelected={selectedColumn === 2 && selectedRows.includes(movement.id)}
-                            onClick={e => handleCellClick(e, 2, index, movement.id)}
-                            movement={movement.movement}
-                        />
-                        <SummaryTR
-                            content={movement.quantity.toString()}
-                            isSelected={selectedColumn === 3 && selectedRows.includes(movement.id)}
-                            onClick={e => handleCellClick(e, 3, index, movement.id)}
-                            movement={movement.movement}
-                        />
-                        <SummaryTR
-                            content={movement.movement > 0 ? `+${movement.movement}` : movement.movement.toString()}
-                            isSelected={selectedColumn === 4 && selectedRows.includes(movement.id)}
-                            onClick={e => handleCellClick(e, 4, index, movement.id)}
-                            movement={movement.movement}
-                        />
+        <div className="px-4">
+            <div className="rounded-2xl border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900 shadow-lg p-3 sm:p-6 py-6 sm:py-12 max-w-6xl mx-auto my-6 sm:my-10 relative overflow-x-auto">
+                <h1 className="text-xl sm:text-3xl mb-4 font-bold cursor-default text-gray-900 dark:text-gray-100">🔄 Movements</h1>
+                <FilterSelection filters={fakeFilters} sorts={fakeSorts} />
+                <table className="w-full table-auto border-white dark:border-gray-800 border-2 border-t-0 border-b-gray-300 dark:border-b-gray-700 border-b-2">
+                    <thead>
+                    <tr>
+                        {propertyLabels.map((label, idx) => <SummaryTH key={idx} label={label} emoji={propertyEmojis[idx]} />)}
                     </tr>
-                ))}
-                </tbody>
-            </table>
-            <AggregationToolbar columnIndex={selectedColumn} values={selectedValues} />
-            <div className="h-20"></div>
+                    </thead>
+                    <tbody>
+                    {fakeMovements.map((movement, index) => (
+                        <tr key={movement.id}>
+                            <SummaryTR
+                                content={movement.stock}
+                                isSelected={selectedColumn === 0 && selectedRows.includes(movement.id)}
+                                onClick={isMobile ? undefined : e => handleCellClick(e, 0, index, movement.id)}
+                                movement={movement.movement}
+                                disabled={isMobile}
+                            />
+                            <SummaryTR
+                                content={formatDate(movement.date)}
+                                isSelected={selectedColumn === 1 && selectedRows.includes(movement.id)}
+                                onClick={isMobile ? undefined : e => handleCellClick(e, 1, index, movement.id)}
+                                movement={movement.movement}
+                                disabled={isMobile}
+                            />
+                            <SummaryTR
+                                content={movement.object}
+                                isSelected={selectedColumn === 2 && selectedRows.includes(movement.id)}
+                                onClick={isMobile ? undefined : e => handleCellClick(e, 2, index, movement.id)}
+                                movement={movement.movement}
+                                disabled={isMobile}
+                            />
+                            <SummaryTR
+                                content={movement.quantity.toString()}
+                                isSelected={selectedColumn === 3 && selectedRows.includes(movement.id)}
+                                onClick={isMobile ? undefined : e => handleCellClick(e, 3, index, movement.id)}
+                                movement={movement.movement}
+                                disabled={isMobile}
+                            />
+                            <SummaryTR
+                                content={movement.movement > 0 ? `+${movement.movement}` : movement.movement.toString()}
+                                isSelected={selectedColumn === 4 && selectedRows.includes(movement.id)}
+                                onClick={isMobile ? undefined : e => handleCellClick(e, 4, index, movement.id)}
+                                movement={movement.movement}
+                                disabled={isMobile}
+                            />
+                        </tr>
+                    ))}
+                    </tbody>
+                </table>
+                <AggregationToolbar columnIndex={selectedColumn} values={selectedValues} />
+                <div className="h-20"></div>
+            </div>
         </div>
     );
 };

@@ -11,26 +11,26 @@ import Footer from "@/components/generic/footer/Footer";
 
 const Home = () => {
     return (
-        <div className="h-screen relative">
-            <div className="absolute w-full h-[calc(100%-7rem)]">
+        <div className="min-h-screen relative">
+            <div className="absolute w-full h-[calc(100vh-7rem)] sm:h-[calc(100vh-7rem)]">
                 <NavBar />
                 <LogoContainer />
             </div>
-            <div className="h-[calc(100%-10rem)]"></div>
+            <div className="h-[33rem] lg:h-[48rem]"></div>
             <LineChartDivider color="#3B82F6" direction={Direction.Left} />
 
-            <p className="mt-50 text-center text-xl font-light">
+            <p className="mt-20 sm:mt-32 md:mt-50 text-center text-lg sm:text-xl font-light px-4">
                 For us, <SemiBold>Open Source</SemiBold> is the <SemiBold>Future</SemiBold>
                 <br /><br />
                 Our ambition is to make open source
-                <br />
-                the best option for all your software
+                <br className="hidden sm:block" />
+                <span className="sm:hidden"> </span>the best option for all your software
             </p>
-            <p className="mt-40 text-center text-xl font-light">
+            <p className="mt-20 sm:mt-32 md:mt-40 text-center text-lg sm:text-xl font-light px-4">
                 By giving you
             </p>            <BlurText
                 text="What You Need"
-                className="text-center text-7xl font-black"
+                className="text-center text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-black px-4"
                 delay={150}
                 animateBy="words"
                 coloredWords={{ 'need': 'text-blue-500' }}
@@ -38,22 +38,22 @@ const Home = () => {
 
             <SoftwareCardsGroup />
 
-            <p className="my-40 text-center text-xl font-light">
+            <p className="my-20 sm:my-32 md:my-40 text-center text-lg sm:text-xl font-light px-4">
                 From cash register to complex
-                <br />
-                analysis for your business statistics,
-                <br />
-                Dotshell software helps you
-                <br />
-                <SemiBold>every day</SemiBold>
+                <br className="hidden sm:block" />
+                <span className="sm:hidden"> </span>analysis for your business statistics,
+                <br className="hidden sm:block" />
+                <span className="sm:hidden"> </span>Dotshell software helps you
+                <br className="hidden sm:block" />
+                <span className="sm:hidden"> </span><SemiBold>every day</SemiBold>
             </p>
 
-            <LineChartDivider color="#EF4444" direction={Direction.Right} />            <p className="mt-40 text-center text-xl font-light">
+            <LineChartDivider color="#EF4444" direction={Direction.Right} />            <p className="mt-20 sm:mt-32 md:mt-40 text-center text-lg sm:text-xl font-light px-4">
                 Benefit from
             </p>
             <BlurText 
                 text="Powerful Tools"
-                className="text-center text-7xl font-black"
+                className="text-center text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-black px-4"
                 delay={150}
                 animateBy="words"
                 coloredWords={{ 'powerful': 'text-red-500' }}
@@ -61,23 +61,23 @@ const Home = () => {
 
             <BarChart />
 
-            <p className="my-40 text-center text-xl font-light">
+            <p className="my-20 sm:my-32 md:my-40 text-center text-lg sm:text-xl font-light px-4">
                 For Dotshell, <SemiBold>free</SemiBold> doesn&#39;t mean <s>weak</s>
             </p>
 
             <LineChartDivider color="#22C55E" direction={Direction.Left} />
 
-            <p className="mt-40 text-center text-xl font-light">
+            <p className="mt-20 sm:mt-32 md:mt-40 text-center text-lg sm:text-xl font-light px-4">
                 And <SemiBold>Open Source</SemiBold> doesn&#39;t mean <s>ugly</s>
             </p>
-            <p className="mt-4 text-center text-xl font-light">
+            <p className="mt-4 text-center text-lg sm:text-xl font-light px-4">
                 No more software with a 20-years-old design!
-            </p>            <p className="mt-40 text-center text-xl font-light">
+            </p>            <p className="mt-20 sm:mt-32 md:mt-40 text-center text-lg sm:text-xl font-light px-4">
                 Meet our
             </p>
             <BlurText 
                 text="Modern Design"
-                className="text-center text-7xl font-black"
+                className="text-center text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-black px-4"
                 delay={150}
                 animateBy="words"
                 coloredWords={{ 'modern': 'text-green-500' }}
@@ -85,7 +85,7 @@ const Home = () => {
 
             <EmojiContainer />
 
-            <p className="mt-20 mb-40 text-center text-xl font-light">
+            <p className="mt-12 sm:mt-16 md:mt-20 mb-20 sm:mb-32 md:mb-40 text-center text-lg sm:text-xl font-light px-4">
                 Rediscover the icons <SemiBold>you know</SemiBold> in a no-frills interface
                 <br /><br />
                 Full of
@@ -95,27 +95,27 @@ const Home = () => {
                 Take a long breath with Dotshell
             </p>
 
-            <LineChartDivider color="#F0B100" direction={Direction.Right} />            <p className="mt-40 text-center text-xl font-light">
+            <LineChartDivider color="#F0B100" direction={Direction.Right} />            <p className="mt-20 sm:mt-32 md:mt-40 text-center text-lg sm:text-xl font-light px-4">
                 And be sure
             </p>
             <BlurText 
                 text="Your Data Is Safe"
-                className="text-center text-7xl font-black"
+                className="text-center text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-black px-4"
                 delay={150}
                 animateBy="words"
                 coloredWords={{ 'safe': 'text-yellow-500' }}
             />
 
-            <p className="mt-20 mb-40 text-center text-xl font-light">
+            <p className="mt-12 sm:mt-16 md:mt-20 mb-20 sm:mb-32 md:mb-40 text-center text-lg sm:text-xl font-light px-4">
                 All you data is stored locally
-                <br />
-                on <SemiBold>your device</SemiBold> and nothing
-                <br />
-                comes out of <SemiBold>your computer</SemiBold>.
+                <br className="hidden sm:block" />
+                <span className="sm:hidden"> </span>on <SemiBold>your device</SemiBold> and nothing
+                <br className="hidden sm:block" />
+                <span className="sm:hidden"> </span>comes out of <SemiBold>your computer</SemiBold>.
                 <br /><br />
                 No more data leaks, no more data theft.
-                <br />
-                Your data is yours and yours only.
+                <br className="hidden sm:block" />
+                <span className="sm:hidden"> </span>Your data is yours and yours only.
             </p>
 
             <Footer />
