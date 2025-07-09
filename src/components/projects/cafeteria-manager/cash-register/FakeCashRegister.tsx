@@ -96,29 +96,29 @@ const FakeCashRegister = () => {
     return (
         <div className="h-full flex flex-col bg-blue-500 select-none">
             <motion.div
-                className="absolute right-0 bottom-0 pb-0 rounded-tl-2xl shadow-xl shadow-transparent dark:border-r dark:border-b border-gray-600 bg-white dark:bg-gray-900 p-8 w-[calc(100%-2.5rem)] h-[calc(100%-2rem)] -translate-x-2 text-black dark:text-white flex select-none"
+                className="absolute right-0 bottom-0 pb-0 rounded-tl-2xl shadow-xl shadow-transparent dark:border-r dark:border-b border-gray-600 bg-white dark:bg-gray-900 p-2 xs:p-3 sm:p-6 md:p-8 w-[calc(100%-2.5rem)] h-[calc(100%-2rem)] -translate-x-2 text-black dark:text-white flex select-none"
                 initial={{opacity: 0, y: 40}}
                 animate="enter"
                 exit="exit"
                 variants={variants}
             >
-                <div className="flex-1 h-full p-4 pt-6 rounded-t-xl border border-b-0 border-gray-200 dark:border-gray-600">
+                <div className="flex-1 h-full p-1 xs:p-2 sm:p-3 md:p-4 pt-2 xs:pt-4 sm:pt-5 md:pt-6 rounded-t-xl border border-b-0 border-gray-200 dark:border-gray-600">
                     {/* Search Bar */}
                     <input
                         type="text"
                         placeholder="Search for products"
                         value={searchTerm}
                         onChange={(e) => setSearchTerm(e.target.value)}
-                        className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 text-black dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500 mb-4"
+                        className="w-full px-1 xs:px-2 sm:px-3 md:px-4 py-0.5 xs:py-1 sm:py-1.5 md:py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 text-black dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500 mb-1 xs:mb-2 sm:mb-3 md:mb-4 text-xs xs:text-sm sm:text-base"
                     />
 
                     {/* Item Group Choice Bar */}
-                    <div className="flex gap-2 mb-4 flex-wrap">
+                    <div className="flex gap-0.5 xs:gap-1 sm:gap-1.5 md:gap-2 mb-1 xs:mb-2 sm:mb-3 md:mb-4 flex-wrap">
                         {groups.map((group, index) => (
                             <button
                                 key={group.id}
                                 onClick={() => handleGroupSelected(index)}
-                                className={`px-3 py-1 rounded-full text-sm transition-colors cursor-pointer ${
+                                className={`px-1 xs:px-2 sm:px-2.5 md:px-3 py-0.5 sm:py-0.75 md:py-1 rounded-full text-[10px] xs:text-xs sm:text-sm transition-colors cursor-pointer ${
                                     group.selected 
                                         ? 'bg-blue-500 text-white' 
                                         : 'bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-300 dark:hover:bg-gray-600'
@@ -130,7 +130,7 @@ const FakeCashRegister = () => {
                     </div>
 
                     <div
-                        className="w-full max-h-[calc(100%-5.4rem)] pr-3 pb-6 pt-2 overflow-y-auto grid grid-cols-4 gap-4 mt-4">
+                        className="w-full max-h-[calc(100%-4.5rem)] xs:max-h-[calc(100%-5rem)] sm:max-h-[calc(100%-5.2rem)] md:max-h-[calc(100%-5.4rem)] pr-1 xs:pr-2 sm:pr-2.5 md:pr-3 pb-2 xs:pb-3 sm:pb-4 md:pb-6 pt-0.5 xs:pt-1 sm:pt-1.5 md:pt-2 overflow-y-auto grid grid-cols-2 xs:grid-cols-3 sm:grid-cols-4 gap-1 xs:gap-2 sm:gap-3 md:gap-4 mt-1 xs:mt-2 sm:mt-3 md:mt-4">
                         {itemsInUI.map((item, index) => {
                             return (
                                 <div key={index} onClick={() => {
@@ -153,18 +153,18 @@ const FakeCashRegister = () => {
                         })}
                     </div>
                 </div>
-                <div className="w-80 h-full p-4 rounded-t-xl ml-8 border border-b-0 border-gray-200 dark:border-gray-600">
-                    <div className="flex flex-col h-[calc(100%-12rem)]">
-                        <h1 className="text-2xl mt-4 text-black dark:text-white">Order</h1>
+                <div className="w-40 xs:w-52 sm:w-64 md:w-72 lg:w-80 h-full p-1 xs:p-2 sm:p-3 md:p-4 rounded-t-xl ml-1 xs:ml-2 sm:ml-6 md:ml-8 border border-b-0 border-gray-200 dark:border-gray-600">
+                    <div className="flex flex-col h-[calc(100%-9rem)] xs:h-[calc(100%-10rem)] sm:h-[calc(100%-11rem)] md:h-[calc(100%-12rem)]">
+                        <h1 className="text-base xs:text-lg sm:text-xl md:text-2xl mt-1 xs:mt-2 sm:mt-3 md:mt-4 text-black dark:text-white">Order</h1>
                         <div
-                            className="flex-1 mt-3 py-2 rounded-xl shadow border-0 dark:border dark:border-gray-600 overflow-y-auto"
+                            className="flex-1 mt-1 xs:mt-2 sm:mt-2.5 md:mt-3 py-0.5 xs:py-1 sm:py-1.5 md:py-2 rounded-xl shadow border-0 dark:border dark:border-gray-600 overflow-y-auto"
                         >
                             {
                                 itemsInCommand.map((item, index) => {
                                     return (
                                         <div
                                             key={item.name}
-                                            className={`flex justify-between items-center mx-4 p-2 ${index !== itemsInCommand.length - 1 && "border-b"} border-gray-200 dark:border-gray-700`}
+                                            className={`flex justify-between items-center mx-0.5 xs:mx-1 sm:mx-3 md:mx-4 p-0.5 xs:p-1 sm:p-1.5 md:p-2 ${index !== itemsInCommand.length - 1 && "border-b"} border-gray-200 dark:border-gray-700`}
                                             onClick={() => {
                                                 setItemsInCommand(prevItems => {
                                                     const updatedItems = prevItems.reduce<FakeItem[]>((acc, curr) => {
@@ -187,11 +187,11 @@ const FakeCashRegister = () => {
                                                 whileTap={{scale: 0.9}}
                                                 transition={{duration: 0.2}}
                                             >
-                                                <div>
-                                                    <h3 className="text-lg font-medium text-black dark:text-white">{item.name}</h3>
-                                                    <p className="text-sm text-gray-500 dark:text-gray-400">Quantity: {item.quantity}</p>
+                                                <div className="max-w-[70%]">
+                                                    <h3 className="text-xs xs:text-sm sm:text-base md:text-lg font-medium text-black dark:text-white truncate">{item.name}</h3>
+                                                    <p className="text-[8px] xs:text-[10px] sm:text-xs md:text-sm text-gray-500 dark:text-gray-400">Qty: {item.quantity}</p>
                                                 </div>
-                                                <span className="text-lg font-bold text-black dark:text-white">
+                                                <span className="text-xs xs:text-sm sm:text-base md:text-lg font-bold text-black dark:text-white">
                                                     €{(item.quantity * item.price).toFixed(2)}
                                                 </span>
                                             </motion.div>
@@ -202,12 +202,12 @@ const FakeCashRegister = () => {
                         </div>
                     </div>
                     <div
-                        className="w-full h-10 mt-8 flex items-center justify-between">
-                        <span className="text-2xl mt-3 text-black dark:text-white">Total</span>
-                        <span className="text-2xl mt-4 font-bold text-black dark:text-white">€{itemsInCommand.reduce((acc, item) => acc + item.quantity * item.price, 0).toFixed(2)}</span>
+                        className="w-full h-6 xs:h-8 sm:h-9 md:h-10 mt-2 xs:mt-4 sm:mt-6 md:mt-8 flex items-center justify-between">
+                        <span className="text-base xs:text-lg sm:text-xl md:text-2xl mt-1 xs:mt-2 sm:mt-2.5 md:mt-3 text-black dark:text-white">Total</span>
+                        <span className="text-base xs:text-lg sm:text-xl md:text-2xl mt-1 xs:mt-2 sm:mt-3 md:mt-4 font-bold text-black dark:text-white">€{itemsInCommand.reduce((acc, item) => acc + item.quantity * item.price, 0).toFixed(2)}</span>
                     </div>
                     <button
-                        className={`w-full mt-4 p-2 text-center text-lg rounded-md border border-transparent hover:border-[#646cff] focus:outline-4 focus:outline-auto focus:outline-[#646cff] transition-all cursor-pointer ${
+                        className={`w-full mt-2 xs:mt-3 sm:mt-3.5 md:mt-4 p-1 xs:p-1.5 sm:p-1.75 md:p-2 text-center text-xs xs:text-sm sm:text-base md:text-lg rounded-md border border-transparent hover:border-[#646cff] focus:outline-4 focus:outline-auto focus:outline-[#646cff] transition-all cursor-pointer ${
                             orderStatus === 'idle' 
                                 ? 'bg-gray-100 dark:bg-gray-800' 
                                 : orderStatus === 'saving' 
