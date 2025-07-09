@@ -96,7 +96,7 @@ const FakeCashRegister = () => {
     return (
         <div className="h-full flex flex-col bg-blue-500 select-none">
             <motion.div
-                className="absolute right-0 bottom-0 pb-0 rounded-tl-2xl shadow-xl shadow-transparent dark:border-r dark:border-b border-gray-600 bg-white dark:bg-gray-900 p-8 w-[calc(100%-2rem)] h-[calc(100%-2rem)] text-black dark:text-white flex select-none"
+                className="absolute right-0 bottom-0 pb-0 rounded-tl-2xl shadow-xl shadow-transparent dark:border-r dark:border-b border-gray-600 bg-white dark:bg-gray-900 p-8 w-[calc(100%-2.5rem)] h-[calc(100%-2rem)] -translate-x-2 text-black dark:text-white flex select-none"
                 initial={{opacity: 0, y: 40}}
                 animate="enter"
                 exit="exit"
@@ -111,7 +111,7 @@ const FakeCashRegister = () => {
                         onChange={(e) => setSearchTerm(e.target.value)}
                         className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 text-black dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500 mb-4"
                     />
-                    
+
                     {/* Item Group Choice Bar */}
                     <div className="flex gap-2 mb-4 flex-wrap">
                         {groups.map((group, index) => (

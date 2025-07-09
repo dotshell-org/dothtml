@@ -72,7 +72,7 @@ const CafeteriaManager = () => {
 
             <div className="w-full mx-auto mt-6 sm:mt-8 md:mt-10 mb-5 relative px-2 max-w-none sm:max-w-6xl">
                 <div className="rounded-2xl bg-blue-500 shadow-lg p-2 sm:p-3 md:p-4 lg:p-6 min-h-[30rem] sm:min-h-[35rem] md:min-h-[40rem] lg:min-h-[45rem]">
-                    {/*<FakeCashRegister />*/}
+                    <FakeCashRegister />
                 </div>
             </div>
 
