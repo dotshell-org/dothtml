@@ -14,7 +14,7 @@ import Footer from "@/components/generic/footer/Footer";
 
 const CafeteriaManager = () => {
     return (
-        <div className="min-h-screen bg-background text-foreground">
+        <div className="min-h-screen bg-background text-foreground overflow-x-hidden">
             <NavBar />
 
             <div className="container mt-10 md:mt-24 mb-8 md:mb-16 mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-16 max-w-7xl">

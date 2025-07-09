@@ -233,7 +233,7 @@ const FakeCalendar: React.FC = () => {
                 <AnimatePresence mode="wait">
                     <motion.div
                         key={currentDate.format('YYYY-MM-DD') + '-content'}
-                        className="grid grid-cols-7 text-center h-[11rem] sm:h-[20rem] md:h-[29rem] pt-1"
+                        className="grid grid-cols-7 text-center h-[11rem] sm:h-[20rem] md:h-[29rem] pt-1 overflow-x-hidden"
                         variants={containerVariants}
                         initial="hidden"
                         animate="visible"

@@ -109,7 +109,7 @@ const FakeCashRegister = () => {
                         placeholder="Search for products"
                         value={searchTerm}
                         onChange={(e) => setSearchTerm(e.target.value)}
-                        className="w-full px-1 xs:px-2 sm:px-3 md:px-4 py-0.5 xs:py-1 sm:py-1.5 md:py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 text-black dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500 mb-1 xs:mb-2 sm:mb-3 md:mb-4 text-xs xs:text-sm sm:text-base"
+                        className="w-full px-1 xs:px-2 sm:px-3 md:px-4 py-0.5 xs:py-1 sm:py-1.5 md:py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 text-black dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500 mb-1 xs:mb-2 sm:mb-3 md:mb-4 text-xs sm:text-base"
                     />
 
                     {/* Item Group Choice Bar */}

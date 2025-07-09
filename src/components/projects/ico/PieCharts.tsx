@@ -114,10 +114,8 @@ const PieCharts = () => {
                         colors={redColors}
                         sx={{ 
                             '& .MuiChartsLegend-root': { display: 'none' },
-                            '@media (min-width: 640px)': {
-                                height: 350
-                            },
-                            ...(isMobile && { pointerEvents: 'none' })
+                            ...(isMobile && { pointerEvents: 'none' }),
+                            innerRadius: 500
                         }}
                     >
                         <PieCenterLabel>€{formatNumber(totalValue)}</PieCenterLabel>

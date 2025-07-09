@@ -367,13 +367,6 @@ img {
     }
 }
 
-/* Better form styling for mobile */
-@media (max-width: 640px) {
-    input, textarea, select {
-        font-size: 16px; /* Prevents zoom on iOS */
-    }
-}
-
 /* Better dark mode support */
 @media (prefers-color-scheme: dark) {
     input, textarea {
