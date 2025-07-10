@@ -51,7 +51,7 @@ const Contact = () => {
             return;
         }
         try {
-            const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL ? process.env.NEXT_PUBLIC_API_URL + '/contact' : '/contact'}`, {
+            const res = await fetch('http://localhost:8080/contact', { // TODO: Replace with the real domain when deployed
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(form)
@@ -62,7 +62,8 @@ const Contact = () => {
                 // Ajout du délai d'une seconde pour l'état "Sent"
                 setTimeout(() => {
                     setStatus(null);
-                }, 1000);            } else {
+                }, 1000);
+            } else {
                 const data = await res.json();
                 setErrorMsg(data.errors ? data.errors.map((e: { msg: string }) => e.msg).join(", ") : "Error while sending message.");
                 setStatus("error");
@@ -77,10 +78,10 @@ const Contact = () => {
     return (
         <div className="min-h-screen relative">
             <NavBar />
-            <h1 className="my-10 sm:my-20 text-center text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black px-4">
+            <h1 className="my-10 sm:my-20 text-center text-5xl lg:text-6xl xl:text-7xl font-black px-4">
                 Contact <span className="text-blue-500">Us</span>
             </h1>
-            <div className="max-w-md mx-auto px-4">
+            <div className="max-w-md mx-auto px-8">
                 <form onSubmit={handleSubmit}>
                     <div className="mb-6">
                         <p className="text-center text-base sm:text-lg md:text-xl font-light">Name</p>
@@ -89,7 +90,7 @@ const Contact = () => {
                             value={form.name} 
                             onChange={handleChange} 
                             onBlur={handleBlur} 
-                            className={`w-full pl-3 py-2 mt-2 mb-1.5 rounded-lg border ${fieldErrors.name && touched.name ? 'border-red-500' : 'border-gray-300 dark:border-gray-700'} bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100`} 
+                            className={`w-full pl-2 py-1 mt-2 mb-1.5 rounded-lg border ${fieldErrors.name && touched.name ? 'border-red-500' : 'border-gray-300 dark:border-gray-700'} bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100`}
                             type="text" 
                         />
                         {fieldErrors.name && touched.name && <p className="text-red-500 text-sm text-center mb-4 animate-fade-in">{fieldErrors.name}</p>}
@@ -101,7 +102,7 @@ const Contact = () => {
                             value={form.email} 
                             onChange={handleChange} 
                             onBlur={handleBlur} 
-                            className={`w-full pl-3 py-2 mt-2 mb-1.5 rounded-lg border ${fieldErrors.email && touched.email ? 'border-red-500' : 'border-gray-300 dark:border-gray-700'} bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100`} 
+                            className={`w-full pl-2 py-1 mt-2 mb-1.5 rounded-lg border ${fieldErrors.email && touched.email ? 'border-red-500' : 'border-gray-300 dark:border-gray-700'} bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100`}
                             type="text" 
                             placeholder="email@example.com" 
                         />
@@ -114,7 +115,7 @@ const Contact = () => {
                             value={form.country} 
                             onChange={handleChange} 
                             onBlur={handleBlur} 
-                            className={`w-full pl-3 py-2 mt-2 mb-1.5 rounded-lg border ${fieldErrors.country && touched.country ? 'border-red-500' : 'border-gray-300 dark:border-gray-700'} bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100`} 
+                            className={`w-full pl-2 py-1 mt-2 mb-1.5 rounded-lg border ${fieldErrors.country && touched.country ? 'border-red-500' : 'border-gray-300 dark:border-gray-700'} bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100`}
                             type="text" 
                         />
                         {fieldErrors.country && touched.country && <p className="text-red-500 text-sm text-center mb-4 animate-fade-in">{fieldErrors.country}</p>}
@@ -125,7 +126,7 @@ const Contact = () => {
                             name="phone" 
                             value={form.phone} 
                             onChange={handleChange} 
-                            className="w-full pl-3 py-2 mt-2 mb-1.5 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100" 
+                            className="w-full pl-2 py-1 mt-2 mb-1.5 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100"
                             type="text" 
                         />
                     </div>
@@ -135,7 +136,7 @@ const Contact = () => {
                             name="company" 
                             value={form.company} 
                             onChange={handleChange} 
-                            className="w-full pl-3 py-2 mt-2 mb-1.5 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100" 
+                            className="w-full pl-2 py-1 mt-2 mb-1.5 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100"
                             type="text" 
                         />
                     </div>
@@ -152,7 +153,7 @@ const Contact = () => {
                     </div>
                     <button
                         type="submit"
-                        className={`w-full rounded-lg ${status === "success" ? "bg-blue-300" : "bg-blue-500 hover:bg-blue-400"} text-white text-center mt-7 mb-10 py-3 px-4 cursor-pointer transition-all ${isSubmitting ? 'opacity-70' : ''}`}
+                        className={`w-full rounded-lg ${status === "success" ? "bg-blue-300" : "bg-blue-500 hover:bg-blue-400"} text-white text-center mt-7 mb-20 py-2 px-4 cursor-pointer transition-all ${isSubmitting ? 'opacity-70' : ''}`}
                         disabled={isSubmitting || status === "success"}
                     >
                         {status === "success" ? "Sent" : isSubmitting ? "Sending..." : "Submit"}
