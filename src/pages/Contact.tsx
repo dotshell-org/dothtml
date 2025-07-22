@@ -61,7 +61,7 @@ const Contact = () => {
                 setForm({ name: "", email: "", country_region: "", phone_number: "", company: "", message: "" });
                 setTimeout(() => {
                     setStatus(null);
-                }, 1000);
+                }, 2000);
             } else {
                 const data = await res.json();
                 setErrorMsg(data.errors ? data.errors.map((e: { msg: string }) => e.msg).join(", ") : "Error while sending message.");
@@ -152,7 +152,7 @@ const Contact = () => {
                     </div>
                     <button
                         type="submit"
-                        className={`w-full rounded-lg ${status === "success" ? "bg-blue-300" : "bg-blue-500 hover:bg-blue-400"} text-white text-center mt-7 mb-20 py-2 px-4 cursor-pointer transition-all ${isSubmitting ? 'opacity-70' : ''}`}
+                        className={`w-full rounded-lg ${status === "success" ? "bg-green-500" : "bg-blue-500 hover:bg-blue-400"} text-white text-center mt-7 mb-20 py-2 px-4 cursor-pointer transition-all ${isSubmitting ? 'opacity-70' : ''}`}
                         disabled={isSubmitting || status === "success"}
                     >
                         {status === "success" ? "Sent" : isSubmitting ? "Sending..." : "Submit"}
