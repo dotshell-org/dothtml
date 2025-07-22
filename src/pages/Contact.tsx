@@ -8,8 +8,8 @@ const Contact = () => {
     const [form, setForm] = useState({
         name: "",
         email: "",
-        country: "",
-        phone: "",
+        country_region: "",   // au lieu de country
+        phone_number: "",     // au lieu de phone
         company: "",
         message: ""
     });
@@ -23,7 +23,7 @@ const Contact = () => {
         const errors: { [key: string]: string } = {};
         if (!form.name.trim()) errors.name = "Name is required.";
         if (!form.email.trim()) errors.email = "Email is required.";
-        if (!form.country.trim()) errors.country = "Country is required.";
+        if (!form.country_region.trim()) errors.country = "Country is required.";
         if (!form.message.trim()) errors.message = "Message is required.";
         return errors;
     };
@@ -51,15 +51,14 @@ const Contact = () => {
             return;
         }
         try {
-            const res = await fetch('http://localhost:8080/contact', { // TODO: Replace with the real domain when deployed
+            const res = await fetch('https://dotshell.ddns.net:8443/contact', { // TODO: Replace with the real domain when deployed
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(form)
             });
             if (res.ok) {
                 setStatus("success");
-                setForm({ name: "", email: "", country: "", phone: "", company: "", message: "" });
-                // Ajout du délai d'une seconde pour l'état "Sent"
+                setForm({ name: "", email: "", country_region: "", phone_number: "", company: "", message: "" });
                 setTimeout(() => {
                     setStatus(null);
                 }, 1000);
@@ -111,8 +110,8 @@ const Contact = () => {
                     <div className="mb-6">
                         <p className="text-center text-base sm:text-lg md:text-xl font-light">Country/Region</p>
                         <input 
-                            name="country" 
-                            value={form.country} 
+                            name="country_region"
+                            value={form.country_region}
                             onChange={handleChange} 
                             onBlur={handleBlur} 
                             className={`w-full pl-2 py-1 mt-2 mb-1.5 rounded-lg border ${fieldErrors.country && touched.country ? 'border-red-500' : 'border-gray-300 dark:border-gray-700'} bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100`}
@@ -123,8 +122,8 @@ const Contact = () => {
                     <div className="mb-6">
                         <p className="text-center text-base sm:text-lg md:text-xl font-light">Phone number (optional)</p>
                         <input 
-                            name="phone" 
-                            value={form.phone} 
+                            name="phone_number"
+                            value={form.phone_number}
                             onChange={handleChange} 
                             className="w-full pl-2 py-1 mt-2 mb-1.5 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100"
                             type="text" 
