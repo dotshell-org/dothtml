@@ -149,7 +149,7 @@ This project is under the MIT license. See the [LICENSE](LICENSE) file for more 
 
 ## 🌐 Useful Links
 
-- 🌍 **Website** : [dotshell.org](https://dotshell.org)
+- 🌍 **Website** : [dotshell.eu](https://dotshell.org)
 - 📦 **GitHub Organization** : [github.com/dotshell-org](https://github.com/dotshell-org)
 - 🍽️ **Cafeteria Manager** : [github.com/dotshell-org/cafeteria-manager](https://github.com/dotshell-org/cafeteria-manager)
 - 📊 **Ico** : [github.com/dotshell-org/ico](https://github.com/dotshell-org/ico)

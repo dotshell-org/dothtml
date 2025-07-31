@@ -1,0 +1,11 @@
+# robots.txt for dotshell.eu
+# Last updated: 2025-07-31
+
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://dotshell.eu/sitemap.xml
+
+# Optimize crawling
+Crawl-delay: 10

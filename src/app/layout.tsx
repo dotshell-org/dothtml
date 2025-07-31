@@ -14,8 +14,62 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Dotshell",
-  description: "The official Dotshell website.",
+  title: {
+    default: "Dotshell - Open Source Software for Businesses",
+    template: "%s | Dotshell"
+  },
+  description: "Dotshell develops open source software solutions for businesses. Our mission is to make open source the best option for all your software needs.",
+  keywords: ["open source", "software", "business software", "cafeteria manager", "ico", "accounting software", "inventory management", "French software"],
+  authors: [{ name: "Dotshell" }],
+  creator: "Dotshell",
+  publisher: "Dotshell",
+  formatDetection: {
+    email: false,
+    telephone: false,
+    address: false,
+  },
+  metadataBase: new URL("https://dotshell.eu"),
+  alternates: {
+    canonical: "/",
+    languages: {
+      "en-US": "/en-US",
+      "fr-FR": "/fr-FR",
+    },
+  },
+  openGraph: {
+    title: "Dotshell - Open Source Software for Businesses",
+    description: "Dotshell develops open source software solutions for businesses. Our mission is to make open source the best option for all your software needs.",
+    url: "https://dotshell.eu",
+    siteName: "Dotshell",
+    locale: "en_US",
+    type: "website",
+    images: [
+      {
+        url: "/images/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Dotshell - Open Source Software for Businesses",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Dotshell - Open Source Software for Businesses",
+    description: "Dotshell develops open source software solutions for businesses. Our mission is to make open source the best option for all your software needs.",
+    images: ["/images/twitter-image.jpg"],
+    creator: "@dotshell",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
   viewport: "width=device-width, initial-scale=1",
 };
 
