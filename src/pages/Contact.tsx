@@ -51,7 +51,7 @@ const Contact = () => {
             return;
         }
         try {
-            const res = await fetch('https://dotshell.ddns.net:8443/contact', { // TODO: Replace with the real domain when deployed
+            const res = await fetch('https://dhi.dotshell.eu/contact', {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(form)
