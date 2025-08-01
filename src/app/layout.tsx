@@ -15,7 +15,7 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: {
-    default: "Dotshell - Open Source Software for Businesses",
+    default: "Dotshell",
     template: "%s | Dotshell"
   },
   description: "Dotshell develops open source software solutions for businesses. Our mission is to make open source the best option for all your software needs.",
@@ -37,7 +37,7 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: "Dotshell - Open Source Software for Businesses",
+    title: "Dotshell",
     description: "Dotshell develops open source software solutions for businesses. Our mission is to make open source the best option for all your software needs.",
     url: "https://dotshell.eu",
     siteName: "Dotshell",
@@ -48,13 +48,13 @@ export const metadata: Metadata = {
         url: "/images/og-image.jpg",
         width: 1200,
         height: 630,
-        alt: "Dotshell - Open Source Software for Businesses",
+        alt: "Dotshell",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Dotshell - Open Source Software for Businesses",
+    title: "Dotshell",
     description: "Dotshell develops open source software solutions for businesses. Our mission is to make open source the best option for all your software needs.",
     images: ["/images/twitter-image.jpg"],
     creator: "@dotshell",

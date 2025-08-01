@@ -2,10 +2,10 @@ import Contact from "@/pages/Contact";
 import Script from 'next/script';
 
 export const metadata = {
-    title: "Contact Dotshell - Get in Touch with Our Team",
+    title: "Contact",
     description: "Have questions about our open source software solutions? Contact the Dotshell team for support, inquiries, or partnership opportunities. We're here to help your business succeed with open source software.",
     openGraph: {
-        title: "Contact Dotshell - Get in Touch with Our Team",
+        title: "Contact",
         description: "Have questions about our open source software solutions? Contact the Dotshell team for support, inquiries, or partnership opportunities.",
         type: "website",
     },
