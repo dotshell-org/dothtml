@@ -1,7 +1,8 @@
 #!/bin/bash
 
 # Name of the production archive
-ARCHIVE_NAME="nextjs-prod.tar.gz"
+TIMESTAMP=$(date +"%Y%m%d_%H%M%S")
+ARCHIVE_NAME=${1:-"dothtml_${TIMESTAMP}.tar.gz"}
 
 echo "Starting Next.js build..."
 npm run build
@@ -20,7 +21,7 @@ cp package.json $TEMP_DIR/
 cp package-lock.json $TEMP_DIR 2>/dev/null || cp yarn.lock $TEMP_DIR/ 2>/dev/null
 
 echo "Creating archive $ARCHIVE_NAME..."
-tar -czf $ARCHIVE_NAME $TEMP_DIR
+tar -czf "$ARCHIVE_NAME" -C $TEMP_DIR .
 
 # Optional: clean up temporary folder
 rm -rf $TEMP_DIR
