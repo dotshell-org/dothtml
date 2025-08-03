@@ -6,7 +6,7 @@ import { motion, AnimatePresence, Variants } from 'framer-motion';
 
 // Format days: "Mon 12 Apr"
 const formatDate = (date: string | number | dayjs.Dayjs | Date | null | undefined) => {
-    return dayjs(date).format('ddd D MMMM');
+    return dayjs(date).format('ddd D MMM');
 };
 
 // Generate an array of 7 days starting from a given date
