@@ -10,7 +10,7 @@ npm run build
 echo "Preparing files to archive..."
 
 # Create a temporary folder to gather necessary files
-TEMP_DIR="nextjs-prod"
+TEMP_DIR="next-js-prod"
 rm -rf $TEMP_DIR
 mkdir $TEMP_DIR
 

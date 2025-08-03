@@ -246,9 +246,6 @@ body {
         transform: translateY(0);
     }
 }
-.animate-slide-fade-in {
-    animation: slideFadeIn 0.5s cubic-bezier(0.4,0,0.2,1);
-}
 
 /* Slide and fade-in from bottom animation for success box */
 @keyframes slideFadeInUp {
@@ -261,9 +258,6 @@ body {
         transform: translateY(0);
     }
 }
-.animate-slide-fade-in-up {
-    animation: slideFadeInUp 0.5s cubic-bezier(0.4,0,0.2,1);
-}
 
 @keyframes slideFadeOutDown {
     from {
@@ -274,9 +268,6 @@ body {
         opacity: 0;
         transform: translateY(30px);
     }
-}
-.animate-slide-fade-out-down {
-    animation: slideFadeOutDown 0.5s cubic-bezier(0.4,0,0.2,1);
 }
 
 /* Liquid container animation for logo */
@@ -291,11 +282,6 @@ body {
 /* Purple variant for Ico */
 .liquid-container.bg-purple-500 {
     box-shadow: 0 0 20px rgba(168, 85, 247, 0.3);
-}
-
-/* Green variant for Specto */
-.liquid-container.bg-red-500 {
-    box-shadow: 0 0 20px rgba(251, 44, 54, 0.3);
 }
 
 @keyframes liquidBorder {
@@ -313,10 +299,6 @@ body {
     }
 }
 
-.custom-mark {
-  fill: #101828 !important;
-}
-
 /* Global responsive improvements */
 html {
     scroll-behavior: smooth;
@@ -331,40 +313,6 @@ img {
 /* Fix for horizontal scrolling on mobile */
 * {
     box-sizing: border-box;
-}
-
-/* Responsive container classes */
-.container-responsive {
-    width: 100%;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 1rem;
-}
-
-@media (min-width: 640px) {
-    .container-responsive {
-        padding: 0 2rem;
-    }
-}
-
-@media (min-width: 1024px) {
-    .container-responsive {
-        padding: 0 3rem;
-    }
-}
-
-/* Improved mobile navigation */
-@media (max-width: 640px) {
-    .nav-mobile {
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        z-index: 1000;
-        background: var(--background);
-        border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-        backdrop-filter: blur(10px);
-    }
 }
 
 /* Better dark mode support */
@@ -422,23 +370,13 @@ img {
 /* Mobile touch interaction prevention for charts */
 @media (max-width: 768px) {
     /* Disable touch interactions on MUI Charts */
-    .MuiChartsLegend-root,
-    .MuiChartsTooltip-root,
-    .MuiChartsAxis-root,
     svg[class*="MuiChart"] {
         pointer-events: none !important;
         touch-action: pan-y !important;
     }
     
     /* Allow scrolling over chart containers */
-    .MuiChart-root,
-    .recharts-wrapper,
     [class*="chart"] {
         touch-action: pan-y !important;
-    }
-    
-    /* Disable interactions on Swiper pagination on mobile */
-    .swiper-pagination {
-        pointer-events: none !important;
     }
 }

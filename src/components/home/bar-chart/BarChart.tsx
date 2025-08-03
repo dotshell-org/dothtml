@@ -4,7 +4,7 @@ const BarChart = () => {
     const features: Feature[] = [
         {title: "Export", description: "Export your data in the formats you love like CSV and JSON", software: "Cafeteria Manager"},
         {title: "Search & Filters", description: "Organize and search deeply into your data with Sorts & Filters", software: "Ico"},
-        {title: "Aggregation Toolbar", description: "Easy perform calculations on different data using the Agregation Toolbar", software: "Ico"},
+        {title: "Aggregation Toolbar", description: "Easy perform calculations on different data using the Aggregation Toolbar", software: "Ico"},
         {title: "Charts", description: "Visualize easily your data over the time with Charts", software: "Ico & Cafeteria Manager"},
         {title: "History", description: "Find out in detail what happened at a specific time, with a detailed history", software: "Ico & Cafeteria Manager"},
     ];

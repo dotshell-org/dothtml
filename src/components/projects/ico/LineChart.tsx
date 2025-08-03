@@ -36,7 +36,7 @@ const LineChart = () => {
     // Memoize the default light theme creation to avoid re-creating it on every render
     const lightTheme = useMemo(() => createTheme(), []); // <--- NEW: Create a default light theme
 
-    // Generate random data on client side only to avoid hydration mismatch
+    // Generate random data on the client side only to avoid hydration mismatch
     const [seriesData, setSeriesData] = useState<number[][]>([[], []]);
 
     useEffect(() => {
@@ -64,7 +64,7 @@ const LineChart = () => {
     // Choose the theme to apply: your custom darkTheme if preferred, otherwise the default lightTheme
     const currentTheme = prefersDarkMode ? darkTheme : lightTheme; // <--- CHANGED: Use lightTheme instead of null
 
-    // Calculate responsive height - reduce height on small screens to maintain aspect ratio
+    // Calculate responsive height - reduce height on small screens to maintain an aspect ratio
     const chartHeight = useMemo(() => {
         if (isSmallScreen) {
             return 250; // Reduced height for very small screens

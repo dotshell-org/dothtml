@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, Transition } from 'framer-motion';
-import { useEffect, useRef, useState, useMemo } from 'react';
+import React, { useEffect, useRef, useState, useMemo } from 'react';
 
 type BlurTextProps = {
   text?: string;
@@ -16,7 +16,7 @@ type BlurTextProps = {
   easing?: (t: number) => number;
   onAnimationComplete?: () => void;
   stepDuration?: number;
-  coloredWords?: Record<string, string>; // Nouveau prop pour gérer les mots colorés
+  coloredWords?: Record<string, string>;
 };
 
 const buildKeyframes = (
@@ -112,7 +112,6 @@ const BlurText: React.FC<BlurTextProps> = ({
         };
         spanTransition.ease = easing;
 
-        // Appliquer les couleurs personnalisées aux mots spécifiés
         const wordLower = segment.toLowerCase();
         const colorClass = coloredWords[wordLower] || '';
 

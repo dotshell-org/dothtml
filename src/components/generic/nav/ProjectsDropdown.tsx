@@ -17,7 +17,6 @@ const ProjectsDropdown: React.FC<ProjectsDropdownProps> = ({ isVisible }) => {
         <div className={`absolute top-full right-0 sm:left-1/2 sm:-translate-x-1/2 mt-4 w-64 sm:w-72 md:w-80 bg-white dark:bg-gray-900 rounded-lg shadow-xl border border-gray-200 dark:border-gray-700 transition-all duration-300 backdrop-blur-sm z-50 projects-dropdown ${
             isVisible ? 'opacity-100 translate-y-0 pointer-events-auto' : 'opacity-0 -translate-y-2 pointer-events-none'
         }`}>
-            {/* Petite flèche pointant vers le haut */}
             <div className="absolute -top-2 left-1/2 -translate-x-1/2 w-4 h-4 bg-white dark:bg-gray-900 border-l border-t border-gray-200 dark:border-gray-700 rotate-45 z-51"></div>
               <div className="p-3 sm:p-4 relative z-10">
                 <div className="flex flex-col gap-2">                    

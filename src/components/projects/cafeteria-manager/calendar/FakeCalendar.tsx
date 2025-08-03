@@ -4,7 +4,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import dayjs from 'dayjs';
 import { motion, AnimatePresence, Variants } from 'framer-motion';
 
-// Format days: "Mon 12 April"
+// Format days: "Mon 12 Apr"
 const formatDate = (date: string | number | dayjs.Dayjs | Date | null | undefined) => {
     return dayjs(date).format('ddd D MMMM');
 };

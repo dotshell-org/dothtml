@@ -26,7 +26,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ item }) => {
                         height={200}
                         className="w-full h-full object-cover"
                         onError={(e) => {
-                            // Fallback to placeholder if image fails to load
+                            // Fallback to placeholder if the image fails to load
                             const target = e.target as HTMLImageElement;
                             target.style.display = 'none';
                             target.nextElementSibling!.classList.remove('hidden');

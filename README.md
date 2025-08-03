@@ -43,12 +43,12 @@ We firmly believe that open source solutions can compete with and surpass propri
 
 This website is built with modern and efficient technologies:
 
-- **[Next.js 15.3.3](https://nextjs.org)** - React Framework with App Router
-- **[TypeScript](https://www.typescriptlang.org)** - Static typing for JavaScript
-- **[Tailwind CSS 4](https://tailwindcss.com)** - Utility-first CSS framework
-- **[Framer Motion](https://framer.com/motion)** - Smooth animations
-- **[Material-UI](https://mui.com)** - User interface components
-- **[Chart.js](https://www.chartjs.org)** - Interactive charts
+- **[Next.js 15.3.3](https://nextjs.org)** — React framework with App Router
+- **[TypeScript](https://www.typescriptlang.org)** — Static typing for JavaScript
+- **[Tailwind CSS 4](https://tailwindcss.com)** — Utility-first CSS framework
+- **[Framer Motion](https://framer.com/motion)** — Smooth animations for React
+- **[Material UI](https://mui.com)** — UI component library
+- **[Chart.js](https://www.chartjs.org)** — Interactive charting library
 
 ## 🚀 Quick Start
 
@@ -105,7 +105,7 @@ src/
 └── globals.css           # Global styles
 ```
 
-## 🎨 Fonctionnalités
+## 🎨 Functionalities
 
 - ✨ **Modern design** with Framer Motion animations
 - 📱 **Responsive design** optimized for all devices
@@ -113,7 +113,6 @@ src/
 - 🎯 **Optimized performance** with Next.js 15
 - 🔧 **TypeScript** for robust code
 - 📊 **Interactive charts** to present data
-- 🚀 **Easy deployment** on Verce
 
 ## 📱 Available Pages
 

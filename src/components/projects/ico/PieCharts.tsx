@@ -1,10 +1,9 @@
 import { PieChart as MuiPieChart, useDrawingArea } from "@mui/x-charts";
-import { useMemo, useState, useEffect } from "react";
+import React, { useMemo, useState, useEffect } from "react";
 import { createTheme, ThemeProvider, useMediaQuery } from '@mui/material';
 import { styled } from "@mui/material/styles";
 import SemiBold from "@/components/generic/SemiBold";
 
-// Génère des valeurs aléatoires pour chaque catégorie et trie par ordre croissant
 const generateFakePieData = () => {
     const data = [
         { label: "Category A", value: Math.floor(Math.random() * 2000) + 100 },
@@ -75,7 +74,6 @@ const PieCharts = () => {
     // Memoize the default light theme creation
     const lightTheme = useMemo(() => createTheme(), []);
 
-    // Génère les données aléatoires uniquement côté client pour éviter l'hydration mismatch
     const [chartData, setChartData] = useState<{ label: string; value: number }[]>([]);
     useEffect(() => {
         setChartData(generateFakePieData());
@@ -87,7 +85,7 @@ const PieCharts = () => {
         "#ff1b1b", "#ff0707", "#e50000", "#cc0000", "#b20000"
     ];
 
-    // Calculate total value for center label
+    // Calculate total value for the center label
     const totalValue = chartData.reduce((acc, item) => acc + item.value, 0);
 
     // Pie chart series configuration

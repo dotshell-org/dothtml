@@ -210,7 +210,7 @@ const FakeStats: React.FC = () => {
             });
         };
         
-        // Apply styles after component mounts and when theme changes
+        // Apply styles after component mounts and when the theme changes
         const timer = setTimeout(applyLegendStyles, 100);
         return () => clearTimeout(timer);
     }, [chartTheme.textColor, pieChartData, lineChartData]);

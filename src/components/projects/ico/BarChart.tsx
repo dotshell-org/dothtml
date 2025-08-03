@@ -1,5 +1,5 @@
 import React from 'react';
-import { BarChart as VisxBarChart } from '@mui/x-charts';
+import { BarChart as MUIBarChart } from '@mui/x-charts';
 import { useMediaQuery } from '@mui/material';
 
 const sampleInventory = [
@@ -17,7 +17,7 @@ const BarChart: React.FC = () => {
     
     return (
         <div className="w-full h-96 bg-white dark:bg-gray-900 p-4 sm:p-6 md:p-8">
-            <VisxBarChart
+            <MUIBarChart
                 xAxis={[
                     {
                         data: sampleInventory.map((item) => item.name),

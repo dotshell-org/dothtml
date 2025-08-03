@@ -10,11 +10,9 @@ export default function ClientProviders({ children }: { children: React.ReactNod
 
     useEffect(() => {
         setMounted(true);
-        // Détecter la préférence système
         const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
         setIsDark(mediaQuery.matches);
 
-        // Écouter les changements de préférence système
         const handleChange = (e: MediaQueryListEvent) => {
             setIsDark(e.matches);
         };

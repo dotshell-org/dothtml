@@ -15,7 +15,6 @@ interface DownloadButtonProps {
     appType?: "electron" | "web";
 }
 
-// Configuration des repositories GitHub et versions pour chaque application
 const appConfig = {
     "Ico": {
         repo: "dotshell-org/ico",
@@ -24,14 +23,6 @@ const appConfig = {
             windows: "Ico-V.1-Setup.exe",
             linux_deb: "Ico-V.1-Setup.deb",
             linux_appimage: "Ico-V.1-Setup.AppImage"
-        }
-    },
-    "Specto": {
-        repo: "dotshell-org/specto",
-        version: "V1",
-        releases: {
-            zip: "Specto-V.1.zip",
-            targz: "Specto-V.1.tar.gz"
         }
     },
     "Cafeteria Manager": {
@@ -45,20 +36,10 @@ const appConfig = {
     }
 };
 
-// Fonction pour générer l'URL de téléchargement GitHub
 const generateGitHubDownloadUrl = (appName: string, platform: string): string => {
     const config = appConfig[appName as keyof typeof appConfig];
     if (!config) {
         return `/downloads/${appName.toLowerCase()}/${platform}`;
-    }
-
-    // Cas spécial pour Specto qui a zip/targz au lieu de windows/mac/linux
-    if (appName === "Specto") {
-        const releaseFile = config.releases[platform as keyof typeof config.releases];
-        if (!releaseFile) {
-            return `/downloads/${appName.toLowerCase()}/${platform}`;
-        }
-        return `https://github.com/${config.repo}/releases/download/${config.version}/${releaseFile}`;
     }
 
     const releaseFile = config.releases[platform as keyof typeof config.releases];
@@ -83,60 +64,48 @@ const DownloadButton: React.FC<DownloadButtonProps> = ({ appName, colorScheme, a
             const detectClientOS = (): number => {
                 const userAgent = window.navigator.userAgent.toLowerCase();
 
-                // Cas spécial pour Specto : zip pour Windows, tar.gz pour autres
-                if (appName === "Specto") {
-                    return userAgent.includes('win') ? 0 : 1; // 0 = zip, 1 = tar.gz
-                }
-
-                // Cas spécial pour Ico : pas d'options macOS
                 if (appName === "Ico") {
                     if (userAgent.includes('linux')) {
-                        // Pour Linux, on essaie de détecter si c'est Ubuntu/Debian ou autre
                         if (userAgent.includes('ubuntu') || userAgent.includes('debian')) {
                             return 1; // Ubuntu/Debian (.deb)
                         } else {
-                            return 2; // Autres Linux (.AppImage)
+                            return 2; // Other Linux (.AppImage)
                         }
                     }
-                    return 0; // Windows par défaut pour Ico
+                    return 0; // Windows by default
                 }
 
-                // Cas général pour les autres applications
                 if (userAgent.includes('mac')) {
                     // Détection de Mac Apple Silicon vs Intel
                     if (userAgent.includes('arm') || userAgent.includes('arm64')) {
                         return 1; // Mac Apple Silicon
                     } else {
-                        return 2; // Mac Intel (par défaut pour les autres Mac)
+                        return 2; // Mac Intel
                     }
                 }
 
-                // Pour Cafeteria Manager: Linux doit proposer l'option .deb (index 2)
                 if (appName === "Cafeteria Manager" && userAgent.includes('linux')) {
                     return 2; // Ubuntu/Debian (.deb)
                 }
 
                 if (userAgent.includes('linux')) return 3; // Linux
-                return 0; // Windows par défaut
+                return 0; // Windows by default
             };
 
             setSelectedPlatform(detectClientOS());
         }
-    }, [appName]);    // Fonction pour gérer le téléchargement
+    }, [appName]);
     const handleDownload = async (downloadUrl: string) => {
         if (!downloadUrl) {
-            console.error('URL de téléchargement non disponible');
+            console.error('Download URL unavailable');
             return;
         }
 
         setIsDownloading(true);
         try {
-            // Vérifier si l'URL est une URL GitHub Release
             if (downloadUrl.includes('github.com') && downloadUrl.includes('/releases/download/')) {
-                // Ouvrir directement le lien GitHub
                 window.open(downloadUrl, '_blank');
             } else {
-                // Pour les autres URLs, utiliser la méthode de téléchargement classique
                 const link = document.createElement('a');
                 link.href = downloadUrl;
                 link.download = '';
@@ -145,13 +114,12 @@ const DownloadButton: React.FC<DownloadButtonProps> = ({ appName, colorScheme, a
                 document.body.removeChild(link);
             }
         } catch (error) {
-            console.error('Erreur lors du téléchargement:', error);
-            // En cas d'erreur, essayer d'ouvrir le lien dans un nouvel onglet
+            console.error('Error when downloading: ', error);
             window.open(downloadUrl, '_blank');
         } finally {
             setIsDownloading(false);
         }
-    };    // Options de téléchargement selon le type d'application
+    };
     const downloadOptions: DownloadOption[] = appType === "web" && appName !== "Specto"
         ? [
             {
@@ -165,21 +133,6 @@ const DownloadButton: React.FC<DownloadButtonProps> = ({ appName, colorScheme, a
                 icon: "🗜️",
                 format: ".tar.gz",
                 downloadUrl: `/downloads/${appName.toLowerCase()}/source.tar.gz`
-            }
-        ]
-        : appName === "Specto"
-        ? [
-            {
-                platform: "Windows",
-                icon: "📦",
-                format: ".zip",
-                downloadUrl: generateGitHubDownloadUrl(appName, "zip")
-            },
-            {
-                platform: "Universal",
-                icon: "🗜️",
-                format: ".tar.gz",
-                downloadUrl: generateGitHubDownloadUrl(appName, "targz")
             }
         ]
         : appName === "Ico"
@@ -263,7 +216,7 @@ const DownloadButton: React.FC<DownloadButtonProps> = ({ appName, colorScheme, a
         setIsExpanded(false);
     };return (
                 <div className="relative flex justify-center md:justify-start w-full z-[60]">
-            <div className="flex gap-0.5 scale-80 sm:scale-100">                {/* Bouton principal Télécharger */}
+            <div className="flex gap-0.5 scale-80 sm:scale-100">
                 <button
                     onClick={() => handleDownload(currentOption?.downloadUrl || '')}
                     disabled={isDownloading}
@@ -277,7 +230,7 @@ const DownloadButton: React.FC<DownloadButtonProps> = ({ appName, colorScheme, a
                     ) : (
                         <span className="text-sm">Download</span>
                     )}
-                </button>{/* Bouton avec flèche déroulante */}
+                </button>
                 <div className="relative">                    <button
                         className={`${colors.bg} ${colors.hoverBg} text-white px-3 py-3 cursor-pointer transition-all duration-200 flex items-center justify-center gap-2 rounded-r-full w-[16rem] h-[45px]`}
                         onClick={() => setIsExpanded(!isExpanded)}
@@ -294,7 +247,6 @@ const DownloadButton: React.FC<DownloadButtonProps> = ({ appName, colorScheme, a
                         </svg>
                     </button>
 
-                    {/* Menu déroulant */}
                     <div 
                         className={`absolute top-full right-0 mt-1 ${colors.containerBg} rounded-lg shadow-xl border ${colors.containerBorder} transition-all duration-200 z-50 ${
                             isExpanded ? 'opacity-100 translate-y-0 pointer-events-auto' : 'opacity-0 -translate-y-2 pointer-events-none'

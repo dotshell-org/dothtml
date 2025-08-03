@@ -67,7 +67,7 @@ const SummaryTR = ({ content, isSelected, onClick, movement, disabled }: {
         disabled ? "cursor-default" : "cursor-copy"
     }`;
 
-    let colorClasses = "";
+    let colorClasses: string;
     if (isSelected) {
         if (isPositive) {
             colorClasses = "bg-green-500 text-white";
