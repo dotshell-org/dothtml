@@ -258,7 +258,7 @@ const FakeCalendar: React.FC = () => {
                                             text-lg sm:text-3xl md:text-4xl
                                         "
                                     >
-                                        €0.0
+                                        €{(Math.random() * 100).toFixed(1)}
                                     </h1>
                                 </motion.div>
                             );
