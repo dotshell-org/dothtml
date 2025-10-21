@@ -19,7 +19,7 @@ const LogoContainer = () => {
                 Dotshell
             </h1>
             <h2 className="mt-2 text-base md:text-lg lg:text-xl font-light text-center">
-                Believe in the open
+                Be evil
             </h2>
         </div>
     );
