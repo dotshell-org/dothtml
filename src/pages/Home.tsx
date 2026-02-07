@@ -46,7 +46,7 @@ const Home = () => {
                 >
                     <source src="/lyon_drone_non_official.mp4" type="video/mp4" />
                 </video>
-                <div className="absolute inset-0 bg-black/35" aria-hidden="true"></div>
+                <div className="absolute inset-0 dark:bg-black/35" aria-hidden="true"></div>
                 <div className="relative z-10 flex h-full flex-col text-white">
                     <NavBar />
                     <div className="flex flex-1 items-center justify-center">

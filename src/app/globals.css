@@ -270,6 +270,23 @@ body {
     }
 }
 
+@keyframes logoSpin {
+    0% {
+        transform: rotate(0deg);
+    }
+    50% {
+        transform: rotate(3600deg);
+    }
+    100% {
+        transform: rotate(0deg);
+    }
+}
+
+.logo-spin {
+    animation: logoSpin 20s ease-in-out both;
+    transform-origin: center;
+}
+
 /* Liquid container animation for logo */
 .liquid-container {
     position: relative;
