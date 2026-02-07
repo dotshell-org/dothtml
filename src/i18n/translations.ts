@@ -52,6 +52,32 @@ export const translations = {
                 sent: "Sent",
                 submit: "Submit"
             }
+        },
+        archives: {
+            title: "Dotshell",
+            titleAccent: "Archives",
+            subtitle: "To keep an eye on the past.",
+            searchLabel: "Search archives",
+            searchPlaceholder: "Search by name or ID",
+            listTitle: "All archives",
+            countLabel: "archives",
+            refresh: "Refresh",
+            loading: "Loading archives...",
+            error: "Unable to load archives.",
+            emptyTitle: "No archives match your search.",
+            emptyBody: "Try another query or refresh the list.",
+            selectHint: "Select an archive to view details.",
+            detailsTitle: "Archive details",
+            openArchive: "Open JSON",
+            idLabel: "ID",
+            readmeTitle: "README",
+            screenshotsTitle: "Screenshots",
+            filesTitle: "Files",
+            openFile: "Open file",
+            download: "Download",
+            noReadme: "No README available.",
+            noScreenshots: "No screenshots found.",
+            noFiles: "No files found."
         }
     },
     fr: {
@@ -102,6 +128,32 @@ export const translations = {
                 sent: "Envoyé",
                 submit: "Envoyer"
             }
+        },
+        archives: {
+            title: "Archives",
+            titleAccent: "Dotshell",
+            subtitle: "Pour garder un œil sur le passé.",
+            searchLabel: "Rechercher des archives",
+            searchPlaceholder: "Rechercher par nom ou identifiant",
+            listTitle: "Toutes les archives",
+            countLabel: "archives",
+            refresh: "Rafraîchir",
+            loading: "Chargement des archives...",
+            error: "Impossible de charger les archives.",
+            emptyTitle: "Aucune archive ne correspond à la recherche.",
+            emptyBody: "Essayez une autre requête ou rafraîchissez la liste.",
+            selectHint: "Sélectionnez une archive pour voir les détails.",
+            detailsTitle: "Détails de l'archive",
+            openArchive: "Ouvrir le JSON",
+            idLabel: "Identifiant",
+            readmeTitle: "README",
+            screenshotsTitle: "Captures",
+            filesTitle: "Fichiers",
+            openFile: "Ouvrir le fichier",
+            download: "Télécharger",
+            noReadme: "Aucun README disponible.",
+            noScreenshots: "Aucune capture disponible.",
+            noFiles: "Aucun fichier disponible."
         }
     }
 } as const;

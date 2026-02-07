@@ -408,6 +408,32 @@ body {
     pointer-events: none;
 }
 
+.archives-swiper {
+    position: relative;
+    padding: 0 2.25rem 0.5rem;
+}
+
+.archives-swiper .swiper-button-next,
+.archives-swiper .swiper-button-prev {
+    color: #9ca3af;
+    width: 1.75rem;
+    height: 1.75rem;
+}
+
+.archives-swiper .swiper-button-next::after,
+.archives-swiper .swiper-button-prev::after {
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.archives-swiper .swiper-button-next {
+    right: 0;
+}
+
+.archives-swiper .swiper-button-prev {
+    left: 0;
+}
+
 /* Liquid container animation for logo */
 .liquid-container {
     position: relative;
