@@ -287,6 +287,127 @@ body {
     transform-origin: center;
 }
 
+@keyframes loaderSpin {
+    0% {
+        transform: rotate(0deg);
+    }
+    6% {
+        transform: rotate(110deg);
+    }
+    12% {
+        transform: rotate(180deg);
+    }
+    20% {
+        transform: rotate(240deg);
+    }
+    30% {
+        transform: rotate(285deg);
+    }
+    42% {
+        transform: rotate(315deg);
+    }
+    58% {
+        transform: rotate(338deg);
+    }
+    78% {
+        transform: rotate(352deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.loader-spin {
+    animation: loaderSpin 1.25s linear infinite;
+    transform-origin: center;
+}
+
+.page-loader {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transform: scale(1);
+    transition: opacity 0.45s ease, transform 0.45s ease;
+    z-index: 9999;
+    background: var(--background);
+}
+
+.page-loader--visible {
+    opacity: 1;
+}
+
+.page-loader--fade {
+    opacity: 0;
+    transform: scale(0.985);
+    pointer-events: none;
+}
+
+.page-loader--hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+@keyframes loaderPulse {
+    0% {
+        transform: scale(1);
+    }
+    10% {
+        transform: scale(1.08);
+    }
+    28% {
+        transform: scale(1.04);
+    }
+    55% {
+        transform: scale(1.01);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+.page-loader__pulse {
+    animation: loaderPulse 1.25s linear infinite;
+}
+
+.page-loader__mark {
+    opacity: 0;
+    animation: loaderFadeIn 0.35s ease both;
+}
+
+@keyframes loaderFadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.page-loader__logo {
+    filter: invert(0);
+}
+
+@media (prefers-color-scheme: dark) {
+    .page-loader__logo {
+        filter: invert(1);
+    }
+}
+
+.page-content {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 0.35s ease, transform 0.35s ease;
+}
+
+.page-content--hidden {
+    opacity: 0;
+    transform: translateY(8px);
+    pointer-events: none;
+}
+
 /* Liquid container animation for logo */
 .liquid-container {
     position: relative;

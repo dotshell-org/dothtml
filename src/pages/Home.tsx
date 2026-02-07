@@ -6,22 +6,56 @@ import LogoContainer from "@/components/home/logo/LogoContainer";
 import Footer from "@/components/generic/footer/Footer";
 import { useI18n } from "@/i18n/useI18n";
 
-const LOOP_START_SECONDS = 20;
+const LOOP_START_SECONDS = 35;
 
 const Home = () => {
     const { t } = useI18n();
     const contentRef = useRef<HTMLDivElement>(null);
+    const hasSeekedRef = useRef(false);
 
     const handleScrollClick = () => {
         contentRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
     };
 
-    const handleLoadedMetadata = (event: SyntheticEvent<HTMLVideoElement>) => {
-        const video = event.currentTarget;
+    const seekToLoopStart = (video: HTMLVideoElement) => {
         if (video.duration > LOOP_START_SECONDS) {
             video.currentTime = LOOP_START_SECONDS;
+            hasSeekedRef.current = true;
+        }
+    };
+
+    const handleLoadedMetadata = (event: SyntheticEvent<HTMLVideoElement>) => {
+        const video = event.currentTarget;
+        if (!hasSeekedRef.current) {
+            seekToLoopStart(video);
         }
         video.play().catch(() => undefined);
+    };
+
+    const handleCanPlay = (event: SyntheticEvent<HTMLVideoElement>) => {
+        const video = event.currentTarget;
+        if (!hasSeekedRef.current) {
+            seekToLoopStart(video);
+        }
+    };
+
+    const handlePlay = (event: SyntheticEvent<HTMLVideoElement>) => {
+        const video = event.currentTarget;
+        if (!hasSeekedRef.current) {
+            seekToLoopStart(video);
+        }
+    };
+
+    const handleTimeUpdate = (event: SyntheticEvent<HTMLVideoElement>) => {
+        const video = event.currentTarget;
+        if (!hasSeekedRef.current && video.duration > LOOP_START_SECONDS) {
+            seekToLoopStart(video);
+            return;
+        }
+        if (video.duration > LOOP_START_SECONDS && video.currentTime >= video.duration - 0.05) {
+            video.currentTime = LOOP_START_SECONDS;
+            video.play().catch(() => undefined);
+        }
     };
 
     const handleEnded = (event: SyntheticEvent<HTMLVideoElement>) => {
@@ -45,6 +79,9 @@ const Home = () => {
                     preload="auto"
                     onLoadedMetadata={handleLoadedMetadata}
                     onEnded={handleEnded}
+                    onCanPlay={handleCanPlay}
+                    onPlay={handlePlay}
+                    onTimeUpdate={handleTimeUpdate}
                 >
                     <source src="/lyon_drone_non_official.mp4" type="video/mp4" />
                 </video>

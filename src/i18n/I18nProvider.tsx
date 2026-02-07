@@ -1,6 +1,6 @@
 "use client";
 
-import React, { createContext, useCallback, useEffect, useMemo, useState } from "react";
+import React, { createContext, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { defaultLocale, supportedLocales, translations, type Locale } from "./translations";
 
 type I18nContextValue = {
@@ -47,12 +47,19 @@ const resolveKey = (dictionary: Record<string, unknown>, key: string): string | 
     return typeof value === "string" ? value : undefined;
 };
 
-export function I18nProvider({ children }: { children: React.ReactNode }) {
+export function I18nProvider({ children, onReady }: { children: React.ReactNode; onReady?: () => void }) {
     const [locale, setLocale] = useState<Locale>(defaultLocale);
+    const readyRef = useRef(false);
 
     useEffect(() => {
-        setLocale(detectBrowserLocale());
-    }, []);
+        if (readyRef.current) {
+            return;
+        }
+        const detectedLocale = detectBrowserLocale();
+        setLocale(detectedLocale);
+        readyRef.current = true;
+        onReady?.();
+    }, [onReady]);
 
     useEffect(() => {
         if (typeof document !== "undefined") {

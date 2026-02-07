@@ -14,7 +14,7 @@ const Footer = () => {
     }, []);
 
     return (
-        <footer className="w-full text-center text-base sm:text-lg md:text-xl font-light py-10 sm:py-20 bg-neutral-100 text-neutral-600 dark:bg-neutral-950 dark:text-neutral-400 px-4">
+        <footer className="w-full text-center text-base sm:text-lg md:text-xl font-light py-10 sm:py-20 bg-neutral-100 text-neutral-600 dark:bg-neutral-900 dark:text-neutral-400 px-4">
             <p className="mb-4">
                 {t("footer.madeBy")} <SemiBold>Dotshell</SemiBold> 🇪🇺 {t("footer.europe")}
             </p>
