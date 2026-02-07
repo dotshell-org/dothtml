@@ -12,9 +12,9 @@ const Footer = () => {
     }, []);
 
     return (
-        <footer className="w-full text-center text-base sm:text-lg md:text-xl font-light py-10 sm:py-20 bg-gray-100 text-gray-600 dark:bg-gray-800 dark:text-gray-400 px-4">
+        <footer className="w-full text-center text-base sm:text-lg md:text-xl font-light py-10 sm:py-20 bg-neutral-100 text-neutral-600 dark:bg-neutral-950 dark:text-neutral-400 px-4">
             <p className="mb-4">
-                Made with 🥐 by <SemiBold>Dotshell</SemiBold>, France • Open Source &amp; Privacy First
+                Made by <SemiBold>Dotshell</SemiBold> 🇪🇺 Europe
             </p>
             <div className="flex justify-center gap-4 mb-4 text-2xl">
                 <a href="https://github.com/dotshell-org" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
@@ -34,7 +34,7 @@ const Footer = () => {
                 </a>
             </div>
             <p className="text-xs sm:text-sm text-neutral-400 mt-4">
-                © {currentYear} Dotshell. All rights reserved.
+                © {currentYear} Dotshell — MIT License
             </p>
         </footer>
     );

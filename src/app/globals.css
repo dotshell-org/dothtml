@@ -2,13 +2,13 @@
 
 :root {
     --background: #ffffff;
-    --foreground: #171717;
+    --foreground: #000000;
 }
 
 @media (prefers-color-scheme: dark) {
     :root {
-        --background: #101828;
-        --foreground: #ededed;
+        --background: #000000;
+        --foreground: #ffffff;
     }
 }
 
@@ -313,15 +313,6 @@ img {
 /* Fix for horizontal scrolling on mobile */
 * {
     box-sizing: border-box;
-}
-
-/* Better dark mode support */
-@media (prefers-color-scheme: dark) {
-    input, textarea {
-        background-color: #374151;
-        color: #f9fafb;
-        border-color: #4b5563;
-    }
 }
 
 /* Responsive adjustments for mobile */

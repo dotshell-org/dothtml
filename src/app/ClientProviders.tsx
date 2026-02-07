@@ -32,7 +32,7 @@ export default function ClientProviders({ children }: { children: React.ReactNod
             ...(isDark ? {
                 // Configuration du mode sombre
                 background: {
-                    default: '#101828',
+                    default: '#000000',
                     paper: '#1e1e1e'
                 },
                 text: {

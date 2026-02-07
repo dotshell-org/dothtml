@@ -92,7 +92,7 @@ const Contact = () => {
                                 value={form.name} 
                                 onChange={handleChange} 
                                 onBlur={handleBlur} 
-                                className={`w-full pl-2 py-1 mt-2 mb-1.5 rounded-lg border ${fieldErrors.name && touched.name ? 'border-red-500' : 'border-gray-300 dark:border-gray-700'} bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100`}
+                                className={`w-full pl-2 py-1 mt-2 mb-1.5 rounded-lg border ${fieldErrors.name && touched.name ? 'border-red-500' : 'border-neutral-300 dark:border-neutral-800'} bg-white dark:bg-neutral-900 text-neutral-900 dark:text-neutral-100`}
                                 type="text" 
                                 required
                                 aria-required="true"
@@ -109,7 +109,7 @@ const Contact = () => {
                                 value={form.email} 
                                 onChange={handleChange} 
                                 onBlur={handleBlur} 
-                                className={`w-full pl-2 py-1 mt-2 mb-1.5 rounded-lg border ${fieldErrors.email && touched.email ? 'border-red-500' : 'border-gray-300 dark:border-gray-700'} bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100`}
+                                className={`w-full pl-2 py-1 mt-2 mb-1.5 rounded-lg border ${fieldErrors.email && touched.email ? 'border-red-500' : 'border-neutral-300 dark:border-neutral-800'} bg-white dark:bg-neutral-900 text-neutral-900 dark:text-neutral-100`}
                                 type="email" 
                                 placeholder="email@example.com" 
                                 required
@@ -127,7 +127,7 @@ const Contact = () => {
                                 value={form.country_region}
                                 onChange={handleChange} 
                                 onBlur={handleBlur} 
-                                className={`w-full pl-2 py-1 mt-2 mb-1.5 rounded-lg border ${fieldErrors.country && touched.country ? 'border-red-500' : 'border-gray-300 dark:border-gray-700'} bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100`}
+                                className={`w-full pl-2 py-1 mt-2 mb-1.5 rounded-lg border ${fieldErrors.country && touched.country ? 'border-red-500' : 'border-neutral-300 dark:border-neutral-800'} bg-white dark:bg-neutral-900 text-neutral-900 dark:text-neutral-100`}
                                 type="text" 
                                 required
                                 aria-required="true"
@@ -143,7 +143,7 @@ const Contact = () => {
                                 name="phone_number"
                                 value={form.phone_number}
                                 onChange={handleChange} 
-                                className="w-full pl-2 py-1 mt-2 mb-1.5 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100"
+                                className="w-full pl-2 py-1 mt-2 mb-1.5 rounded-lg border border-neutral-300 dark:border-neutral-800 bg-white dark:bg-neutral-900 text-neutral-900 dark:text-neutral-100"
                                 type="tel" 
                                 aria-required="false"
                             />
@@ -155,7 +155,7 @@ const Contact = () => {
                                 name="company" 
                                 value={form.company} 
                                 onChange={handleChange} 
-                                className="w-full pl-2 py-1 mt-2 mb-1.5 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100"
+                                className="w-full pl-2 py-1 mt-2 mb-1.5 rounded-lg border border-neutral-300 dark:border-neutral-800 bg-white dark:bg-neutral-900 text-neutral-900 dark:text-neutral-100"
                                 type="text" 
                                 aria-required="false"
                             />
@@ -168,7 +168,7 @@ const Contact = () => {
                                 value={form.message}
                                 onChange={handleChange}
                                 onBlur={handleBlur}
-                                className={`w-full min-h-32 px-3 py-2 mt-2 mb-1.5 rounded-lg border ${fieldErrors.message && touched.message ? 'border-red-500' : 'border-gray-300 dark:border-gray-700'} resize-none overflow-y-auto bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100`}
+                                className={`w-full min-h-32 px-3 py-2 mt-2 mb-1.5 rounded-lg border ${fieldErrors.message && touched.message ? 'border-red-500' : 'border-neutral-300 dark:border-neutral-800'} resize-none overflow-y-auto bg-white dark:bg-neutral-900 text-neutral-900 dark:text-neutral-100`}
                                 required
                                 aria-required="true"
                                 aria-invalid={fieldErrors.message && touched.message ? "true" : "false"}
