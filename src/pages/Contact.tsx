@@ -3,8 +3,10 @@
 import NavBar from "@/components/generic/nav/NavBar";
 import React, { useState } from "react";
 import Footer from "@/components/generic/footer/Footer";
+import { useI18n } from "@/i18n/useI18n";
 
 const Contact = () => {
+    const { t } = useI18n();
     const [form, setForm] = useState({
         name: "",
         email: "",
@@ -21,10 +23,10 @@ const Contact = () => {
 
     const validate = () => {
         const errors: { [key: string]: string } = {};
-        if (!form.name.trim()) errors.name = "Name is required.";
-        if (!form.email.trim()) errors.email = "Email is required.";
-        if (!form.country_region.trim()) errors.country = "Country is required.";
-        if (!form.message.trim()) errors.message = "Message is required.";
+        if (!form.name.trim()) errors.name = t("contact.errors.nameRequired");
+        if (!form.email.trim()) errors.email = t("contact.errors.emailRequired");
+        if (!form.country_region.trim()) errors.country = t("contact.errors.countryRequired");
+        if (!form.message.trim()) errors.message = t("contact.errors.messageRequired");
         return errors;
     };
 
@@ -60,17 +62,17 @@ const Contact = () => {
                 setStatus("success");
                 setForm({ name: "", email: "", country_region: "", phone_number: "", company: "", message: "" });
                 setTimeout(() => {
-                    setStatus(null);
-                }, 2000);
-            } else {
-                const data = await res.json();
-                setErrorMsg(data.errors ? data.errors.map((e: { msg: string }) => e.msg).join(", ") : "Error while sending message.");
-                setStatus("error");
-            }
-        } catch {
-            setErrorMsg("Network error.");
+                setStatus(null);
+            }, 2000);
+        } else {
+            const data = await res.json();
+            setErrorMsg(data.errors ? data.errors.map((e: { msg: string }) => e.msg).join(", ") : t("contact.errors.sendError"));
             setStatus("error");
         }
+    } catch {
+        setErrorMsg(t("contact.errors.networkError"));
+        setStatus("error");
+    }
         setIsSubmitting(false);
     };
 
@@ -79,13 +81,13 @@ const Contact = () => {
             <NavBar />
             <section className="contact-section py-10">
                 <h1 className="my-10 sm:my-20 text-center text-5xl lg:text-6xl xl:text-7xl font-black px-4">
-                    Contact <span className="text-blue-500">Us</span>
+                    {t("contact.title")} <span className="text-blue-500">{t("contact.titleAccent")}</span>
                 </h1>
                 <div className="max-w-md mx-auto px-8">
                     <form onSubmit={handleSubmit} aria-labelledby="contact-form-heading">
-                        <h2 id="contact-form-heading" className="sr-only">Contact Form</h2>
+                        <h2 id="contact-form-heading" className="sr-only">{t("contact.formHeading")}</h2>
                         <div className="mb-6">
-                            <label htmlFor="name" className="block text-center text-base sm:text-lg md:text-xl font-light">Name</label>
+                            <label htmlFor="name" className="block text-center text-base sm:text-lg md:text-xl font-light">{t("contact.fields.name")}</label>
                             <input 
                                 id="name"
                                 name="name" 
@@ -102,7 +104,7 @@ const Contact = () => {
                             {fieldErrors.name && touched.name && <p id="name-error" className="text-red-500 text-sm text-center mb-4 animate-fade-in">{fieldErrors.name}</p>}
                         </div>
                         <div className="mb-6">
-                            <label htmlFor="email" className="block text-center text-base sm:text-lg md:text-xl font-light">Email</label>
+                            <label htmlFor="email" className="block text-center text-base sm:text-lg md:text-xl font-light">{t("contact.fields.email")}</label>
                             <input 
                                 id="email"
                                 name="email" 
@@ -111,7 +113,7 @@ const Contact = () => {
                                 onBlur={handleBlur} 
                                 className={`w-full pl-2 py-1 mt-2 mb-1.5 rounded-lg border ${fieldErrors.email && touched.email ? 'border-red-500' : 'border-neutral-300 dark:border-neutral-800'} bg-white dark:bg-neutral-900 text-neutral-900 dark:text-neutral-100`}
                                 type="email" 
-                                placeholder="email@example.com" 
+                                placeholder={t("contact.placeholders.email")} 
                                 required
                                 aria-required="true"
                                 aria-invalid={fieldErrors.email && touched.email ? "true" : "false"}
@@ -120,7 +122,7 @@ const Contact = () => {
                             {fieldErrors.email && touched.email && <p id="email-error" className="text-red-500 text-sm text-center mb-4 animate-fade-in">{fieldErrors.email}</p>}
                         </div>
                         <div className="mb-6">
-                            <label htmlFor="country_region" className="block text-center text-base sm:text-lg md:text-xl font-light">Country/Region</label>
+                            <label htmlFor="country_region" className="block text-center text-base sm:text-lg md:text-xl font-light">{t("contact.fields.country")}</label>
                             <input 
                                 id="country_region"
                                 name="country_region"
@@ -137,7 +139,7 @@ const Contact = () => {
                             {fieldErrors.country && touched.country && <p id="country-error" className="text-red-500 text-sm text-center mb-4 animate-fade-in">{fieldErrors.country}</p>}
                         </div>
                         <div className="mb-6">
-                            <label htmlFor="phone_number" className="block text-center text-base sm:text-lg md:text-xl font-light">Phone number (optional)</label>
+                            <label htmlFor="phone_number" className="block text-center text-base sm:text-lg md:text-xl font-light">{t("contact.fields.phone")}</label>
                             <input 
                                 id="phone_number"
                                 name="phone_number"
@@ -149,7 +151,7 @@ const Contact = () => {
                             />
                         </div>
                         <div className="mb-6">
-                            <label htmlFor="company" className="block text-center text-base sm:text-lg md:text-xl font-light">Company (optional)</label>
+                            <label htmlFor="company" className="block text-center text-base sm:text-lg md:text-xl font-light">{t("contact.fields.company")}</label>
                             <input 
                                 id="company"
                                 name="company" 
@@ -161,7 +163,7 @@ const Contact = () => {
                             />
                         </div>
                         <div className="mb-6">
-                            <label htmlFor="message" className="block text-center text-base sm:text-lg md:text-xl font-light">Message</label>
+                            <label htmlFor="message" className="block text-center text-base sm:text-lg md:text-xl font-light">{t("contact.fields.message")}</label>
                             <textarea
                                 id="message"
                                 name="message"
@@ -182,7 +184,7 @@ const Contact = () => {
                             disabled={isSubmitting || status === "success"}
                             aria-live="polite"
                         >
-                            {status === "success" ? "Sent" : isSubmitting ? "Sending..." : "Submit"}
+                            {status === "success" ? t("contact.submit.sent") : isSubmitting ? t("contact.submit.sending") : t("contact.submit.submit")}
                         </button>
                     </form>
                     {status === "error" && <p className="text-center text-red-600 mb-8" role="alert" aria-live="assertive">{errorMsg}</p>}

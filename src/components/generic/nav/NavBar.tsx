@@ -1,14 +1,17 @@
 "use client";
 
 import NavLink from "./NavLink";
+import { useI18n } from "@/i18n/useI18n";
 
 const NavBar = () => {
+    const { t } = useI18n();
     const elements = [
-        {href: "/home", text: "Home"},
-        {href: "/documentation", text: "Documentation"},
-        {href: "/archives", text: "Archives"},
-        {href: "/contact", text: "Contact"}
-    ];    return (
+        {href: "/home", text: t("nav.home")},
+        {href: "/documentation", text: t("nav.documentation")},
+        {href: "/archives", text: t("nav.archives")},
+        {href: "/contact", text: t("nav.contact")}
+    ];
+    return (
         <div className="w-full mt-16 mb-4 sm:mb-8 flex relative z-30 px-2">
             <div className="mx-auto flex flex-row items-center gap-12 sm:gap-24">
                 {

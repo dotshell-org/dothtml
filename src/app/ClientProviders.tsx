@@ -3,6 +3,7 @@
 import { ThemeProvider, createTheme } from '@mui/material/styles'
 import CssBaseline from '@mui/material/CssBaseline'
 import React, { useState, useEffect } from "react";
+import { I18nProvider } from "@/i18n/I18nProvider";
 
 export default function ClientProviders({ children }: { children: React.ReactNode }) {
     const [isDark, setIsDark] = useState(false);
@@ -56,7 +57,9 @@ export default function ClientProviders({ children }: { children: React.ReactNod
     return (
         <ThemeProvider theme={theme}>
             <CssBaseline />
-            {children}
+            <I18nProvider>
+                {children}
+            </I18nProvider>
         </ThemeProvider>
     )
 }

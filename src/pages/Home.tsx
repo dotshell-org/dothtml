@@ -4,10 +4,12 @@ import { useRef, type SyntheticEvent } from "react";
 import NavBar from "@/components/generic/nav/NavBar";
 import LogoContainer from "@/components/home/logo/LogoContainer";
 import Footer from "@/components/generic/footer/Footer";
+import { useI18n } from "@/i18n/useI18n";
 
 const LOOP_START_SECONDS = 20;
 
 const Home = () => {
+    const { t } = useI18n();
     const contentRef = useRef<HTMLDivElement>(null);
 
     const handleScrollClick = () => {
@@ -56,7 +58,7 @@ const Home = () => {
                         type="button"
                         onClick={handleScrollClick}
                         className="group mx-auto mb-6 flex flex-col items-center gap-2 text-white/90 transition hover:text-white cursor-pointer"
-                        aria-label="Scroll to content"
+                        aria-label={t("home.scrollToContent")}
                     >
                         <svg
                             className="h-6 w-6 transition-transform duration-300 ease-out group-hover:-translate-y-1"
@@ -70,7 +72,7 @@ const Home = () => {
                         >
                             <path d="M6 14l6-6 6 6" />
                         </svg>
-                        <span className="md:text-sm lg:text-md uppercase tracking-[0.1em]">Scroll</span>
+                        <span className="md:text-sm lg:text-md uppercase tracking-[0.1em]">{t("home.scroll")}</span>
                     </button>
                 </div>
             </section>

@@ -3,8 +3,10 @@
 import SemiBold from "@/components/generic/SemiBold";
 import { useState, useEffect } from "react";
 import { FaGithub, FaInstagram, FaYoutube, FaXTwitter, FaThreads } from "react-icons/fa6";
+import { useI18n } from "@/i18n/useI18n";
 
 const Footer = () => {
+    const { t } = useI18n();
     const [currentYear, setCurrentYear] = useState(2025); // Default year to prevent hydration mismatch
 
     useEffect(() => {
@@ -14,7 +16,7 @@ const Footer = () => {
     return (
         <footer className="w-full text-center text-base sm:text-lg md:text-xl font-light py-10 sm:py-20 bg-neutral-100 text-neutral-600 dark:bg-neutral-950 dark:text-neutral-400 px-4">
             <p className="mb-4">
-                Made by <SemiBold>Dotshell</SemiBold> 🇪🇺 Europe
+                {t("footer.madeBy")} <SemiBold>Dotshell</SemiBold> 🇪🇺 {t("footer.europe")}
             </p>
             <div className="flex justify-center gap-4 mb-4 text-2xl">
                 <a href="https://github.com/dotshell-org" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
@@ -34,7 +36,7 @@ const Footer = () => {
                 </a>
             </div>
             <p className="text-xs sm:text-sm text-neutral-400 mt-4">
-                © {currentYear} Dotshell — MIT License
+                © {currentYear} Dotshell — {t("footer.license")}
             </p>
         </footer>
     );

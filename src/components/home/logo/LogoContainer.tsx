@@ -1,8 +1,10 @@
 // import MetallicLogo from "@/components/home/logo/MetallicLogo";
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
+import { useI18n } from "@/i18n/useI18n";
 
 const LogoContainer = () => {
+    const { t } = useI18n();
     const [clickCount, setClickCount] = useState(0);
     const [spinKey, setSpinKey] = useState(0);
     const [isSpinning, setIsSpinning] = useState(false);
@@ -81,7 +83,7 @@ const LogoContainer = () => {
                 onTouchStart={handlePressStart}
                 onTouchEnd={handlePressEnd}
                 className={`inline-block cursor-pointer transition-transform duration-150 ease-out ${isPressed ? "scale-95" : "scale-100"} ${isSpinning ? "logo-spin" : ""}`}
-                aria-label="Dotshell logo"
+                aria-label={t("home.logoAria")}
                 role="button"
                 tabIndex={0}
                 onKeyDown={(event) => {
@@ -93,7 +95,7 @@ const LogoContainer = () => {
                 <Image
                     className="w-64 lg:w-80 xl:w-[350px] h-auto invert"
                     src="/dotshell-logo.svg"
-                    alt="Dotshell Logo"
+                    alt={t("logo.logoAlt")}
                     width={350}
                     height={350}
                     priority
