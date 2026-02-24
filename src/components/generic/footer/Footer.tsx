@@ -36,7 +36,7 @@ const Footer = () => {
                 </a>
             </div>
             <p className="text-xs sm:text-sm text-neutral-400 mt-4">
-                © {currentYear} Dotshell — {t("footer.license")}
+                © {currentYear} Dotshell — {t("footer.codeLicense")} — {t("footer.contentLicense")}
             </p>
         </footer>
     );

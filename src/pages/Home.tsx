@@ -139,14 +139,14 @@ const Home = () => {
             </div>
 
             <div className="h-40"/>
-            <h1 className="text-center font-black text-5xl">We build the future for people and developers</h1>
+            <h1 className="text-center font-black text-5xl">{t("home.futureTitle")}</h1>
             <div className="flex flex-col items-center justify-center">
                 <div className="flex flex-col items-center max-w-[40em]">
                     <p className="text-center mt-12 text-xl">
-                        Our ambition is to change the world with open source. We actively participate in its development on our GitHub.
-                        <br/><br/>
-                        We develop applications, libraries, and APIs. We believe that everyone should have software tailored to their needs.
-                        That's why we also create technologies designed by developers for developers.
+                        {t("home.ambition1")}
+                        <br /><br />
+                        {t("home.ambition2")}
+                        <br />
                     </p>
                     <a
                         href="/documentation"

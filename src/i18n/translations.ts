@@ -15,6 +15,9 @@ export const translations = {
             scroll: "Scroll",
             scrollToContent: "Scroll to content",
             logoAria: "Dotshell logo",
+            futureTitle: "We build the future for people and developers",
+            ambition1: "Our ambition is to change the world with open source. We actively participate in its development on our GitHub.",
+            ambition2: "We develop applications, libraries, and APIs. We believe that everyone should have software tailored to their needs. That's why we also create technologies designed by developers for developers.",
             redSection: {
                 tclFedUpTitle: "We were fed up with the TCL app.",
                 tclFedUpText: "Too little clarity, poor ergonomics... What we were looking for always took too many clicks, too much time, too much searching, when all we want is to quickly get the information we need.",
@@ -31,7 +34,8 @@ export const translations = {
         footer: {
             madeBy: "Made by",
             europe: "Europe",
-            license: "MIT License"
+            codeLicense: "Code under MIT License",
+            contentLicense: "Content and design protected by copyright"
         },
         logo: {
             logoAlt: "Dotshell Logo"
@@ -103,6 +107,9 @@ export const translations = {
             scroll: "Défiler",
             scrollToContent: "Défiler vers le contenu",
             logoAria: "Logo Dotshell",
+            futureTitle: "Nous construisons le futur pour les gens et les développeurs",
+            ambition1: "Notre ambition est de changer le monde grâce à l'open source. Nous participons activement à son développement sur notre GitHub.",
+            ambition2: "Nous développons des applications, des bibliothèques et des API. Nous pensons que chacun devrait avoir des logiciels adaptés à ses besoins. C'est pourquoi nous créons aussi des technologies conçues par des développeurs pour les développeurs.",
             redSection: {
                 tclFedUpTitle: "On en avait marre de l'application TCL.",
                 tclFedUpText: "Trop peu de clarté, d'ergonomie... Ce qu'on cherchait prenait toujours trop de clics, trop de temps, trop de recherche alors que tout ce qu'on veut, c'est avoir vite l'information dont on a besoin.",
@@ -119,7 +126,8 @@ export const translations = {
         footer: {
             madeBy: "Créé par",
             europe: "Europe",
-            license: "Licence MIT"
+            codeLicense: "Code sous Licence MIT",
+            contentLicense: "Contenu et design protégés par copyright"
         },
         logo: {
             logoAlt: "Logo Dotshell"
