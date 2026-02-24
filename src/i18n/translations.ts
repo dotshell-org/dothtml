@@ -14,7 +14,16 @@ export const translations = {
         home: {
             scroll: "Scroll",
             scrollToContent: "Scroll to content",
-            logoAria: "Dotshell logo"
+            logoAria: "Dotshell logo",
+            redSection: {
+                tclFedUpTitle: "We were fed up with the TCL app.",
+                tclFedUpText: "Too little clarity, poor ergonomics... What we were looking for always took too many clicks, too much time, too much searching, when all we want is to quickly get the information we need.",
+                peloIsTitle: "Pelo is",
+                peloIsText: 'A <span class="font-extrabold">modern</span>,<span class="font-extrabold"> smooth</span> app, with <span class="font-extrabold">all the features</span> you need to travel the network!',
+                featuresTitle: "Schedules, Routes, Offline, LIVE",
+                featuresText: 'With Pelo, you get the world\'s <span class="font-extrabold">fastest open-source route planner</span> for public transport, <span class="font-extrabold">real-time positions</span> of all buses and trams (including <span class="font-extrabold">some not even on the TCL app</span>), traffic alerts, all <span class="font-extrabold">without internet connection</span> *!',
+                offlineNote: '*A download of a few dozen MB is required to enable offline mode in the app settings. Real-time data such as LIVE mode and traffic alerts are only updated when an internet connection is available.'
+            }
         },
         pelo: {
             subtitle: "The future of navigation through the <span style=\"color: #ef4444; font-weight: 900;\">Lyon TCL</span> network"
@@ -93,7 +102,16 @@ export const translations = {
         home: {
             scroll: "Défiler",
             scrollToContent: "Défiler vers le contenu",
-            logoAria: "Logo Dotshell"
+            logoAria: "Logo Dotshell",
+            redSection: {
+                tclFedUpTitle: "On en avait marre de l'application TCL.",
+                tclFedUpText: "Trop peu de clarté, d'ergonomie... Ce qu'on cherchait prenait toujours trop de clics, trop de temps, trop de recherche alors que tout ce qu'on veut, c'est avoir vite l'information dont on a besoin.",
+                peloIsTitle: "Pelo, c'est",
+                peloIsText: 'Une application <span class="font-extrabold">moderne</span>,<span class="font-extrabold"> fluide</span>, avec <span class="font-extrabold">toutes les fonctionnalités</span> dont vous avez besoin pour voyager sur le réseau !',
+                featuresTitle: "Horaires, Itinéraires, Hors-ligne, LIVE",
+                featuresText: 'Avec Pelo, vous profiterez du système d\'itinéraire open-source sur réseau de transports en commun <span class="font-extrabold">le plus rapide du monde</span>, de la <span class="font-extrabold">position en temps réel</span> de tous les bus et tramway dont <span class="font-extrabold">certains ne sont même pas sur l\'application TCL </span> ou encore des alertes traffic, tout cela <span class="font-extrabold">sans connexion internet</span> * !',
+                offlineNote: '*un téléchargement de quelques dizaines de Mo est nécessaire pour activer le mode hors-ligne dans les paramètres de l\'application. Les données en temps réel telles que le mode LIVE et les alertes traffic ne sont mises à jour qu\'en précense d\'une connexion internet.'
+            }
         },
         pelo: {
             subtitle: "Le futur de la navigation sur le <span style=\"color: #ef4444; font-weight: 900;\">réseau TCL</span> à Lyon"
