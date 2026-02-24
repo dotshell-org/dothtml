@@ -6,6 +6,8 @@ import LogoContainer from "@/components/home/logo/LogoContainer";
 import Footer from "@/components/generic/footer/Footer";
 import { useI18n } from "@/i18n/useI18n";
 
+import Pelo from "@/components/home/pelo/Pelo";
+
 const LOOP_START_SECONDS = 35;
 
 const Home = () => {
@@ -113,7 +115,21 @@ const Home = () => {
                     </button>
                 </div>
             </section>
-            <div ref={contentRef} className="h-[33rem] lg:h-[48rem]"></div>
+            <div ref={contentRef}>
+                <Pelo />
+            </div>
+
+            <div
+                className="relative w-full bg-red-500 h-[60rem]"
+                style={{ clipPath: 'polygon(0 4%, 100% 0, 100% 96%, 0 100%)' }}
+            >
+                <div className="pt-20">
+                    { /* Le contenu sera ici */ }
+                </div>
+            </div>
+
+            <div className="h-80"/>
+
             <Footer />
         </main>
     )

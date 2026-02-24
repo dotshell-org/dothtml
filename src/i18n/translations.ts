@@ -16,6 +16,9 @@ export const translations = {
             scrollToContent: "Scroll to content",
             logoAria: "Dotshell logo"
         },
+        pelo: {
+            subtitle: "The future of navigation through the <span style=\"color: #ef4444; font-weight: 900;\">Lyon TCL</span> network"
+        },
         footer: {
             madeBy: "Made by",
             europe: "Europe",
@@ -91,6 +94,9 @@ export const translations = {
             scroll: "Défiler",
             scrollToContent: "Défiler vers le contenu",
             logoAria: "Logo Dotshell"
+        },
+        pelo: {
+            subtitle: "Le futur de la navigation sur le <span style=\"color: #ef4444; font-weight: 900;\">réseau TCL</span> à Lyon"
         },
         footer: {
             madeBy: "Créé par",
