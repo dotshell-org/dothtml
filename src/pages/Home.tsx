@@ -120,11 +120,37 @@ const Home = () => {
             </div>
 
             <div
-                className="relative w-full bg-red-500 h-[60rem]"
+                className="relative w-full bg-red-500 h-[70rem]"
                 style={{ clipPath: 'polygon(0 4%, 100% 0, 100% 96%, 0 100%)' }}
             >
                 <div className="pt-20">
-                    { /* Le contenu sera ici */ }
+                    <section id="pelo-section" className="py-24 grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+                        <div className="items-center justify-center text-white text-right pl-80">
+                            <h1 className="font-black text-3xl my-10">On en avait marre de l'application TCL.</h1>
+                            <p className="text-xl">
+                                Trop peu de clarté, d'ergonomie... Ce qu'on cherchait prenait toujours trop de clics,
+                                trop de temps, trop de recherche alors que tout ce qu'on veut, c'est avoir vite
+                                l'information dont on a besoin.
+                            </p>
+                            <h1 className="font-black text-5xl my-10">Pelo, c'est</h1>
+                            <p className="text-xl">
+                                Une application <span className="font-extrabold">moderne</span>,
+                                <span className="font-extrabold"> fluide</span>, avec <span className="font-extrabold">
+                                toutes les fonctionnalités</span> dont vous avez besoin pour voyager sur le réseau !
+                            </p>
+                            <h1 className="font-black text-3xl my-10">Horaires, Itinéraires, Hors-ligne, LIVE</h1>
+                            <p className="text-xl">
+                                Avec Pelo, vous profiterez du système d'itinéraire open-source sur réseau de transports en commun
+                                <span className="font-extrabold"> le plus rapide du monde</span>, de la
+                                <span className="font-extrabold"> position en temps réel</span> de tous les bus et tramway dont
+                                <span className="font-extrabold"> certains ne sont même pas sur l'application TCL </span>
+                                ou encore des alertes traffic, tout cela <span className="font-extrabold">sans connexion internet</span> * !
+                            </p>
+                            <p className="italic mt-4 text-sm">*un téléchargement de quelques dizaines de Mo est nécessaire pour activer
+                            le mode hors-ligne dans les paramètres de l'application. Les données en temps réel telles que
+                            le mode LIVE et les alertes traffic ne sont mises à jour qu'en précense d'une connexion internet.</p>
+                        </div>
+                    </section>
                 </div>
             </div>
 
