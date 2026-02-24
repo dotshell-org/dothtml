@@ -138,7 +138,25 @@ const Home = () => {
                 </div>
             </div>
 
-            <div className="h-80"/>
+            <div className="h-40"/>
+            <h1 className="text-center font-black text-5xl">We build the future for people and developers</h1>
+            <div className="flex flex-col items-center justify-center">
+                <div className="flex flex-col items-center max-w-[40em]">
+                    <p className="text-center mt-12 text-xl">
+                        Our ambition is to change the world with open source. We actively participate in its development on our GitHub.
+                        <br/><br/>
+                        We develop applications, libraries, and APIs. We believe that everyone should have software tailored to their needs.
+                        That's why we also create technologies designed by developers for developers.
+                    </p>
+                    <a
+                        href="/documentation"
+                        className="border-2 border-blue-500 text-blue-500 p-3 hover:bg-blue-500 hover:text-white font-semibold rounded-lg transition mt-10 cursor-pointer"
+                    >
+                        Browse Documentation
+                    </a>
+                </div>
+            </div>
+            <div className="h-40"/>
 
             <Footer />
         </main>

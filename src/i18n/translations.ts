@@ -21,7 +21,7 @@ export const translations = {
                 peloIsTitle: "Pelo is",
                 peloIsText: 'A <span class="font-extrabold">modern</span>,<span class="font-extrabold"> smooth</span> app, with <span class="font-extrabold">all the features</span> you need to travel the network!',
                 featuresTitle: "Schedules, Routes, Offline, LIVE",
-                featuresText: 'With Pelo, you get the world\'s <span class="font-extrabold">fastest open-source route planner</span> for public transport, <span class="font-extrabold">real-time positions</span> of all buses and trams (including <span class="font-extrabold">some not even on the TCL app</span>), traffic alerts, all <span class="font-extrabold">without internet connection</span> *!',
+                featuresText: 'With Pelo, you get the world\'s <span class="font-extrabold">fastest open-source route planner</span> for public transport, <span class="font-extrabold">real-time positions</span> of all buses and trams (including <span class="font-extrabold">some not even on the TCL app</span>), traffic alerts, all <span class="font-extrabold">without internet connection</span>* !',
                 offlineNote: '*A download of a few dozen MB is required to enable offline mode in the app settings. Real-time data such as LIVE mode and traffic alerts are only updated when an internet connection is available.'
             }
         },

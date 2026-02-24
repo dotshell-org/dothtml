@@ -1,14 +1,15 @@
 "use client";
 
 import { Canvas, useFrame } from "@react-three/fiber";
-import { Box } from "@react-three/drei";
-import { useRef, useState, useEffect } from "react";
+import { Box, PerspectiveCamera } from "@react-three/drei";
+import { useRef, useState, useEffect, useContext } from "react";
 import type { Mesh } from "three";
 
 const PhoneModel = () => {
     const meshRef = useRef<Mesh>(null!);
     const [rotation, setRotation] = useState(0);
     const rotationK = useRef(0.005); // Default value
+    const isDark = typeof window !== "undefined" && window.matchMedia('(prefers-color-scheme: dark)').matches;
 
     const calculateK = () => {
         const peloSection = document.getElementById("pelo-section");
@@ -20,7 +21,7 @@ const PhoneModel = () => {
 
             if (scrollAtCenter > 0) {
                 const turns = 0.5;
-                const bias = 0.1;
+                const bias = 0.4;
                 const targetRotation = turns * 2 * Math.PI + bias;
                 rotationK.current = targetRotation / scrollAtCenter;
             }
@@ -57,16 +58,17 @@ const PhoneModel = () => {
     });
 
     return (
-        <Box ref={meshRef} args={[3.5, 6.5, 0.3]}>
-            <meshStandardMaterial color={"#333"} />
+        <Box ref={meshRef} args={[5, 9, 0.4]}>
+            <meshStandardMaterial color={isDark ? "#fff" : "#333"} />
         </Box>
     );
 }
 
 const Phone = () => {
     return (
-        <div className="w-80 h-[40rem]">
+        <div className="w-[28rem] h-[55rem]">
             <Canvas>
+                <PerspectiveCamera makeDefault position={[0, 0, 16]} fov={45} />
                 <ambientLight intensity={0.5} />
                 <pointLight position={[10, 10, 10]} />
                 <PhoneModel />
