@@ -29,10 +29,10 @@ const Footer = () => {
                     <FaYoutube className="hover:text-red-600 transition-colors" />
                 </a>
                 <a href="https://x.com/dotshelleu" target="_blank" rel="noopener noreferrer" aria-label="X">
-                    <FaXTwitter className="hover:text-black transition-colors" />
+                    <FaXTwitter className="hover:text-black dark:hover:text-white transition-colors" />
                 </a>
                 <a href="https://www.threads.com/@dotshell.eu" target="_blank" rel="noopener noreferrer" aria-label="Threads">
-                    <FaThreads className="hover:text-black transition-colors" />
+                    <FaThreads className="hover:text-black dark:hover:text-white transition-colors" />
                 </a>
             </div>
             <p className="text-xs sm:text-sm text-neutral-400 mt-4">

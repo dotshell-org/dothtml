@@ -11,6 +11,8 @@ We have decided to make the source code of our website open source to mark the b
 
 We will prove to the world that open source software can win.
 
+*The website's code is under MIT License but **content and design are protected by copyright**.*
+
 <div align="center">
   <p><em>Made by <strong>Dotshell</strong>, Europe 🇪🇺</em></p>
 </div>
