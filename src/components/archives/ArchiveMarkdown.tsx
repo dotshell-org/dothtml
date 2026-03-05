@@ -1,12 +1,12 @@
-import { Fragment } from "react";
+import React, { Fragment } from "react";
 
 type ArchiveMarkdownProps = {
     markdown: string;
 };
 
-const parseInlineMarkdown = (text: string): Array<string | JSX.Element> => {
+const parseInlineMarkdown = (text: string): Array<string | React.JSX.Element> => {
     const pattern = /(\*\*[^*]+\*\*|`[^`]+`|\*[^*]+\*|\[[^\]]+\]\([^)]+\))/g;
-    const parts: Array<string | JSX.Element> = [];
+    const parts: Array<string | React.JSX.Element> = [];
     let lastIndex = 0;
     let match: RegExpExecArray | null;
     while ((match = pattern.exec(text)) !== null) {
@@ -61,7 +61,7 @@ const parseInlineMarkdown = (text: string): Array<string | JSX.Element> => {
 
 const ArchiveMarkdown = ({ markdown }: ArchiveMarkdownProps) => {
     const lines = markdown.split(/\r?\n/);
-    const blocks: Array<string | JSX.Element> = [];
+    const blocks: Array<string | React.JSX.Element> = [];
     let i = 0;
 
     const pushParagraph = (paragraphLines: string[], indexKey: number) => {
