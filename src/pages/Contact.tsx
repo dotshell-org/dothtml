@@ -53,7 +53,7 @@ const Contact = () => {
             return;
         }
         try {
-            const res = await fetch('https://dhi.dotshell.eu/contact', {
+            const res = await fetch('https://api.dotshell.eu/dothtml/messages', {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(form)
