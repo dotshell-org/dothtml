@@ -10,8 +10,8 @@ const Contact = () => {
     const [form, setForm] = useState({
         name: "",
         email: "",
-        country_region: "",   // au lieu de country
-        phone_number: "",     // au lieu de phone
+        countryRegion: "",
+        phoneNumber: "",
         company: "",
         message: ""
     });
@@ -25,7 +25,7 @@ const Contact = () => {
         const errors: { [key: string]: string } = {};
         if (!form.name.trim()) errors.name = t("contact.errors.nameRequired");
         if (!form.email.trim()) errors.email = t("contact.errors.emailRequired");
-        if (!form.country_region.trim()) errors.country = t("contact.errors.countryRequired");
+        if (!form.countryRegion.trim()) errors.country = t("contact.errors.countryRequired");
         if (!form.message.trim()) errors.message = t("contact.errors.messageRequired");
         return errors;
     };
@@ -60,7 +60,7 @@ const Contact = () => {
             });
             if (res.ok) {
                 setStatus("success");
-                setForm({ name: "", email: "", country_region: "", phone_number: "", company: "", message: "" });
+                setForm({ name: "", email: "", countryRegion: "", phoneNumber: "", company: "", message: "" });
                 setTimeout(() => {
                 setStatus(null);
             }, 2000);
@@ -122,11 +122,11 @@ const Contact = () => {
                             {fieldErrors.email && touched.email && <p id="email-error" className="text-red-500 text-sm text-center mb-4 animate-fade-in">{fieldErrors.email}</p>}
                         </div>
                         <div className="mb-6">
-                            <label htmlFor="country_region" className="block text-center text-base sm:text-lg md:text-xl font-light">{t("contact.fields.country")}</label>
+                            <label htmlFor="countryRegion" className="block text-center text-base sm:text-lg md:text-xl font-light">{t("contact.fields.country")}</label>
                             <input 
-                                id="country_region"
-                                name="country_region"
-                                value={form.country_region}
+                                id="countryRegion"
+                                name="countryRegion"
+                                value={form.countryRegion}
                                 onChange={handleChange} 
                                 onBlur={handleBlur} 
                                 className={`w-full pl-2 py-1 mt-2 mb-1.5 rounded-lg border ${fieldErrors.country && touched.country ? 'border-red-500' : 'border-neutral-300 dark:border-neutral-800'} bg-white dark:bg-neutral-900 text-neutral-900 dark:text-neutral-100`}
@@ -139,11 +139,11 @@ const Contact = () => {
                             {fieldErrors.country && touched.country && <p id="country-error" className="text-red-500 text-sm text-center mb-4 animate-fade-in">{fieldErrors.country}</p>}
                         </div>
                         <div className="mb-6">
-                            <label htmlFor="phone_number" className="block text-center text-base sm:text-lg md:text-xl font-light">{t("contact.fields.phone")}</label>
+                            <label htmlFor="phoneNumber" className="block text-center text-base sm:text-lg md:text-xl font-light">{t("contact.fields.phone")}</label>
                             <input 
-                                id="phone_number"
-                                name="phone_number"
-                                value={form.phone_number}
+                                id="phoneNumber"
+                                name="phoneNumber"
+                                value={form.phoneNumber}
                                 onChange={handleChange} 
                                 className="w-full pl-2 py-1 mt-2 mb-1.5 rounded-lg border border-neutral-300 dark:border-neutral-800 bg-white dark:bg-neutral-900 text-neutral-900 dark:text-neutral-100"
                                 type="tel" 
