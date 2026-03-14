@@ -1,4 +1,4 @@
-export const ARCHIVE_API_BASE_URL = "https://archives.dotshell.eu";
+export const ARCHIVE_API_BASE_URL = "https://api.dotshell.eu/archives";
 
 export type ArchiveSummary = {
     id: string;
@@ -29,7 +29,7 @@ export type LoadStatus = "idle" | "loading" | "success" | "error";
 const isRecord = (value: unknown): value is Record<string, unknown> =>
     typeof value === "object" && value !== null;
 
-const toTitle = (value: string) => {
+export const toTitle = (value: string) => {
     return value
         .replace(/[-_]+/g, " ")
         .replace(/\s+/g, " ")
@@ -237,21 +237,20 @@ export const buildFileUrl = (path: string) => {
         .split("/")
         .map((segment) => encodeURIComponent(segment))
         .join("/");
-    return `${ARCHIVE_API_BASE_URL}/file/${encoded}`;
+    return `${ARCHIVE_API_BASE_URL}/${encoded}`;
 };
 
 const normalizeFileDisplayPath = (path: string, archiveId: string) => {
     const trimmed = path.replace(/^\/+/, "");
-    const archivePrefix = `${archiveId}/files/`;
-    if (trimmed.startsWith(archivePrefix)) {
-        return trimmed.slice(archivePrefix.length);
+    // Remove the archiveId/files/ prefix to get the relative path
+    const archiveFilesPrefix = `${archiveId}/files/`;
+    if (trimmed.startsWith(archiveFilesPrefix)) {
+        return trimmed.slice(archiveFilesPrefix.length);
     }
-    const filesIndex = trimmed.indexOf("/files/");
-    if (filesIndex !== -1) {
-        return trimmed.slice(filesIndex + "/files/".length);
-    }
-    if (trimmed.startsWith("files/")) {
-        return trimmed.slice("files/".length);
+    // Remove the archiveId/screenshots/ prefix for screenshots
+    const archiveScreenshotsPrefix = `${archiveId}/screenshots/`;
+    if (trimmed.startsWith(archiveScreenshotsPrefix)) {
+        return trimmed.slice(archiveScreenshotsPrefix.length);
     }
     return trimmed;
 };

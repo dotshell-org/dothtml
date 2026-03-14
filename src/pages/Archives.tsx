@@ -16,6 +16,7 @@ import {
     buildFileTree,
     toArchiveDetails,
     toArchiveList,
+    toTitle,
 } from "@/components/archives/archiveUtils";
 
 const Archives = () => {
@@ -32,12 +33,17 @@ const Archives = () => {
     const fetchArchives = useCallback(async (signal?: AbortSignal) => {
         setListStatus("loading");
         try {
-            const response = await fetch(`${ARCHIVE_API_BASE_URL}/`, { signal });
+            const response = await fetch(`${ARCHIVE_API_BASE_URL}/tree.json`, { signal });
             if (!response.ok) {
                 throw new Error("Failed to fetch archives");
             }
             const data = await response.json();
-            const normalized = toArchiveList(data);
+            // Convert tree.json format to ArchiveSummary format
+            const normalized = Object.keys(data).map(archiveId => ({
+                id: archiveId,
+                title: toTitle(archiveId),
+                totalFiles: (data[archiveId].files?.length || 0) + (data[archiveId].screenshots?.length || 0)
+            }));
             setArchives(normalized);
             setSelectedId((current) => {
                 if (current && normalized.some((archive) => archive.id === current)) {
@@ -66,33 +72,52 @@ const Archives = () => {
             setSelectedArchive(null);
             return;
         }
-        const controller = new AbortController();
         const loadDetails = async () => {
             setDetailsStatus("loading");
             setSelectedArchive(null);
             try {
-                const response = await fetch(buildArchiveUrl(selectedId), {
-                    signal: controller.signal,
-                });
-                if (!response.ok) {
-                    throw new Error("Failed to fetch archive details");
+                // Use the tree.json data that we already fetched
+                const treeResponse = await fetch(`${ARCHIVE_API_BASE_URL}/tree.json`);
+                if (!treeResponse.ok) {
+                    throw new Error("Failed to fetch archive tree");
                 }
-                const contentType = response.headers.get("content-type") ?? "";
-                const payload = contentType.includes("application/json")
-                    ? await response.json()
-                    : await response.text();
-                setSelectedArchive(toArchiveDetails(payload, selectedId));
+                const treeData = await treeResponse.json();
+                const archiveData = treeData[selectedId];
+                
+                if (!archiveData) {
+                    throw new Error("Archive not found in tree");
+                }
+                
+                // Construct the archive details from tree.json structure
+                const screenshots = archiveData.screenshots || [];
+                const files = archiveData.files || [];
+                
+                // Check if there's a README.md file
+                const readmePath = files.find((path: string) => path.includes('README.md'));
+                let readmeContent = undefined;
+                
+                if (readmePath) {
+                    // Fetch the README content
+                    const readmeResponse = await fetch(`${ARCHIVE_API_BASE_URL}/${selectedId}/${readmePath}`);
+                    if (readmeResponse.ok) {
+                        readmeContent = await readmeResponse.text();
+                    }
+                }
+                
+                setSelectedArchive({
+                    id: selectedId,
+                    screenshots: screenshots.map((screenshot: string) => `${selectedId}/screenshots/${screenshot}`),
+                    files: files.map((file: string) => `${selectedId}/files/${file}`),
+                    readme: readmeContent,
+                    readmePath: readmePath
+                });
                 setDetailsStatus("success");
                 // eslint-disable-next-line @typescript-eslint/no-unused-vars
             } catch (error) {
-                if (controller.signal.aborted) {
-                    return;
-                }
                 setDetailsStatus("error");
             }
         };
         loadDetails();
-        return () => controller.abort();
     }, [selectedId]);
 
     const filteredArchives = useMemo(() => {
