@@ -105,16 +105,49 @@ const Archives = () => {
                 const screenshots = archiveData.screenshots || [];
                 const files = archiveData.files || [];
                 
-                // Check if there's a README.md file
-                const readmePath = files.find((path: string) => path.includes('README.md'));
+                // Check if there's a README.md file - check both in files array and at root level
+                const readmePath = files.find((path: string) => 
+                    /readme\.md$/i.test(path)
+                ) || 'README.md'; // Also try root-level README.md
+                
                 let readmeContent = undefined;
                 
-                if (readmePath) {
-                    // Fetch the README content
-                    const readmeResponse = await fetch(`${ARCHIVE_API_BASE_URL}/${selectedId}/${readmePath}`);
+                console.log('Files in archive:', files);
+                console.log('Trying README path:', readmePath);
+                
+                // Try to fetch the README content
+                const readmeUrl = `${ARCHIVE_API_BASE_URL}/${selectedId}/${readmePath}`;
+                console.log('Fetching README from:', readmeUrl);
+                try {
+                    const readmeResponse = await fetch(readmeUrl);
+                    console.log('README fetch response status:', readmeResponse.status);
                     if (readmeResponse.ok) {
                         readmeContent = await readmeResponse.text();
+                        console.log('README content:', readmeContent.substring(0, 100) + '...');
+                    } else {
+                        // If root README.md not found, try other common README locations
+                        const alternativeReadmePaths = [
+                            'docs/README.md',
+                            'documentation/README.md',
+                            'README.md',
+                            'readme.md'
+                        ];
+                        
+                        for (const altPath of alternativeReadmePaths) {
+                            if (files.includes(altPath)) {
+                                const altUrl = `${ARCHIVE_API_BASE_URL}/${selectedId}/${altPath}`;
+                                console.log('Trying alternative README path:', altPath);
+                                const altResponse = await fetch(altUrl);
+                                if (altResponse.ok) {
+                                    readmeContent = await altResponse.text();
+                                    console.log('Found README at alternative path:', altPath);
+                                    break;
+                                }
+                            }
+                        }
                     }
+                } catch (error) {
+                    console.error('Error fetching README:', error);
                 }
                 
                 setSelectedArchive({

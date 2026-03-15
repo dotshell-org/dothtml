@@ -4,7 +4,6 @@ import type {
     LoadStatus,
     TreeNode,
 } from "@/components/archives/archiveUtils";
-import { buildArchiveUrl, buildFileUrl } from "@/components/archives/archiveUtils";
 import ArchiveFileTree from "@/components/archives/ArchiveFileTree";
 import ArchiveMarkdown from "@/components/archives/ArchiveMarkdown";
 import ArchiveScreenshots from "@/components/archives/ArchiveScreenshots";
@@ -40,16 +39,6 @@ const ArchiveDetailsPanel = ({
                             t("archives.detailsTitle")).toUpperCase()}
                     </h2>
                 </div>
-                {selectedId && (
-                    <a
-                        href={buildArchiveUrl(selectedId)}
-                        target="_blank"
-                        rel="noreferrer"
-                        className="rounded-full border border-neutral-200 bg-white px-4 py-2 text-xxs uppercase tracking-[0.25em] text-neutral-600 transition hover:border-blue-300 hover:text-blue-500 dark:border-neutral-800 dark:bg-neutral-950 dark:text-neutral-300"
-                    >
-                        {t("archives.openArchive")}
-                    </a>
-                )}
             </div>
 
             {!selectedId && (
@@ -75,18 +64,6 @@ const ArchiveDetailsPanel = ({
                 detailsStatus === "success" &&
                 selectedArchive && (
                     <div className="mt-6 space-y-6">
-                        <div className="flex items-center justify-between gap-3">
-                            {selectedArchive.readmePath && (
-                                <a
-                                    href={buildFileUrl(selectedArchive.readmePath)}
-                                    target="_blank"
-                                    rel="noreferrer"
-                                    className="text-xxs uppercase tracking-[0.2em] text-blue-500 hover:text-blue-600"
-                                >
-                                    {t("archives.openFile")}
-                                </a>
-                            )}
-                        </div>
                         {selectedArchive.readme ? (
                             <div className="mt-3">
                                 <ArchiveMarkdown markdown={selectedArchive.readme} />
