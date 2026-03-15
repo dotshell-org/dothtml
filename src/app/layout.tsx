@@ -1,8 +1,9 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import ClientProviders from "./ClientProviders";
 import React from "react";
+import { AppRouterCacheProvider } from "@mui/material-nextjs/v15-appRouter";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -71,7 +72,11 @@ export const metadata: Metadata = {
       "max-snippet": -1,
     },
   },
-  viewport: "width=device-width, initial-scale=1",
+};
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
 };
 
 export default function RootLayout({
@@ -84,9 +89,11 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased dark:bg-black dark:text-white`}
       >
-        <ClientProviders>
-          {children}
-        </ClientProviders>
+        <AppRouterCacheProvider>
+          <ClientProviders>
+            {children}
+          </ClientProviders>
+        </AppRouterCacheProvider>
       </body>
     </html>
   );

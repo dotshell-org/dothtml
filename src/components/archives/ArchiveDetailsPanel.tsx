@@ -34,16 +34,11 @@ const ArchiveDetailsPanel = ({
                         {t("archives.detailsTitle")}
                     </p>
                     <h2 className="mt-1 text-2xl font-semibold">
-                        {selectedArchive?.name ??
+                        {(selectedArchive?.name ??
                             selectedSummary?.name ??
                             selectedSummary?.title ??
-                            t("archives.detailsTitle")}
+                            t("archives.detailsTitle")).toUpperCase()}
                     </h2>
-                    {selectedId && (
-                        <p className="mt-1 text-sm text-neutral-500 dark:text-neutral-400">
-                            {selectedId}
-                        </p>
-                    )}
                 </div>
                 {selectedId && (
                     <a

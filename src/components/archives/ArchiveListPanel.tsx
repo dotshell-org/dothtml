@@ -67,7 +67,7 @@ const ArchiveListPanel = ({
                                             isSelected ? "font-semibold" : "font-medium"
                                         }`}
                                     >
-                                        {archive.name ?? archive.title}
+                                        {(archive.name ?? archive.title).toUpperCase()}
                                     </span>
                                 </button>
                             </li>

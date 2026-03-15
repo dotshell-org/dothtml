@@ -130,8 +130,8 @@ export default function ClientProviders({ children }: { children: React.ReactNod
 
     return (
         <ThemeProvider theme={theme}>
-            <CssBaseline />
             <I18nProvider onReady={handleI18nReady}>
+                <CssBaseline />
                 <div className={`page-content ${isContentHidden ? "page-content--hidden" : ""}`}>
                     {children}
                 </div>

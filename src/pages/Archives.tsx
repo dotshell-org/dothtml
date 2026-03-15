@@ -19,6 +19,17 @@ import {
     toTitle,
 } from "@/components/archives/archiveUtils";
 
+const parseTreePayload = (raw: string) => {
+    try {
+        return JSON.parse(raw) as Record<string, { files?: string[]; screenshots?: string[] }>;
+    } catch {
+        const repaired = raw
+            .replace(/\](\s*)"/g, '],$1"')
+            .replace(/\}(\s*)"/g, '},$1"');
+        return JSON.parse(repaired) as Record<string, { files?: string[]; screenshots?: string[] }>;
+    }
+};
+
 const Archives = () => {
     const { t } = useI18n();
     const [archives, setArchives] = useState<ArchiveSummary[]>([]);
@@ -37,7 +48,8 @@ const Archives = () => {
             if (!response.ok) {
                 throw new Error("Failed to fetch archives");
             }
-            const data = await response.json();
+            const raw = await response.text();
+            const data = parseTreePayload(raw);
             // Convert tree.json format to ArchiveSummary format
             const normalized = Object.keys(data).map(archiveId => ({
                 id: archiveId,
@@ -81,7 +93,8 @@ const Archives = () => {
                 if (!treeResponse.ok) {
                     throw new Error("Failed to fetch archive tree");
                 }
-                const treeData = await treeResponse.json();
+                const treeRaw = await treeResponse.text();
+                const treeData = parseTreePayload(treeRaw);
                 const archiveData = treeData[selectedId];
                 
                 if (!archiveData) {
