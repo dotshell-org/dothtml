@@ -5,6 +5,7 @@ import NavBar from "@/components/generic/nav/NavBar";
 import LogoContainer from "@/components/home/logo/LogoContainer";
 import Footer from "@/components/generic/footer/Footer";
 import { useI18n } from "@/i18n/useI18n";
+import Image from "next/image";
 
 import Pelo from "@/components/home/pelo/Pelo";
 
@@ -85,9 +86,8 @@ const Home = () => {
                     onPlay={handlePlay}
                     onTimeUpdate={handleTimeUpdate}
                 >
-                    <source src="/lyon_drone_non_official.mp4" type="video/mp4" />
+                    <source src="https://dotshell.eu/assets/home_black_loop.mp4" type="video/mp4" />
                 </video>
-                <div className="absolute inset-0 dark:bg-black/35" aria-hidden="true"></div>
                 <div className="relative z-10 flex h-full flex-col text-white">
                     <NavBar />
                     <div className="flex flex-1 items-center justify-center">
@@ -119,22 +119,34 @@ const Home = () => {
                 <Pelo />
             </div>
 
-            <div
-                className="relative w-full bg-red-500 h-[70rem]"
-                style={{ clipPath: 'polygon(0 4%, 100% 0, 100% 96%, 0 100%)' }}
-            >
-                <div className="pt-20">
-                    <section id="pelo-section" className="py-24 grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
-                        <div className="items-center justify-center text-white text-right pl-80">
-                             <h1 className="font-black text-3xl my-10">{t("home.redSection.tclFedUpTitle")}</h1>
-                             <p className="text-xl">{t("home.redSection.tclFedUpText")}</p>
-                             <h1 className="font-black text-5xl my-10">{t("home.redSection.peloIsTitle")}</h1>
-                             <p className="text-xl" dangerouslySetInnerHTML={{ __html: t("home.redSection.peloIsText") }} />
-                             <h1 className="font-black text-3xl my-10">{t("home.redSection.featuresTitle")}</h1>
-                             <p className="text-xl" dangerouslySetInnerHTML={{ __html: t("home.redSection.featuresText") }} />
-                             <p className="italic mt-4 text-sm">{t("home.redSection.offlineNote")}</p>
+            <div className="relative w-full bg-red-500" style={{ clipPath: 'polygon(0 4%, 100% 0, 100% 96%, 0 100%)' }}>
+                <div className="min-h-[70rem] flex items-center justify-center py-8 px-4">
+                    <div className="w-full max-w-7xl mx-auto">
+                        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-8 items-center">
+                            <div className="text-white text-left lg:pr-8">
+                                <h1 className="font-black text-3xl mb-4">{t("home.redSection.tclFedUpTitle")}</h1>
+                                <p className="text-xl mb-6">{t("home.redSection.tclFedUpText")}</p>
+                                <h1 className="font-black text-5xl mb-4">{t("home.redSection.peloIsTitle")}</h1>
+                                <p className="text-xl mb-6" dangerouslySetInnerHTML={{ __html: t("home.redSection.peloIsText") }} />
+                                <h1 className="font-black text-3xl mb-4">{t("home.redSection.featuresTitle")}</h1>
+                                <p className="text-xl mb-6" dangerouslySetInnerHTML={{ __html: t("home.redSection.featuresText") }} />
+                                <p className="italic text-sm">{t("home.redSection.offlineNote")}</p>
+                            </div>
+                            <div className="flex justify-center lg:justify-center mt-8 lg:mt-0">
+                                <div className="overflow-hidden rounded-lg w-full max-w-lg lg:max-w-xl xl:max-w-2xl">
+                                    <Image
+                                        src="/man_home_page.png"
+                                        alt="Man using Dotshell application"
+                                        width={1500}
+                                        height={1800}
+                                        className="scale-120"
+                                        style={{transform: 'translateY(5%)', filter: 'drop-shadow(0 0 3px rgba(255, 255, 255, 0.7))'}}
+                                        priority
+                                    />
+                                </div>
+                            </div>
                         </div>
-                    </section>
+                    </div>
                 </div>
             </div>
 
@@ -150,6 +162,8 @@ const Home = () => {
                     </p>
                     <a
                         href="/documentation"
+                        target="_blank"
+                        rel="noopener noreferrer"
                         className="border-2 border-blue-500 text-blue-500 p-3 hover:bg-blue-500 hover:text-white font-semibold rounded-lg transition mt-10 cursor-pointer"
                     >
                         Browse Documentation
