@@ -9,7 +9,7 @@ const NavLink: React.FC<NavLinkProps> = ({ href, children }) => {
     return (
         <a
             href={href}
-            className="relative inline-block text-center text-base md:text-lg lg:text-xl font-light group"
+            className="relative inline-block text-center text-base md:text-lg lg:text-xl font-light group text-white"
         >
             <span>{children}</span>
             <span

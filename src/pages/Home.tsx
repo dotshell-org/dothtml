@@ -140,7 +140,10 @@ const Home = () => {
                                         width={1500}
                                         height={1800}
                                         className="scale-120"
-                                        style={{transform: 'translateY(5%)', filter: 'drop-shadow(0 0 3px rgba(255, 255, 255, 0.7))'}}
+                                        style={{
+                                            transform: 'translateY(5%)',
+                                            filter: 'drop-shadow(2px 0 0 white) drop-shadow(-2px 0 0 white) drop-shadow(0 2px 0 white) drop-shadow(0 -2px 0 white)'
+                                        }}
                                         priority
                                     />
                                 </div>

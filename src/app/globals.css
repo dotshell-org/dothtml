@@ -535,3 +535,14 @@ img {
         touch-action: pan-y !important;
     }
 }
+
+/* Dark theme class for immediate application */
+.dark-theme {
+    background-color: #000000;
+    color: #ffffff;
+}
+
+
+.dark-theme h1, .dark-theme h2, .dark-theme h3, .dark-theme h4, .dark-theme h5, .dark-theme h6 {
+    color: #ffffff;
+}
