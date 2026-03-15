@@ -8,19 +8,19 @@ const Pelo = () => {
     const { t, locale } = useI18n();
 
     return (
-        <section id="pelo-section" className="py-24 grid grid-cols-1 lg:grid-cols-2 gap-70 items-center">
-            <div className="flex items-center justify-end">
+        <section id="pelo-section" className="py-16 md:py-24 px-8 md:px-12 lg:px-24 grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 xl:gap-32 items-center">
+            <div className="flex items-center justify-center lg:justify-end">
                 <Phone />
             </div>
             <div className="flex flex-col items-center lg:items-start justify-center text-center lg:text-left">
                 <Image
-                    className="dark:invert"
+                    className="dark:invert w-56 md:w-[300px] h-auto"
                     src="/pelo-full-text.svg"
                     alt="Pelo"
                     width={300}
                     height={300}
                 />
-                <p className="text-3xl mt-4 w-[16em]" dangerouslySetInnerHTML={{ __html: t('pelo.subtitle') }} />
+                <p className="text-xl md:text-2xl lg:text-3xl mt-6 px-4 md:px-0 max-w-full md:max-w-xs lg:w-[16em]" dangerouslySetInnerHTML={{ __html: t('pelo.subtitle') }} />
                 <a
                   href=""
                   target="_blank"

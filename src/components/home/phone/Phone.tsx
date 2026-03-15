@@ -66,7 +66,7 @@ const PhoneModel = () => {
 
 const Phone = () => {
     return (
-        <div className="w-[28rem] h-[55rem]">
+        <div className="w-64 h-[28rem] md:w-[22rem] md:h-[45rem] lg:w-[28rem] lg:h-[55rem]">
             <Canvas>
                 <PerspectiveCamera makeDefault position={[0, 0, 16]} fov={45} />
                 <ambientLight intensity={0.5} />

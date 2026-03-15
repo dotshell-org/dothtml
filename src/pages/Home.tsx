@@ -72,7 +72,7 @@ const Home = () => {
     };
 
     return (
-        <main className="min-h-screen">
+        <main className="min-h-screen overflow-x-hidden">
             <section className="relative h-screen w-full overflow-hidden bg-black">
                 <video
                     className="pointer-events-none absolute inset-0 h-full w-full object-cover"
@@ -119,29 +119,28 @@ const Home = () => {
                 <Pelo />
             </div>
 
-            <div className="relative w-full bg-red-500" style={{ clipPath: 'polygon(0 4%, 100% 0, 100% 96%, 0 100%)' }}>
-                <div className="min-h-[70rem] flex items-center justify-center py-8 px-4">
+            <div className="relative w-full bg-red-500" style={{ clipPath: 'polygon(0 4vw, 100% 0, 100% calc(100% - 4vw), 0 100%)' }}>
+                <div className="lg:min-h-[70rem] flex items-center justify-center py-32 md:py-40 lg:py-8 px-8 md:px-12 lg:px-4">
                     <div className="w-full max-w-7xl mx-auto">
-                        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-8 items-center">
-                            <div className="text-white text-left lg:pr-8">
-                                <h1 className="font-black text-3xl mb-4">{t("home.redSection.tclFedUpTitle")}</h1>
-                                <p className="text-xl mb-6">{t("home.redSection.tclFedUpText")}</p>
-                                <h1 className="font-black text-5xl mb-4">{t("home.redSection.peloIsTitle")}</h1>
-                                <p className="text-xl mb-6" dangerouslySetInnerHTML={{ __html: t("home.redSection.peloIsText") }} />
-                                <h1 className="font-black text-3xl mb-4">{t("home.redSection.featuresTitle")}</h1>
-                                <p className="text-xl mb-6" dangerouslySetInnerHTML={{ __html: t("home.redSection.featuresText") }} />
-                                <p className="italic text-sm">{t("home.redSection.offlineNote")}</p>
+                        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-8 items-center">
+                            <div className="text-white text-center lg:text-left lg:pr-8">
+                                <h1 className="font-black text-xl md:text-3xl mb-4">{t("home.redSection.tclFedUpTitle")}</h1>
+                                <p className="text-base md:text-xl mb-6">{t("home.redSection.tclFedUpText")}</p>
+                                <h1 className="font-black text-3xl md:text-5xl lg:text-6xl mb-4">{t("home.redSection.peloIsTitle")}</h1>
+                                <p className="text-base md:text-xl mb-6" dangerouslySetInnerHTML={{ __html: t("home.redSection.peloIsText") }} />
+                                <h1 className="font-black text-xl md:text-3xl mb-4">{t("home.redSection.featuresTitle")}</h1>
+                                <p className="text-base md:text-xl mb-6" dangerouslySetInnerHTML={{ __html: t("home.redSection.featuresText") }} />
+                                <p className="italic text-xs md:text-sm">{t("home.redSection.offlineNote")}</p>
                             </div>
-                            <div className="flex justify-center lg:justify-center mt-8 lg:mt-0">
-                                <div className="overflow-hidden rounded-lg w-full max-w-lg lg:max-w-xl xl:max-w-2xl">
+                            <div className="hidden lg:flex justify-center mt-12 lg:mt-0">
+                                <div className="overflow-visible lg:overflow-hidden rounded-lg w-full max-w-sm md:max-w-md lg:max-w-xl xl:max-w-2xl">
                                     <Image
                                         src="/man_home_page.png"
                                         alt="Man using Dotshell application"
                                         width={1500}
                                         height={1800}
-                                        className="scale-120"
+                                        className="scale-100 lg:scale-110 xl:scale-125 transform transition-transform translate-y-0 lg:translate-y-6"
                                         style={{
-                                            transform: 'translateY(5%)',
                                             filter: 'drop-shadow(2px 0 0 white) drop-shadow(-2px 0 0 white) drop-shadow(0 2px 0 white) drop-shadow(0 -2px 0 white)'
                                         }}
                                         priority
@@ -153,11 +152,11 @@ const Home = () => {
                 </div>
             </div>
 
-            <div className="h-40"/>
-            <h1 className="text-center font-black text-5xl">{t("home.futureTitle")}</h1>
-            <div className="flex flex-col items-center justify-center">
+            <div className="h-20 lg:h-40"/>
+            <h1 className="text-center font-black text-3xl md:text-4xl lg:text-5xl px-6">{t("home.futureTitle")}</h1>
+            <div className="flex flex-col items-center justify-center px-6">
                 <div className="flex flex-col items-center max-w-[40em]">
-                    <p className="text-center mt-12 text-xl">
+                    <p className="text-center mt-8 md:mt-12 text-base md:text-xl">
                         {t("home.ambition1")}
                         <br /><br />
                         {t("home.ambition2")}

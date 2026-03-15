@@ -195,7 +195,7 @@ const Archives = () => {
     return (
         <main className="min-h-screen">
             <NavBar />
-            <section className="px-4 pb-16 pt-6 sm:pt-12">
+            <section className="px-6 sm:px-8 pb-16 pt-6 sm:pt-12">
                 <div className="mx-auto max-w-6xl">
                     <ArchiveHero
                         title={t("archives.title")}
